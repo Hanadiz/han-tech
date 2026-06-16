@@ -1,0 +1,50 @@
+<!-- frontend/pages/home/index.html -->
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Han-Tech Ltd</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-primary: #f9fafb; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: #2c3e50; margin: 0; }
+        .section-title { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+    <div id="hero-container"></div>
+    <div id="featured-container"></div>
+    <div id="why-us-container"></div>
+    <div id="testimonials-container"></div>
+    <div id="stats-container"></div>
+    <div id="blog-container"></div>
+    <div id="partners-container"></div>
+    <div id="cta-container"></div>
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        async function load(url, id) {
+            const resp = await fetch(url);
+            document.getElementById(id).innerHTML = await resp.text();
+        }
+        (async function() {
+            await load('/components/layouts/header.html', 'header-container');
+            await load('/pages/home/hero-banner.html', 'hero-container');
+            await load('/pages/home/featured-services.html', 'featured-container');
+            await load('/pages/home/why-choose-us.html', 'why-us-container');
+            await load('/pages/home/testimonials.html', 'testimonials-container');
+            await load('/pages/home/stats-bar.html', 'stats-container');
+            await load('/pages/home/recent-blog.html', 'blog-container');
+            await load('/pages/home/partners.html', 'partners-container');
+            await load('/pages/home/cta-section.html', 'cta-container');
+            await load('/components/layouts/footer.html', 'footer-container');
+        })();
+    </script>
+</body>
+</html>
