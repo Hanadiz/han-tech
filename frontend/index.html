@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Our IT Services | Han-Tech Ltd</title>
+    <meta name="description" content="Explore 15 comprehensive IT service categories from Han-Tech Ltd. Networking, cloud, security, development & more.">
+    <link rel="icon" type="image/x-icon" href="../../assets/images/logo/favicon.ico">
+    
+    <!-- Preconnects -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- External CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Global styles (same as index.html) -->
+    <style>
+        :root {
+            --tech-blue: #0077b6;
+            --tech-light: #90e0ef;
+            --accent: #00b4d8;
+            --success: #2ecc71;
+            --dark: #2c3e50;
+            --text-muted: #666;
+            --border-color: #e0e0e0;
+            --bg-primary: #f9fafb;
+            --bg-card: #fff;
+            --gradient-tech: linear-gradient(135deg, #0077b6, #00b4d8);
+            --gradient-dark: linear-gradient(135deg, #0f0f1a, #1a1a2e, #16213e);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1);
+            --border-glow: 0 0 20px rgba(0,180,216,0.3);
+        }
+        [data-theme="dark"] {
+            --bg-primary: #0f0f1a;
+            --bg-card: #1a1a2e;
+            --dark: #e0e0e0;
+            --text-muted: #94a3b8;
+            --border-color: #2a2a40;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background: var(--bg-primary);
+            line-height: 1.6;
+        }
+        .section-padding { padding: 80px 0; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-badge {
+            display: inline-block;
+            background: rgba(0,180,216,0.1);
+            color: var(--tech-blue);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            border: 1px solid rgba(0,180,216,0.2);
+        }
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--dark);
+        }
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .service-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 35px 28px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s;
+            height: 100%;
+            border: 2px solid transparent;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--gradient-tech);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl), var(--border-glow);
+            border-color: rgba(0,180,216,0.15);
+        }
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        .service-icon {
+            width: 60px; height: 60px;
+            background: var(--gradient-tech);
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 20px;
+            transition: all 0.4s;
+        }
+        .service-card:hover .service-icon {
+            transform: rotateY(360deg);
+        }
+        .service-card-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        .service-card-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .service-card-number {
+            position: absolute;
+            top: 15px; right: 15px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: rgba(0,180,216,0.15);
+        }
+    </style>
+</head>
+<body>
+    <!-- Component placeholders -->
+    <div id="header-container"></div>
+    <div id="hero-container"></div>
+
+    <!-- Main services listing -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">15 Service Categories</span>
+                <h1 class="section-title">Complete Technology Solutions</h1>
+                <p class="section-description">
+                    From networking to EdTech, Han-Tech Ltd offers a full stack of professional IT services tailored to East African businesses.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Category cards (15 total) -->
+                <div class="col-md-6 col-lg-4">
+                    <a href="infrastructure/" class="service-card">
+                        <div class="service-card-number">01</div>
+                        <div class="service-icon"><i class="fas fa-server"></i></div>
+                        <h3 class="service-card-title">Core Infrastructure</h3>
+                        <p class="service-card-text">Full-lifecycle hardware, data centers, component repair & maintenance.</p>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="networking/" class="service-card">
+                        <div class="service-card-number">02</div>
+                        <div class="service-icon"><i class="fas fa-network-wired"></i></div>
+                        <h3 class="service-card-title">Networking & Connectivity</h3>
+                        <p class="service-card-text">NBI, Starlink, SD-WAN, fiber splicing, and wireless solutions.</p>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="cloud/" class="service-card">
+                        <div class="service-card-number">03</div>
+                        <div class="service-icon"><i class="fas fa-cloud"></i></div>
+                        <h3 class="service-card-title">Cloud & Virtualization</h3>
+                        <p class="service-card-text">GCP, AWS, Azure, private cloud, and Kubernetes orchestration.</p>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="development/" class="service-card">
+                        <div class="service-card-number">04</div>
+                        <div class="service-icon"><i class="fas fa-code"></i></div>
+                        <h3 class="service-card-title">Software & DevOps</h3>
+                        <p class="service-card-text">Mobile-first apps, CI/CD pipelines, and mobile money integration.</p>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="security/" class="service-card">
+                        <div class="service-card-number">05</div>
+                        <div class="service-icon"><i class="fas fa-shield-haltered"></i></div>
+                        <h3 class="service-card-title">Security & Compliance</h3>
+                        <p class="service-card-text">Zero-Trust architectures, 24/7 SOC, and ISO 27001 compliance.</p>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="data-analytics/" class="service-card">
+                        <div class="service-card-number">06</div>
+                        <div class="service-icon"><i class="fas fa-chart-bar"></i></div>
+                        <h3 class="service-card-title">Data & Analytics</h3>
+                        <p class="service-card-text">BI dashboards, big data platforms, and AI/ML model deployment.</p>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="enterprise/" class="service-card">
+                        <div class="service-card-number">07</div>
+                        <div class="service-icon"><i class="fas fa-building"></i></div>
+                        <h3 class="service-card-title">Enterprise Solutions</h3>
+                        <p class="service-card-text">ERP, CRM, and custom enterprise application development.</p>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="strategy-support/" class="service-card">
+                        <div class="service-card-number">08</div>
+                        <div class="service-icon"><i class="fas fa-chess-queen"></i></div>
+                        <h3 class="service-card-title">Strategy & Support</h3>
+                        <p class="service-card-text">IT consulting, digital transformation roadmaps, and managed support.</p>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="training/" class="service-card">
+                        <div class="service-card-number">09</div>
+                        <div class="service-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <h3 class="service-card-title">Training & Capacity Building</h3>
+                        <p class="service-card-text">Corporate IT training, certification prep, and custom workshops.</p>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="iot/" class="service-card">
+                        <div class="service-card-number">10</div>
+                        <div class="service-icon"><i class="fas fa-microchip"></i></div>
+                        <h3 class="service-card-title">IoT & Smart Systems</h3>
+                        <p class="service-card-text">Sensor networks, smart agriculture, and industrial IoT solutions.</p>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="digital-media/" class="service-card">
+                        <div class="service-card-number">11</div>
+                        <div class="service-icon"><i class="fas fa-photo-video"></i></div>
+                        <h3 class="service-card-title">Digital Media</h3>
+                        <p class="service-card-text">Branding, graphic design, video production, and social media management.</p>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="auditing/" class="service-card">
+                        <div class="service-card-number">12</div>
+                        <div class="service-icon"><i class="fas fa-search-dollar"></i></div>
+                        <h3 class="service-card-title">IT Auditing</h3>
+                        <p class="service-card-text">System audits, security assessments, and regulatory compliance checks.</p>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="gis/" class="service-card">
+                        <div class="service-card-number">13</div>
+                        <div class="service-icon"><i class="fas fa-globe-africa"></i></div>
+                        <h3 class="service-card-title">GIS & Mapping</h3>
+                        <p class="service-card-text">Geospatial analysis, drone surveying, and custom map applications.</p>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="fintech/" class="service-card">
+                        <div class="service-card-number">14</div>
+                        <div class="service-icon"><i class="fas fa-coins"></i></div>
+                        <h3 class="service-card-title">FinTech</h3>
+                        <p class="service-card-text">Mobile money, payment gateways, digital wallets, and blockchain.</p>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="edtech/" class="service-card">
+                        <div class="service-card-number">15</div>
+                        <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <h3 class="service-card-title">EdTech & LMS</h3>
+                        <p class="service-card-text">Learning management systems, e‑learning content, and virtual classrooms.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer placeholder -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Component loader (paths relative to frontend/pages/services/)
+        async function loadComponent(url, containerId) {
+            try {
+                const resp = await fetch(url);
+                if (!resp.ok) throw new Error('Failed to load ' + url);
+                document.getElementById(containerId).innerHTML = await resp.text();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        (async () => {
+            const basePath = '../../components/layouts/';
+            // Load header (which includes nav) and default hero, then footer
+            await loadComponent(basePath + 'header.html', 'header-container');
+            // Use a services-specific hero if you want, or reuse the default one
+            await loadComponent(basePath + 'hero.html', 'hero-container');
+            await loadComponent(basePath + 'footer.html', 'footer-container');
+        })();
+    </script>
+</body>
+</html>
