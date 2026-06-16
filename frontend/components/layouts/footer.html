@@ -1,0 +1,658 @@
+<!-- ============================================ -->
+<!-- HAN-TECH LTD FOOTER COMPONENT -->
+<!-- Location: frontend/components/layouts/footer.html -->
+<!-- ============================================ -->
+
+<style>
+    /* ----- FOOTER STYLES ----- */
+    .footer {
+        background: linear-gradient(135deg, #0f0f1a, #1a1a2e, #16213e);
+        color: #94a3b8;
+        position: relative;
+        overflow: hidden;
+    }
+    .footer-top-border {
+        height: 4px;
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+        box-shadow: 0 2px 20px rgba(0,180,216,0.3);
+    }
+    .footer-pattern {
+        position: absolute;
+        inset: 0;
+        opacity: 0.03;
+        background-image: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 1px, transparent 1px);
+        background-size: 50px 50px;
+    }
+    .footer-glow {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.08;
+    }
+    .footer-glow-left {
+        top: -100px;
+        left: -100px;
+        background: #0077b6;
+    }
+    .footer-glow-right {
+        bottom: -100px;
+        right: -100px;
+        background: #00b4d8;
+    }
+    .footer-top {
+        padding: 80px 0 60px;
+        position: relative;
+        z-index: 2;
+    }
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1.2fr 1.3fr;
+        gap: 40px;
+    }
+    .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+        text-decoration: none;
+    }
+    .footer-logo-icon {
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        color: #fff;
+        border: 2px solid rgba(255,255,255,0.2);
+    }
+    .footer-company-name {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #fff;
+    }
+    .footer-description {
+        color: #94a3b8;
+        line-height: 1.8;
+        margin-bottom: 24px;
+        font-size: 0.9rem;
+    }
+    .footer-highlight {
+        color: #90e0ef;
+    }
+    .footer-social {
+        display: flex;
+        gap: 12px;
+    }
+    .footer-social-link {
+        width: 42px;
+        height: 42px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #94a3b8;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+    .footer-social-link:hover {
+        transform: translateY(-3px);
+        color: #fff;
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    }
+    .footer-section-title {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 24px;
+        padding-bottom: 14px;
+        position: relative;
+    }
+    .footer-section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 30px;
+        height: 3px;
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+        border-radius: 2px;
+    }
+    .footer-links-list {
+        list-style: none;
+        padding: 0;
+    }
+    .footer-links-list li {
+        margin-bottom: 12px;
+    }
+    .footer-link {
+        color: #94a3b8;
+        text-decoration: none;
+        transition: all 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9rem;
+    }
+    .footer-link:hover {
+        color: #fff;
+        padding-left: 8px;
+    }
+    .link-arrow {
+        opacity: 0;
+        transform: translateX(-5px);
+        transition: all 0.3s;
+        color: #90e0ef;
+    }
+    .footer-link:hover .link-arrow {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    .footer-contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 16px;
+        font-size: 0.9rem;
+    }
+    .footer-contact-icon {
+        width: 38px;
+        height: 38px;
+        background: rgba(0,180,216,0.08);
+        border: 1px solid rgba(0,180,216,0.15);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0077b6;
+        flex-shrink: 0;
+        transition: all 0.3s;
+    }
+    .footer-contact-item:hover .footer-contact-icon {
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+        color: #fff;
+        border-color: transparent;
+        transform: rotate(360deg);
+    }
+    .contact-label {
+        display: block;
+        font-size: 0.7rem;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 2px;
+    }
+    .footer-contact-link {
+        color: #94a3b8;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+    .footer-contact-link:hover {
+        color: #90e0ef;
+    }
+    .footer-newsletter {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 16px;
+        padding: 24px;
+    }
+    .newsletter-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+    }
+    .newsletter-header i {
+        font-size: 1.3rem;
+        color: #90e0ef;
+    }
+    .footer-newsletter-title {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #fff;
+        margin: 0;
+    }
+    .footer-newsletter-text {
+        font-size: 0.8rem;
+        color: #64748b;
+        margin-bottom: 16px;
+    }
+    .footer-newsletter-form {
+        display: flex;
+        gap: 8px;
+    }
+    .newsletter-input-wrapper {
+        flex: 1;
+        position: relative;
+    }
+    .newsletter-input-wrapper i {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #64748b;
+    }
+    .footer-newsletter-input {
+        width: 100%;
+        padding: 12px 16px 12px 40px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 12px;
+        color: #fff;
+        font-size: 0.85rem;
+        outline: none;
+    }
+    .footer-newsletter-btn {
+        padding: 12px 20px;
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+        border: 2px solid transparent;
+        border-radius: 12px;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+    }
+    .footer-newsletter-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0,180,216,0.3);
+    }
+    .footer-bottom {
+        border-top: 1px solid rgba(255,255,255,0.06);
+        padding: 24px 0;
+        position: relative;
+        z-index: 2;
+    }
+    .footer-bottom-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+    .footer-copyright {
+        color: #64748b;
+        font-size: 0.85rem;
+    }
+    .footer-copyright strong {
+        color: #fff;
+    }
+    .footer-copyright-year {
+        color: #90e0ef;
+        font-weight: 600;
+    }
+    .footer-bottom-links {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+    .footer-bottom-link {
+        color: #64748b;
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: color 0.3s;
+    }
+    .footer-bottom-link:hover {
+        color: #90e0ef;
+    }
+    .footer-bottom-separator {
+        width: 4px;
+        height: 4px;
+        background: rgba(255,255,255,0.15);
+        border-radius: 50%;
+    }
+    .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+        color: #fff;
+        border: 2px solid rgba(255,255,255,0.2);
+        border-radius: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        transition: all 0.3s;
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    }
+    .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    .back-to-top:hover {
+        transform: translateY(-4px) !important;
+        box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25), 0 0 20px rgba(0,180,216,0.3);
+    }
+    .newsletter-message {
+        margin-top: 12px;
+        font-size: 0.8rem;
+        padding: 8px 12px;
+        border-radius: 8px;
+        display: none;
+    }
+    .newsletter-message.success {
+        display: block;
+        background: rgba(46,204,113,0.1);
+        color: #2ecc71;
+        border: 1px solid rgba(46,204,113,0.2);
+    }
+    .newsletter-message.error {
+        display: block;
+        background: rgba(231,76,60,0.1);
+        color: #e74c3c;
+        border: 1px solid rgba(231,76,60,0.2);
+    }
+    .footer-toast {
+        position: fixed;
+        bottom: 90px;
+        right: 30px;
+        background: #fff;
+        color: #2c3e50;
+        padding: 16px 24px;
+        border-radius: 16px;
+        box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transform: translateX(120%);
+        transition: transform 0.4s;
+        max-width: 420px;
+    }
+    [data-theme="dark"] .footer-toast {
+        background: #1a1a2e;
+        color: #e0e0e0;
+    }
+    .footer-toast.show {
+        transform: translateX(0);
+    }
+    .footer-toast-icon {
+        width: 44px;
+        height: 44px;
+        background: rgba(46,204,113,0.1);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #2ecc71;
+        font-size: 1.3rem;
+        flex-shrink: 0;
+    }
+    .footer-toast-close {
+        background: none;
+        border: none;
+        color: #999;
+        cursor: pointer;
+        padding: 4px;
+        font-size: 1.2rem;
+    }
+
+    @media (max-width: 1199px) {
+        .footer-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    @media (max-width: 768px) {
+        .footer-grid {
+            grid-template-columns: 1fr;
+        }
+        .footer-bottom-content {
+            flex-direction: column;
+            text-align: center;
+        }
+        .footer-newsletter-form {
+            flex-direction: column;
+        }
+    }
+</style>
+
+<!-- FOOTER HTML -->
+<footer class="footer" id="mainFooter">
+    <div class="footer-top-border"></div>
+    <div class="footer-pattern"></div>
+    <div class="footer-glow footer-glow-left"></div>
+    <div class="footer-glow footer-glow-right"></div>
+
+    <div class="footer-top">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Brand Column -->
+                <div class="footer-brand">
+                    <a href="/index.html" class="footer-logo">
+                        <div class="footer-logo-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="footer-logo-text">
+                            <span class="footer-company-name">HAN-TECH LTD</span>
+                            <span class="footer-company-tagline">Innovate • Transform • Excel</span>
+                        </div>
+                    </a>
+                    <p class="footer-description">
+                        Han-Tech Ltd is Uganda's complete technology partner — delivering 15 professional 
+                        IT service categories across East Africa. 
+                        <strong class="footer-highlight">Your technology. Our priority.</strong>
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com/hantechltd" class="footer-social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://twitter.com/hantechltd" class="footer-social-link" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://linkedin.com/company/hantechltd" class="footer-social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://wa.me/256781607792" class="footer-social-link" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://youtube.com/@hantechltd" class="footer-social-link" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3 class="footer-section-title">Quick Links</h3>
+                    <ul class="footer-links-list">
+                        <li><a href="/index.html" class="footer-link"><span class="link-arrow">→</span> Home</a></li>
+                        <li><a href="/pages/services/" class="footer-link"><span class="link-arrow">→</span> Services</a></li>
+                        <li><a href="/pages/products/" class="footer-link"><span class="link-arrow">→</span> Products</a></li>
+                        <li><a href="/pages/portfolio/" class="footer-link"><span class="link-arrow">→</span> Portfolio</a></li>
+                        <li><a href="/pages/about/" class="footer-link"><span class="link-arrow">→</span> About Us</a></li>
+                        <li><a href="/pages/careers/" class="footer-link"><span class="link-arrow">→</span> Careers</a></li>
+                        <li><a href="/pages/contact/" class="footer-link"><span class="link-arrow">→</span> Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Top Services -->
+                <div class="footer-section">
+                    <h3 class="footer-section-title">Top Services</h3>
+                    <ul class="footer-links-list">
+                        <li><a href="/pages/services/networking/" class="footer-link"><span class="link-arrow">→</span> Networking & Connectivity</a></li>
+                        <li><a href="/pages/services/development/" class="footer-link"><span class="link-arrow">→</span> Software Development</a></li>
+                        <li><a href="/pages/services/cloud/" class="footer-link"><span class="link-arrow">→</span> Cloud & Virtualization</a></li>
+                        <li><a href="/pages/services/security/" class="footer-link"><span class="link-arrow">→</span> Security & Compliance</a></li>
+                        <li><a href="/pages/services/iot/" class="footer-link"><span class="link-arrow">→</span> IoT & Smart Systems</a></li>
+                        <li><a href="/pages/services/edtech/" class="footer-link"><span class="link-arrow">→</span> EdTech & LMS</a></li>
+                        <li><a href="/pages/services/" class="footer-link view-all"><span class="link-arrow">→</span> View All 15 Categories</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Newsletter -->
+                <div class="footer-section">
+                    <h3 class="footer-section-title">Contact & Support</h3>
+                    <ul class="footer-contact-list">
+                        <li class="footer-contact-item">
+                            <div class="footer-contact-icon"><i class="fas fa-phone"></i></div>
+                            <div class="footer-contact-text">
+                                <span class="contact-label">Call Us</span>
+                                <a href="tel:+256781607792" class="footer-contact-link">+256 781 607792</a>
+                            </div>
+                        </li>
+                        <li class="footer-contact-item">
+                            <div class="footer-contact-icon"><i class="fab fa-whatsapp"></i></div>
+                            <div class="footer-contact-text">
+                                <span class="contact-label">WhatsApp</span>
+                                <a href="https://wa.me/256781607792" class="footer-contact-link" target="_blank" rel="noopener noreferrer">Chat with Us</a>
+                            </div>
+                        </li>
+                        <li class="footer-contact-item">
+                            <div class="footer-contact-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="footer-contact-text">
+                                <span class="contact-label">Email</span>
+                                <a href="mailto:info@hantech.com" class="footer-contact-link">info@hantech.com</a>
+                            </div>
+                        </li>
+                        <li class="footer-contact-item">
+                            <div class="footer-contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="footer-contact-text">
+                                <span class="contact-label">Location</span>
+                                <a href="https://maps.google.com/?q=Yumbe+Uganda" class="footer-contact-link" target="_blank" rel="noopener noreferrer">Yumbe, Uganda</a>
+                            </div>
+                        </li>
+                        <li class="footer-contact-item">
+                            <div class="footer-contact-icon"><i class="fas fa-clock"></i></div>
+                            <div class="footer-contact-text">
+                                <span class="contact-label">Working Hours</span>
+                                <span>Mon–Fri: 8am – 6pm (EAT)</span>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!-- Newsletter -->
+                    <div class="footer-newsletter">
+                        <div class="newsletter-header">
+                            <i class="bi bi-envelope-paper"></i>
+                            <h4 class="footer-newsletter-title">Stay Updated</h4>
+                        </div>
+                        <p class="footer-newsletter-text">Get the latest tech insights, tips, and company updates from Han-Tech Ltd.</p>
+                        <form class="footer-newsletter-form" id="footerNewsletterForm">
+                            <div class="newsletter-input-wrapper">
+                                <i class="bi bi-envelope"></i>
+                                <input type="email" class="footer-newsletter-input" placeholder="your@email.com" required aria-label="Email for newsletter">
+                            </div>
+                            <button type="submit" class="footer-newsletter-btn">
+                                <span>Subscribe</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                        <div class="newsletter-message" id="newsletterMessage"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="footer-bottom-content">
+                <div class="footer-copyright">
+                    &copy; <span class="footer-copyright-year" id="dynamicYear"></span> 
+                    <strong>Han-Tech Ltd</strong>. All rights reserved.
+                    <span class="copyright-dot">•</span>
+                    <span class="copyright-tagline">Your Technology. Our Priority.</span>
+                </div>
+                <div class="footer-bottom-links">
+                    <a href="/pages/privacy/" class="footer-bottom-link">Privacy Policy</a>
+                    <span class="footer-bottom-separator"></span>
+                    <a href="/pages/terms/" class="footer-bottom-link">Terms of Service</a>
+                    <span class="footer-bottom-separator"></span>
+                    <a href="/pages/support/" class="footer-bottom-link">Support</a>
+                    <span class="footer-bottom-separator"></span>
+                    <a href="/sitemap.xml" class="footer-bottom-link">Sitemap</a>
+                    <span class="footer-bottom-separator"></span>
+                    <a href="/pages/faq/" class="footer-bottom-link">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top Button -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="bi bi-arrow-up"></i>
+    <span class="back-to-top-ripple"></span>
+</button>
+
+<!-- Toast Notification -->
+<div class="footer-toast" id="footerToast">
+    <div class="footer-toast-icon">
+        <i class="bi bi-check-circle-fill"></i>
+    </div>
+    <div class="footer-toast-content">
+        <div class="footer-toast-title">Successfully Subscribed!</div>
+        <div class="footer-toast-text">You'll receive our latest updates and tech insights from Han-Tech Ltd.</div>
+    </div>
+    <button class="footer-toast-close" id="toastClose" aria-label="Close notification">
+        <i class="bi bi-x"></i>
+    </button>
+</div>
+
+<!-- FOOTER SCRIPTS -->
+<script>
+    (function() {
+        // Dynamic year
+        document.getElementById('dynamicYear').textContent = new Date().getFullYear();
+
+        // Back to top button
+        const backBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            backBtn.classList.toggle('visible', window.scrollY > 400);
+        });
+        backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // Newsletter form
+        const form = document.getElementById('footerNewsletterForm');
+        const msg = document.getElementById('newsletterMessage');
+        const toast = document.getElementById('footerToast');
+        const toastClose = document.getElementById('toastClose');
+
+        toastClose.addEventListener('click', () => toast.classList.remove('show'));
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const input = this.querySelector('input[type="email"]');
+            const email = input.value.trim();
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                msg.className = 'newsletter-message error';
+                msg.textContent = 'Please enter a valid email address.';
+                return;
+            }
+            const btn = this.querySelector('button');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+            btn.disabled = true;
+            setTimeout(() => {
+                msg.className = 'newsletter-message success';
+                msg.textContent = '🎉 Welcome aboard! Check your inbox.';
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 5000);
+                input.value = '';
+                btn.innerHTML = originalHTML;
+                btn.disabled = false;
+            }, 1500);
+        });
+    })();
+</script>
