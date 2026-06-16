@@ -1,10 +1,10 @@
 <!-- ============================================ -->
-<!-- HAN-TECH LTD HEADER (ABSOLUTE PATHS) -->
+<!-- HAN-TECH LTD HEADER (ABSOLUTE PATHS)         -->
 <!-- Location: frontend/components/layouts/header.html -->
 <!-- ============================================ -->
 
 <style>
-    /* ----- HEADER STYLES (unchanged) ----- */
+    /* ----- HEADER STYLES (unchanged, self‑contained) ----- */
     .main-header {
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(20px);
@@ -180,7 +180,7 @@
         box-shadow: 0 4px 6px rgba(0,0,0,0.07), 0 0 20px rgba(0,180,216,0.3);
     }
 
-    /* ----- NAVIGATION STYLES ----- */
+    /* ----- NAVIGATION ----- */
     .main-navbar {
         background: #fff;
         box-shadow: 0 2px 4px rgba(0,0,0,0.05);
@@ -307,7 +307,7 @@
     </div>
 </header>
 
-<!-- NAVIGATION (ABSOLUTE PATHS, NO DROPDOWNS) -->
+<!-- NAVIGATION -->
 <nav class="main-navbar" aria-label="Main Navigation">
     <div class="container">
         <div class="nav-container">
@@ -316,7 +316,6 @@
                     <a class="nav-link" href="/index.html"><i class="bi bi-house-door"></i> Home</a>
                 </li>
                 <li class="nav-item">
-                    <!-- Direct link to services listing page -->
                     <a class="nav-link" href="/pages/services/"><i class="bi bi-gear-wide-connected"></i> Services</a>
                 </li>
                 <li class="nav-item">
@@ -345,13 +344,17 @@
 <!-- HEADER SCRIPTS -->
 <script>
     (function() {
-        // Set active nav link based on current absolute path
+        // Set active nav link based on absolute path
         const currentPath = window.location.pathname;
         document.querySelectorAll('.nav-link').forEach(link => {
             const parent = link.parentElement;
             parent.classList.remove('active');
             const href = link.getAttribute('href');
-            if (href && currentPath.startsWith(href.replace(/\/?$/, '/'))) {
+            if (href && currentPath.endsWith(href.replace(/\/?$/, '/'))) {
+                parent.classList.add('active');
+            }
+            // Also set Home active if we are at the root or under /pages/home/
+            if ((href === '/index.html' && (currentPath === '/' || currentPath === '/index.html' || currentPath.startsWith('/pages/home/')))) {
                 parent.classList.add('active');
             }
         });
