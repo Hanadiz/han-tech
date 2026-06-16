@@ -1,0 +1,463 @@
+<!-- ============================================ -->
+<!-- HAN-TECH LTD ENHANCED DYNAMIC HERO COMPONENT -->
+<!-- Location: frontend/components/layouts/hero.html -->
+<!-- ============================================ -->
+
+<style>
+    :root {
+        --primary: #1e3c72;
+        --tech-blue: #0077b6;
+        --gradient-blue: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        --gradient-tech: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
+        --transition: 0.3s ease;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Inter', sans-serif; }
+
+    /* ---------- HERO CONTAINER ---------- */
+    .hero-section {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+        background: var(--gradient-blue);
+        color: white;
+    }
+    .hero-bg {
+        position: absolute;
+        top:0; left:0; width:100%; height:100%;
+        z-index:0;
+    }
+    .hero-bg img, .hero-bg video {
+        width:100%; height:100%; object-fit:cover;
+    }
+    .hero-overlay {
+        position: absolute;
+        inset:0;
+        background: rgba(0,0,0,0.55);
+        z-index:1;
+    }
+    .hero-content {
+        position: relative;
+        z-index:2;
+        padding: 120px 0 60px;
+    }
+
+    /* ---------- BADGE ---------- */
+    .hero-badge {
+        display: inline-flex;
+        align-items:center; gap:8px;
+        background: rgba(255,255,255,0.15);
+        backdrop-filter:blur(10px);
+        border:1px solid rgba(255,255,255,0.25);
+        border-radius:50px;
+        padding:8px 22px;
+        font-size:0.9rem;
+        margin-bottom:25px;
+    }
+    .hero-badge i { color:#f39c12; }
+
+    /* ---------- TITLE & TYPEWRITER ---------- */
+    .hero-title {
+        font-family:'Poppins',sans-serif;
+        font-size:3.5rem;
+        font-weight:800;
+        line-height:1.2;
+        margin-bottom:20px;
+    }
+    .dynamic-text {
+        background:var(--gradient-tech);
+        -webkit-background-clip:text;
+        -webkit-text-fill-color:transparent;
+        background-clip:text;
+        display:inline-block;
+        min-width:150px;
+    }
+    .cursor {
+        display:inline-block;
+        width:3px; height:1.2em;
+        background:white;
+        margin-left:4px;
+        animation:blink 0.8s infinite;
+    }
+    @keyframes blink{ 0%,100%{opacity:1} 50%{opacity:0} }
+
+    .hero-description {
+        font-size:1.15rem;
+        color:rgba(255,255,255,0.9);
+        max-width:600px;
+        margin-bottom:30px;
+        line-height:1.7;
+    }
+
+    /* ---------- CTA BUTTONS ---------- */
+    .cta-group {
+        display:flex; gap:15px; flex-wrap:wrap; margin-bottom:30px;
+    }
+    .btn-cta-primary, .btn-cta-outline {
+        padding:16px 36px;
+        border-radius:50px;
+        font-weight:600;
+        font-size:1rem;
+        text-decoration:none;
+        display:inline-flex; align-items:center; gap:8px;
+        transition:var(--transition);
+    }
+    .btn-cta-primary {
+        background:var(--gradient-tech); color:white; border:none;
+        box-shadow:0 10px 30px rgba(0,119,182,0.3);
+    }
+    .btn-cta-primary:hover { transform:translateY(-3px); box-shadow:0 15px 35px rgba(0,119,182,0.5); }
+    .btn-cta-outline {
+        background:transparent; color:white;
+        border:2px solid rgba(255,255,255,0.4);
+    }
+    .btn-cta-outline:hover { background:rgba(255,255,255,0.1); border-color:white; }
+
+    /* ---------- TRUST BAR (client logos) ---------- */
+    .trust-bar {
+        display:flex; align-items:center; gap:30px; flex-wrap:wrap;
+        margin:20px 0;
+    }
+    .trust-bar img {
+        height:35px; opacity:0.7; transition:var(--transition);
+    }
+    .trust-bar img:hover { opacity:1; transform:scale(1.05); }
+
+    /* ---------- SEARCH BOX ---------- */
+    .hero-search {
+        position:relative;
+        max-width:500px;
+        margin:20px 0;
+    }
+    .hero-search input {
+        width:100%; padding:16px 50px 16px 24px;
+        border-radius:50px;
+        border:2px solid rgba(255,255,255,0.3);
+        background:rgba(255,255,255,0.1);
+        color:white;
+        font-size:1rem;
+        outline:none;
+        transition:var(--transition);
+    }
+    .hero-search input::placeholder { color:rgba(255,255,255,0.6); }
+    .hero-search input:focus {
+        border-color:var(--tech-blue);
+        background:rgba(255,255,255,0.2);
+        box-shadow:0 0 0 3px rgba(0,119,182,0.2);
+    }
+    .hero-search button {
+        position:absolute; right:8px; top:50%; transform:translateY(-50%);
+        background:var(--gradient-tech); color:white; border:none;
+        width:42px; height:42px; border-radius:50%; cursor:pointer;
+        font-size:1.1rem; transition:var(--transition);
+    }
+    .hero-search button:hover { opacity:0.9; }
+
+    /* ---------- COUNTDOWN ---------- */
+    .countdown-container {
+        display:flex; gap:20px; margin:20px 0; flex-wrap:wrap;
+    }
+    .countdown-item {
+        text-align:center;
+        background:rgba(255,255,255,0.15);
+        backdrop-filter:blur(10px);
+        border-radius:12px;
+        padding:12px 20px;
+        min-width:80px;
+    }
+    .countdown-item span:first-child {
+        font-family:'Poppins',sans-serif;
+        font-size:2rem;
+        font-weight:700;
+        display:block;
+        color:var(--tech-light);
+    }
+    .countdown-item span:last-child {
+        font-size:0.8rem;
+        text-transform:uppercase;
+        opacity:0.8;
+    }
+
+    /* ---------- SCROLL INDICATOR ---------- */
+    .scroll-indicator {
+        position:absolute; bottom:30px; left:50%;
+        transform:translateX(-50%);
+        z-index:2;
+        animation:bounce 2s infinite;
+        color:white;
+        font-size:1.5rem;
+        opacity:0.7;
+        cursor:pointer;
+    }
+    @keyframes bounce {
+        0%,20%,50%,80%,100%{transform:translateX(-50%) translateY(0);}
+        40%{transform:translateX(-50%) translateY(-10px);}
+        60%{transform:translateX(-50%) translateY(-5px);}
+    }
+
+    /* ---------- SOCIAL PROOF STATS ---------- */
+    .hero-stats {
+        display:flex; gap:40px; flex-wrap:wrap; margin-top:20px;
+    }
+    .hero-stat-number {
+        font-family:'Poppins',sans-serif;
+        font-size:2rem;
+        font-weight:700;
+        color:var(--tech-light);
+    }
+    .hero-stat-label {
+        font-size:0.85rem;
+        opacity:0.7;
+    }
+
+    @media (max-width: 768px) {
+        .hero-title { font-size:2.2rem; }
+        .hero-section { min-height:auto; padding:100px 0 60px; }
+    }
+</style>
+
+<!-- ========== DYNAMIC HERO HTML ========== -->
+<section class="hero-section" id="dynamicHero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+        <div class="row align-items-center">
+            <div class="col-lg-7" data-aos="fade-up">
+                <!-- Badge -->
+                <div class="hero-badge" id="heroBadge" style="display:none">
+                    <i class="bi bi-star-fill"></i> <span id="badgeText"></span>
+                </div>
+
+                <!-- Title + typewriter -->
+                <h1 class="hero-title">
+                    <span id="staticTitle"></span><br>
+                    <span class="dynamic-text" id="dynamicText"></span><span class="cursor"></span>
+                </h1>
+
+                <!-- Description -->
+                <p class="hero-description" id="heroDescription"></p>
+
+                <!-- Search box -->
+                <div class="hero-search" id="heroSearch" style="display:none">
+                    <input type="text" placeholder="Search services..." aria-label="Search">
+                    <button><i class="bi bi-search"></i></button>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="cta-group" id="ctaButtons"></div>
+
+                <!-- Countdown -->
+                <div class="countdown-container" id="countdownContainer" style="display:none">
+                    <div class="countdown-item"><span id="countdownDays">00</span><span>Days</span></div>
+                    <div class="countdown-item"><span id="countdownHours">00</span><span>Hours</span></div>
+                    <div class="countdown-item"><span id="countdownMinutes">00</span><span>Minutes</span></div>
+                    <div class="countdown-item"><span id="countdownSeconds">00</span><span>Seconds</span></div>
+                </div>
+
+                <!-- Social proof stats -->
+                <div class="hero-stats" id="heroStats" style="display:none"></div>
+            </div>
+
+            <div class="col-lg-5 d-none d-lg-block" data-aos="fade-left">
+                <!-- Trust bar (right side) -->
+                <div class="trust-bar" id="trustBar" style="display:none"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator" id="scrollIndicator" style="display:none">
+        <i class="bi bi-chevron-down"></i>
+    </div>
+</section>
+
+<!-- ========== SCRIPTS ========== -->
+<script>
+    (function() {
+        // AOS is already loaded globally, but we re‑init if needed
+        if (typeof AOS !== 'undefined') AOS.refresh();
+
+        /* ---------- DATABASE (simulated – you can fetch from API) ---------- */
+        const heroData = {
+            badge: "Trusted by 200+ Companies",
+            badgeIcon: "bi-star-fill",
+            staticTitle: "Empowering Your ",
+            dynamicWords: ["Digital Future", "Cloud Journey", "Business Growth"],
+            description: "From cloud to cybersecurity – we deliver excellence.",
+            background: { type:"image", url:"https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" },
+            cta: [
+                { text:"Get Started Free", icon:"bi-rocket-takeoff", link:"/pages/contact/", style:"primary" },
+                { text:"View Portfolio", icon:"bi-briefcase", link:"/pages/portfolio/", style:"outline" }
+            ],
+            showSearch: true,
+            showCountdown: true,
+            countdownDate: "2026-12-31T23:59:59",  // Customise as needed
+            showScrollIndicator: true,
+            showTrustBar: true,
+            trustedLogos: [
+                { src:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/2560px-Microsoft_logo_%282012%29.svg.png", alt:"Microsoft" },
+                { src:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/2560px-Amazon_Web_Services_Logo.svg.png", alt:"AWS" },
+                { src:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png", alt:"Google" }
+            ],
+            showStats: true,
+            stats: [
+                { number:15, suffix:"+", label:"Years Experience" },
+                { number:500, suffix:"+", label:"Projects Delivered" },
+                { number:99, suffix:".9%", label:"Uptime Guarantee" }
+            ]
+        };
+
+        /* ---------- POPULATE UI ---------- */
+        function populateHero(data) {
+            // Badge
+            if (data.badge) {
+                document.getElementById('heroBadge').style.display = 'inline-flex';
+                document.getElementById('badgeText').textContent = data.badge;
+            }
+
+            document.getElementById('staticTitle').textContent = data.staticTitle || '';
+            document.getElementById('heroDescription').textContent = data.description || '';
+
+            // Background
+            const bgDiv = document.getElementById('heroBg');
+            if (data.background.type === 'image') {
+                bgDiv.innerHTML = `<img src="${data.background.url}" alt="" loading="lazy">`;
+            } else if (data.background.type === 'video') {
+                bgDiv.innerHTML = `<video autoplay muted loop playsinline><source src="${data.background.url}" type="video/mp4"></video>`;
+            }
+
+            // CTA
+            const ctaDiv = document.getElementById('ctaButtons');
+            ctaDiv.innerHTML = '';
+            data.cta?.forEach(btn => {
+                const a = document.createElement('a');
+                a.href = btn.link;
+                a.className = btn.style === 'outline' ? 'btn-cta-outline' : 'btn-cta-primary';
+                a.innerHTML = `<i class="bi ${btn.icon}"></i> ${btn.text}`;
+                ctaDiv.appendChild(a);
+            });
+
+            // Search
+            if (data.showSearch) {
+                document.getElementById('heroSearch').style.display = 'block';
+            }
+
+            // Trust bar
+            if (data.showTrustBar && data.trustedLogos?.length) {
+                const trustDiv = document.getElementById('trustBar');
+                trustDiv.style.display = 'flex';
+                trustDiv.innerHTML = data.trustedLogos.map(logo =>
+                    `<img src="${logo.src}" alt="${logo.alt}" loading="lazy">`
+                ).join('');
+            }
+
+            // Scroll indicator
+            if (data.showScrollIndicator) {
+                const scrollEl = document.getElementById('scrollIndicator');
+                scrollEl.style.display = 'block';
+                scrollEl.addEventListener('click', () => {
+                    window.scrollTo({ top: window.innerHeight, behavior:'smooth' });
+                });
+            }
+
+            // Stats
+            if (data.showStats && data.stats?.length) {
+                const statsDiv = document.getElementById('heroStats');
+                statsDiv.style.display = 'flex';
+                statsDiv.innerHTML = data.stats.map(s =>
+                    `<div class="hero-stat-item">
+                        <span class="hero-stat-number counter" data-target="${s.number}">0</span>${s.suffix ? s.suffix : ''}
+                        <span class="hero-stat-label">${s.label}</span>
+                    </div>`
+                ).join('');
+                initCounters();
+            }
+        }
+
+        /* ---------- TYPEWRITER ---------- */
+        function startTypewriter(words, elId, speed = 100, pause = 2000) {
+            const el = document.getElementById(elId);
+            let wi = 0, ci = 0, deleting = false;
+            function type() {
+                const word = words[wi];
+                if (deleting) { el.textContent = word.substring(0, ci-1); ci--; }
+                else { el.textContent = word.substring(0, ci+1); ci++; }
+                if (!deleting && ci === word.length) { setTimeout(()=>{deleting=true; type();}, pause); }
+                else if (deleting && ci === 0) { deleting=false; wi=(wi+1)%words.length; setTimeout(type,500); }
+                else { setTimeout(type, deleting?60:speed); }
+            }
+            type();
+        }
+
+        /* ---------- COUNTDOWN ---------- */
+        function startCountdown(targetDate) {
+            const daysEl = document.getElementById('countdownDays');
+            const hoursEl = document.getElementById('countdownHours');
+            const minsEl = document.getElementById('countdownMinutes');
+            const secsEl = document.getElementById('countdownSeconds');
+            if (!daysEl) return;
+            function update() {
+                const now = new Date().getTime();
+                const dist = new Date(targetDate).getTime() - now;
+                if (dist < 0) { document.getElementById('countdownContainer').style.display='none'; return; }
+                const d = Math.floor(dist/(1000*60*60*24));
+                const h = Math.floor((dist%(1000*60*60*24))/(1000*60*60));
+                const m = Math.floor((dist%(1000*60*60))/(1000*60));
+                const s = Math.floor((dist%(1000*60))/1000);
+                daysEl.textContent = String(d).padStart(2,'0');
+                hoursEl.textContent = String(h).padStart(2,'0');
+                minsEl.textContent = String(m).padStart(2,'0');
+                secsEl.textContent = String(s).padStart(2,'0');
+            }
+            update();
+            setInterval(update,1000);
+            document.getElementById('countdownContainer').style.display = 'flex';
+        }
+
+        /* ---------- COUNTERS (IntersectionObserver) ---------- */
+        function initCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(c => c.textContent = '0');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const target = parseInt(el.dataset.target);
+                        let count = 0;
+                        const speed = target/50;
+                        const update = () => {
+                            if (count < target) { count += speed; el.textContent = Math.ceil(count); requestAnimationFrame(update); }
+                            else { el.textContent = target; }
+                        };
+                        update();
+                        observer.unobserve(el);
+                    }
+                });
+            }, {threshold:0.5});
+            counters.forEach(c => observer.observe(c));
+        }
+
+        /* ---------- INIT ---------- */
+        // Run as soon as the component's DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initAll);
+        } else {
+            initAll();
+        }
+
+        function initAll() {
+            populateHero(heroData);
+            startTypewriter(heroData.dynamicWords, 'dynamicText');
+            if (heroData.showCountdown) startCountdown(heroData.countdownDate);
+            initCounters();
+            // Re‑refresh AOS after injecting dynamic content
+            if (typeof AOS !== 'undefined') {
+                AOS.refresh();
+            }
+        }
+    })();
+</script>
