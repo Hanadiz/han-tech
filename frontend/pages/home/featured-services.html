@@ -1,0 +1,89 @@
+<!-- frontend/pages/home/featured-services.html -->
+<style>
+    .featured-services {
+        padding: 80px 0;
+        background: #f9fafb;
+    }
+    [data-theme="dark"] .featured-services { background: #0f0f1a; }
+    .section-title {
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 15px;
+    }
+    [data-theme="dark"] .section-title { color: #e0e0e0; }
+    .section-desc {
+        text-align: center;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto 50px;
+    }
+    .service-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+        transition: all 0.3s;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        height: 100%;
+        border: 2px solid transparent;
+    }
+    [data-theme="dark"] .service-card { background: #1a1a2e; }
+    .service-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1), 0 0 20px rgba(0,180,216,0.3);
+        border-color: rgba(0,180,216,0.2);
+    }
+    .service-card .icon {
+        width: 60px; height: 60px;
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+        border-radius: 16px;
+        display: flex; align-items: center; justify-content: center;
+        color: #fff; font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+    .service-card h3 { font-family: 'Poppins', sans-serif; font-size: 1.2rem; margin-bottom: 10px; }
+    .service-card p { color: #666; font-size: 0.9rem; }
+    [data-theme="dark"] .service-card p { color: #94a3b8; }
+</style>
+
+<section class="featured-services">
+    <div class="container">
+        <h2 class="section-title">Featured Services</h2>
+        <p class="section-desc">Explore our most popular IT solutions trusted by businesses across East Africa.</p>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <a href="/pages/services/networking/" class="service-card">
+                    <div class="icon"><i class="fas fa-network-wired"></i></div>
+                    <h3>Networking</h3>
+                    <p>Starlink, SD‑WAN, fibre splicing – high‑speed, reliable connectivity.</p>
+                </a>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <a href="/pages/services/cloud/" class="service-card">
+                    <div class="icon"><i class="fas fa-cloud"></i></div>
+                    <h3>Cloud</h3>
+                    <p>AWS, Azure, private cloud – scalable and cost‑effective.</p>
+                </a>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <a href="/pages/services/security/" class="service-card">
+                    <div class="icon"><i class="fas fa-shield-haltered"></i></div>
+                    <h3>Security</h3>
+                    <p>Zero‑Trust, 24/7 SOC – protect your business from threats.</p>
+                </a>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <a href="/pages/services/development/" class="service-card">
+                    <div class="icon"><i class="fas fa-code"></i></div>
+                    <h3>Software</h3>
+                    <p>Web, mobile, DevOps – custom solutions built to scale.</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
