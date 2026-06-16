@@ -1,0 +1,89 @@
+<!-- frontend/pages/about/team-section.html -->
+<style>
+    .team-section {
+        padding: 80px 0;
+        background: #fff;
+    }
+    [data-theme="dark"] .team-section { background: #1a1a2e; }
+    .team-member {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    .team-member img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #00b4d8;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        margin-bottom: 15px;
+    }
+    .team-member h5 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        color: #2c3e50;
+        margin: 5px 0;
+    }
+    [data-theme="dark"] .team-member h5 { color: #e0e0e0; }
+    .team-member small {
+        color: #00b4d8;
+        display: block;
+        margin-bottom: 10px;
+    }
+    .team-member p {
+        color: #666;
+        font-size: 0.9rem;
+    }
+    [data-theme="dark"] .team-member p { color: #94a3b8; }
+    .social-links a {
+        color: #666;
+        margin: 0 6px;
+        font-size: 1.2rem;
+        transition: 0.3s;
+    }
+    .social-links a:hover { color: #00b4d8; }
+</style>
+
+<section class="team-section">
+    <div class="container">
+        <h2 class="section-title text-center">Meet Our Leadership</h2>
+        <div class="row g-4 mt-4">
+            <div class="col-md-4">
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200" alt="CEO">
+                    <h5>John Opio</h5>
+                    <small>Founder & CEO</small>
+                    <p>Visionary leader with 15+ years in enterprise IT. Passionate about digital transformation in Africa.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200" alt="CTO">
+                    <h5>Sarah Namukasa</h5>
+                    <small>Chief Technology Officer</small>
+                    <p>Cloud architect and cybersecurity expert. Leads our engineering and R&D teams.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200" alt="COO">
+                    <h5>David Kato</h5>
+                    <small>Chief Operations Officer</small>
+                    <p>Operations and service delivery expert. Ensures every project exceeds client expectations.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
