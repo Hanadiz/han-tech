@@ -1,0 +1,62 @@
+<!-- frontend/pages/services/index.html -->
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Han-Tech Ltd</title>
+    <meta name="description" content="Explore 15 professional IT service categories – cloud, networking, security, development & more.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-primary: #f9fafb; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: #2c3e50; margin: 0; }
+        .services-hero {
+            background: linear-gradient(135deg, #0f0f1a, #1a1a2e, #16213e);
+            color: #fff;
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+        .services-hero h1 { font-family: 'Poppins', sans-serif; font-size: 3rem; font-weight: 700; }
+        .services-hero p { opacity: 0.9; max-width: 600px; margin: 0 auto; }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+    <!-- Inline services hero -->
+    <section class="services-hero">
+        <div class="container">
+            <h1>Our IT Services & Solutions</h1>
+            <p>15 comprehensive categories – one partner for all your technology needs.</p>
+        </div>
+    </section>
+    <div id="categories-grid-container"></div>
+    <div id="search-filter-container"></div>
+    <div id="stats-bar-container"></div>
+    <div id="pricing-plans-container"></div>
+    <div id="comparison-table-container"></div>
+    <div id="cta-banner-container"></div>
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        async function load(url, id) {
+            const resp = await fetch(url);
+            if (!resp.ok) throw new Error(`Failed to load ${url}`);
+            document.getElementById(id).innerHTML = await resp.text();
+        }
+        (async function() {
+            await load('/components/layouts/header.html', 'header-container');
+            await load('/pages/services/categories-grid.html', 'categories-grid-container');
+            await load('/pages/services/search-filter.html', 'search-filter-container');
+            await load('/pages/services/stats-bar.html', 'stats-bar-container');
+            await load('/pages/services/pricing-plans.html', 'pricing-plans-container');
+            await load('/pages/services/comparison-table.html', 'comparison-table-container');
+            await load('/pages/services/cta-banner.html', 'cta-banner-container');
+            await load('/components/layouts/footer.html', 'footer-container');
+        })();
+    </script>
+</body>
+</html>
