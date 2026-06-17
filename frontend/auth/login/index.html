@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Han-Tech Ltd</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --tech-blue: #0077b6; --gradient-tech: linear-gradient(135deg, #0077b6, #00b4d8); }
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0f0f1a, #1a1a2e, #16213e); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .login-wrapper { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; align-items: flex-start; max-width: 1000px; width: 100%; }
+        .login-container { background: #fff; border-radius: 24px; padding: 40px 35px; width: 100%; max-width: 440px; box-shadow: 0 25px 50px rgba(0,0,0,0.3); }
+        [data-theme="dark"] .login-container { background: #1a1a2e; }
+        .login-container h2 { font-family: 'Poppins', sans-serif; font-weight: 700; color: #2c3e50; text-align: center; margin-bottom: 8px; }
+        [data-theme="dark"] .login-container h2 { color: #e0e0e0; }
+        .form-control { border-radius: 12px; padding: 14px 18px; border: 2px solid #e0e0e0; transition: 0.3s; }
+        [data-theme="dark"] .form-control { background: #0f0f1a; border-color: #2a2a40; color: #e0e0e0; }
+        .form-control:focus { border-color: #00b4d8; box-shadow: 0 0 0 4px rgba(0,180,216,0.1); }
+        .btn-login { background: var(--gradient-tech); color: #fff; border: none; padding: 14px; border-radius: 12px; font-weight: 600; width: 100%; font-size: 1rem; }
+        .btn-login:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-login:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .error-message { color: #e74c3c; font-size: 0.85rem; margin-top: 5px; display: none; }
+        .password-wrapper { position: relative; }
+        .toggle-password { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #666; }
+        .lockout-message { background: #fdecea; color: #e74c3c; padding: 12px; border-radius: 10px; font-size: 0.9rem; text-align: center; display: none; }
+
+        /* Demo accounts panel */
+        .demo-panel { background: #fff; border-radius: 24px; padding: 30px 25px; width: 100%; max-width: 420px; box-shadow: 0 25px 50px rgba(0,0,0,0.3); max-height: 600px; overflow-y: auto; }
+        [data-theme="dark"] .demo-panel { background: #1a1a2e; }
+        .demo-panel h4 { font-family: 'Poppins', sans-serif; font-weight: 600; color: #2c3e50; margin-bottom: 15px; }
+        [data-theme="dark"] .demo-panel h4 { color: #e0e0e0; }
+        .demo-panel .badge-role { font-size: 0.7rem; padding: 4px 10px; border-radius: 20px; background: var(--gradient-tech); color: #fff; margin-bottom: 8px; display: inline-block; }
+        .demo-table { width: 100%; font-size: 0.85rem; border-collapse: collapse; }
+        .demo-table th { background: #f5f7fa; padding: 10px 8px; text-align: left; font-weight: 600; color: #2c3e50; border-radius: 8px 8px 0 0; }
+        [data-theme="dark"] .demo-table th { background: #252540; color: #e0e0e0; }
+        .demo-table td { padding: 8px; border-bottom: 1px solid #eee; vertical-align: middle; }
+        [data-theme="dark"] .demo-table td { border-color: #2a2a40; }
+        .demo-table tr { cursor: pointer; transition: background 0.2s; }
+        .demo-table tr:hover { background: rgba(0,180,216,0.06); }
+        .demo-table .email-col { font-family: monospace; font-size: 0.8rem; }
+        .demo-note { font-size: 0.75rem; color: #888; margin-top: 10px; }
+        @media (max-width: 900px) { .login-wrapper { flex-direction: column; align-items: center; } }
+    </style>
+</head>
+<body>
+    <div class="login-wrapper">
+        <!-- Login Form -->
+        <div class="login-container">
+            <h2>Welcome Back</h2>
+            <p class="text-center text-muted mb-4">Sign in to your Han‑Tech account</p>
+            <div class="lockout-message" id="lockoutMessage">⚠️ Too many attempts. Please wait <span id="lockoutTimer">60</span> seconds.</div>
+            <form id="loginForm" autocomplete="off">
+                <input type="hidden" id="csrfToken" value="">
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="you@example.com" required autocomplete="off">
+                    <div class="error-message" id="emailError"></div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" class="form-control" id="password" placeholder="••••••••" required autocomplete="new-password" minlength="8">
+                        <i class="bi bi-eye-slash toggle-password" id="togglePassword"></i>
+                    </div>
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="remember">
+                    <label class="form-check-label" for="remember">Remember me</label>
+                </div>
+                <button type="submit" class="btn-login" id="loginBtn">Sign In</button>
+            </form>
+            <div class="text-center mt-4">
+                <a href="/auth/forgot-password/index.html" class="text-decoration-none" style="color:#0077b6;">Forgot password?</a>
+            </div>
+            <div class="text-center mt-3">
+                <span class="text-muted">Don't have an account?</span>
+                <a href="/auth/register/index.html" class="text-decoration-none" style="color:#0077b6;">Sign up</a>
+            </div>
+            <div id="social-login-container" class="mt-4"></div>
+        </div>
+
+        <!-- Demo Accounts Panel -->
+        <div class="demo-panel">
+            <h4><i class="fas fa-users-cog me-2"></i>Demo Accounts</h4>
+            <span class="badge-role">Clients</span>
+            <table class="demo-table mb-3">
+                <thead><tr><th>Name</th><th>Email</th><th>Password</th></tr></thead>
+                <tbody>
+                    <tr onclick="fillCredentials('fatima.abdullah@demo.hantech.com','password123')">
+                        <td>Fatima Abdullah</td><td class="email-col">fatima.abdullah@demo.hantech.com</td><td>••••••••</td>
+                    </tr>
+                    <tr onclick="fillCredentials('yusuf.hassan@demo.hantech.com','password123')">
+                        <td>Yusuf Hassan</td><td class="email-col">yusuf.hassan@demo.hantech.com</td><td>••••••••</td>
+                    </tr>
+                    <tr onclick="fillCredentials('aisha.mohammed@demo.hantech.com','password123')">
+                        <td>Aisha Mohammed</td><td class="email-col">aisha.mohammed@demo.hantech.com</td><td>••••••••</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <span class="badge-role">Support Agents</span>
+            <table class="demo-table mb-3">
+                <thead><tr><th>Name</th><th>Email</th><th>Password</th></tr></thead>
+                <tbody>
+                    <tr onclick="fillCredentials('omar.khan@demo.hantech.com','password123')">
+                        <td>Omar Khan</td><td class="email-col">omar.khan@demo.hantech.com</td><td>••••••••</td>
+                    </tr>
+                    <tr onclick="fillCredentials('zainab.ali@demo.hantech.com','password123')">
+                        <td>Zainab Ali</td><td class="email-col">zainab.ali@demo.hantech.com</td><td>••••••••</td>
+                    </tr>
+                    <tr onclick="fillCredentials('ibrahim.hussein@demo.hantech.com','password123')">
+                        <td>Ibrahim Hussein</td><td class="email-col">ibrahim.hussein@demo.hantech.com</td><td>••••••••</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <span class="badge-role">Admins</span>
+            <table class="demo-table mb-3">
+                <thead><tr><th>Name</th><th>Email</th><th>Password</th></tr></thead>
+                <tbody>
+                    <tr onclick="fillCredentials('layla.ahmed@demo.hantech.com','password123')">
+                        <td>Layla Ahmed</td><td class="email-col">layla.ahmed@demo.hantech.com</td><td>••••••••</td>
+                    </tr>
+                    <tr onclick="fillCredentials('musa.ibrahim@demo.hantech.com','password123')">
+                        <td>Musa Ibrahim</td><td class="email-col">musa.ibrahim@demo.hantech.com</td><td>••••••••</td>
+                    </tr>
+                    <tr onclick="fillCredentials('amina.hussein@demo.hantech.com','password123')">
+                        <td>Amina Hussein</td><td class="email-col">amina.hussein@demo.hantech.com</td><td>••••••••</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <span class="badge-role" style="background:#e74c3c;">Super Admin</span>
+            <table class="demo-table">
+                <thead><tr><th>Name</th><th>Email</th><th>Password</th></tr></thead>
+                <tbody>
+                    <tr onclick="fillCredentials('khalid.abdullah@demo.hantech.com','password123')">
+                        <td>Khalid Abdullah</td><td class="email-col">khalid.abdullah@demo.hantech.com</td><td>••••••••</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="demo-note">🔒 Click any row to auto‑fill. All demo passwords are <strong>password123</strong></p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        (function() {
+            // --- CSRF token ---
+            function generateToken() {
+                return Array.from(crypto.getRandomValues(new Uint8Array(32))).map(b => b.toString(16).padStart(2,'0')).join('');
+            }
+            document.getElementById('csrfToken').value = generateToken();
+
+            // --- Brute-force (client‑side simulation) ---
+            const MAX_ATTEMPTS = 5;
+            const LOCKOUT_DURATION = 60;
+            let attemptCount = parseInt(sessionStorage.getItem('loginAttempts')) || 0;
+            let lockoutUntil = parseInt(sessionStorage.getItem('loginLockout')) || 0;
+
+            function isLockedOut() {
+                if (Date.now() < lockoutUntil) {
+                    const remaining = Math.ceil((lockoutUntil - Date.now()) / 1000);
+                    document.getElementById('lockoutMessage').style.display = 'block';
+                    document.getElementById('lockoutTimer').textContent = remaining;
+                    document.getElementById('loginBtn').disabled = true;
+                    return true;
+                }
+                document.getElementById('lockoutMessage').style.display = 'none';
+                document.getElementById('loginBtn').disabled = false;
+                return false;
+            }
+
+            function recordFailedAttempt() {
+                attemptCount++;
+                sessionStorage.setItem('loginAttempts', attemptCount);
+                if (attemptCount >= MAX_ATTEMPTS) {
+                    lockoutUntil = Date.now() + LOCKOUT_DURATION * 1000;
+                    sessionStorage.setItem('loginLockout', lockoutUntil);
+                    isLockedOut();
+                }
+            }
+
+            function resetAttempts() {
+                attemptCount = 0;
+                lockoutUntil = 0;
+                sessionStorage.removeItem('loginAttempts');
+                sessionStorage.removeItem('loginLockout');
+            }
+
+            isLockedOut();
+            if (lockoutUntil > Date.now()) {
+                const interval = setInterval(() => {
+                    if (!isLockedOut()) clearInterval(interval);
+                }, 1000);
+            }
+
+            // --- Toggle password ---
+            document.getElementById('togglePassword').addEventListener('click', function() {
+                const pw = document.getElementById('password');
+                const icon = this;
+                if (pw.type === 'password') {
+                    pw.type = 'text';
+                    icon.classList.replace('bi-eye-slash', 'bi-eye');
+                } else {
+                    pw.type = 'password';
+                    icon.classList.replace('bi-eye', 'bi-eye-slash');
+                }
+            });
+
+            // --- Form submit ---
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (isLockedOut()) return;
+
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
+                const csrf = document.getElementById('csrfToken').value;
+                let valid = true;
+
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    document.getElementById('emailError').style.display = 'block';
+                    document.getElementById('emailError').textContent = 'Please enter a valid email address.';
+                    valid = false;
+                } else document.getElementById('emailError').style.display = 'none';
+
+                if (password.length < 8) {
+                    document.getElementById('passwordError').style.display = 'block';
+                    document.getElementById('passwordError').textContent = 'Password must be at least 8 characters.';
+                    valid = false;
+                } else document.getElementById('passwordError').style.display = 'none';
+
+                if (!valid) return;
+
+                // Demo login: accept any @demo.hantech.com with password123
+                if (email.endsWith('@demo.hantech.com') && password === 'password123') {
+                    resetAttempts();
+                    // Set dummy session
+                    sessionStorage.setItem('authToken', 'demo-token-' + Date.now());
+                    sessionStorage.setItem('userEmail', email);
+                    sessionStorage.setItem('userRole', email.includes('admin') ? 'admin' : email.includes('super') ? 'super_admin' : email.includes('agent') ? 'support_agent' : 'client');
+                    alert('✅ Demo login successful! Redirecting to dashboard...');
+                    window.location.href = '/client-portal/dashboard/';
+                } else if (email === 'test@test.com') {
+                    recordFailedAttempt();
+                    alert('Invalid credentials. Attempts remaining: ' + (MAX_ATTEMPTS - attemptCount));
+                    isLockedOut();
+                } else {
+                    // For non-demo accounts, just simulate success for now
+                    resetAttempts();
+                    sessionStorage.setItem('authToken', 'demo-token-' + Date.now());
+                    sessionStorage.setItem('userEmail', email);
+                    alert('✅ Login successful! Redirecting...');
+                    window.location.href = '/client-portal/dashboard/';
+                }
+
+                document.getElementById('csrfToken').value = generateToken();
+            });
+
+            // --- Demo account filler ---
+            window.fillCredentials = function(email, password) {
+                document.getElementById('email').value = email;
+                document.getElementById('password').value = password;
+                // Optionally trigger form validation and auto-submit? No, let user click Sign In.
+                document.getElementById('password').focus();
+            };
+
+            // Load social login
+            fetch('/auth/login/social-login.html')
+                .then(r => r.text())
+                .then(html => { document.getElementById('social-login-container').innerHTML = html; })
+                .catch(() => {});
+        })();
+    </script>
+</body>
+</html>
