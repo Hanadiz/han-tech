@@ -1,0 +1,58 @@
+# ============================================
+# HAN-TECH LTD - DOCKER IGNORE
+# ============================================
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Environment
+.env
+.env.*
+!.env.example
+!.env.docker
+
+# Dependencies
+node_modules/
+vendor/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+storage/logs/
+
+# Cache
+*.cache
+bootstrap/cache/*
+storage/framework/cache/*
+storage/framework/views/*
+
+# Tests
+tests/
+phpunit.xml
+phpunit.xml.dist
+
+# Documentation
+docs/
+README.md
+CHANGELOG.md
+
+# Docker
+docker-compose*.yml
+Dockerfile*
+.dockerignore
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+Jenkinsfile
