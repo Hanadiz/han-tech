@@ -1,0 +1,15 @@
+<style>
+    .social-divider { display: flex; align-items: center; text-align: center; color: #666; margin: 20px 0; }
+    .social-divider::before, .social-divider::after { content: ''; flex: 1; border-bottom: 1px solid #e0e0e0; }
+    .social-divider span { padding: 0 15px; }
+    .btn-social { width: 100%; padding: 12px; border-radius: 12px; font-weight: 500; margin-bottom: 10px; border: 2px solid #e0e0e0; background: #fff; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s; }
+    [data-theme="dark"] .btn-social { background: #0f0f1a; border-color: #2a2a40; color: #e0e0e0; }
+    .btn-social:hover { border-color: #0077b6; background: #f0f8ff; }
+    .btn-google { color: #db4437; }
+    .btn-microsoft { color: #00a4ef; }
+    .btn-linkedin { color: #0a66c2; }
+</style>
+<div class="social-divider"><span>or continue with</span></div>
+<button class="btn-social btn-google" onclick="alert('Google SSO')"><i class="fab fa-google"></i> Google</button>
+<button class="btn-social btn-microsoft" onclick="alert('Microsoft SSO')"><i class="fab fa-microsoft"></i> Microsoft</button>
+<button class="btn-social btn-linkedin" onclick="alert('LinkedIn SSO')"><i class="fab fa-linkedin"></i> LinkedIn</button>
