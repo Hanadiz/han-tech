@@ -1,0 +1,79 @@
+<!-- frontend/pages/services/stats-bar.html -->
+<style>
+    .services-stats {
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+        padding: 50px 0;
+        color: #fff;
+        text-align: center;
+    }
+    .services-stats .stat-item h3 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+    .services-stats .stat-item p {
+        opacity: 0.9;
+        font-size: 1rem;
+    }
+</style>
+
+<section class="services-stats">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-6 col-md-3">
+                <div class="stat-item">
+                    <h3 id="servStat1">0</h3>
+                    <p>Projects</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-item">
+                    <h3 id="servStat2">0</h3>
+                    <p>Clients</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-item">
+                    <h3 id="servStat3">0</h3>
+                    <p>Years</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-item">
+                    <h3>99.9%</h3>
+                    <p>Uptime</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    (function() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animate(document.getElementById('servStat1'), 500);
+                    animate(document.getElementById('servStat2'), 150);
+                    animate(document.getElementById('servStat3'), 10);
+                    observer.disconnect();
+                }
+            });
+        }, { threshold: 0.5 });
+        observer.observe(document.querySelector('.services-stats'));
+
+        function animate(el, max) {
+            let current = 0;
+            const step = () => {
+                if (current < max) {
+                    current += Math.ceil(max / 40);
+                    if (current > max) current = max;
+                    el.textContent = current;
+                    requestAnimationFrame(step);
+                }
+            };
+            requestAnimationFrame(step);
+        }
+    })();
+</script>
