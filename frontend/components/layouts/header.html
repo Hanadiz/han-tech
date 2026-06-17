@@ -1,10 +1,10 @@
 <!-- ============================================ -->
-<!-- HAN-TECH LTD HEADER (ABSOLUTE PATHS)         -->
+<!-- HAN-TECH LTD HEADER (FULL NAVIGATION)        -->
 <!-- Location: frontend/components/layouts/header.html -->
 <!-- ============================================ -->
 
 <style>
-    /* ----- HEADER STYLES (unchanged, self‑contained) ----- */
+    /* ----- HEADER STYLES ----- */
     .main-header {
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(20px);
@@ -16,256 +16,120 @@
         z-index: 1000;
         transition: all 0.3s;
     }
-    [data-theme="dark"] .main-header {
-        background: rgba(15, 15, 26, 0.95);
-    }
-    .main-header.scrolled {
-        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-    }
-    .header-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        flex-wrap: wrap;
-    }
-    .brand-container {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        text-decoration: none;
-        transition: transform 0.3s;
-    }
-    .brand-container:hover {
-        transform: translateY(-1px);
-    }
-    .logo-wrapper {
-        position: relative;
-        width: 50px;
-        height: 50px;
-    }
+    [data-theme="dark"] .main-header { background: rgba(15, 15, 26, 0.95); }
+    .main-header.scrolled { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+    .header-content { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .brand-container { display: flex; align-items: center; gap: 12px; text-decoration: none; transition: transform 0.3s; }
+    .brand-container:hover { transform: translateY(-1px); }
+    .logo-wrapper { position: relative; width: 50px; height: 50px; }
     .logo-circle {
-        width: 100%;
-        height: 100%;
+        width: 100%; height: 100%;
         background: linear-gradient(135deg, #0077b6, #00b4d8);
         border-radius: 14px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: flex; align-items: center; justify-content: center;
         box-shadow: 0 4px 6px rgba(0,0,0,0.07), 0 0 20px rgba(0,180,216,0.3);
         border: 2px solid rgba(255,255,255,0.3);
         transition: all 0.3s;
     }
-    .brand-container:hover .logo-circle {
-        transform: rotate(-5deg) scale(1.05);
-    }
-    .logo-circle i {
-        font-size: 26px;
-        color: #fff;
-    }
+    .brand-container:hover .logo-circle { transform: rotate(-5deg) scale(1.05); }
+    .logo-circle i { font-size: 26px; color: #fff; }
     .logo-badge {
-        position: absolute;
-        bottom: -2px;
-        right: -2px;
-        background: #2ecc71;
-        color: #fff;
-        font-size: 8px;
-        font-weight: 700;
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 2px solid #fff;
-        box-shadow: 0 2px 8px rgba(46,204,113,0.4);
+        position: absolute; bottom: -2px; right: -2px;
+        background: #2ecc71; color: #fff; font-size: 8px; font-weight: 700;
+        width: 16px; height: 16px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        border: 2px solid #fff; box-shadow: 0 2px 8px rgba(46,204,113,0.4);
     }
-    .brand-text {
-        display: flex;
-        flex-direction: column;
-    }
+    .brand-text { display: flex; flex-direction: column; }
     .company-name {
-        font-family: 'Poppins', sans-serif;
-        font-size: 1.5rem;
-        font-weight: 800;
+        font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 800;
         background: linear-gradient(135deg, #0077b6, #00b4d8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin: 0;
-        line-height: 1.2;
-        letter-spacing: -0.5px;
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        background-clip: text; margin: 0; line-height: 1.2; letter-spacing: -0.5px;
     }
-    .company-tagline {
-        font-size: 0.7rem;
-        color: #666;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-    .header-tools {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        flex: 1;
-        justify-content: flex-end;
-    }
-    .search-box {
-        position: relative;
-        width: 260px;
-    }
+    .company-tagline { font-size: 0.7rem; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
+    .header-tools { display: flex; align-items: center; gap: 15px; flex: 1; justify-content: flex-end; }
+    .search-box { position: relative; width: 260px; }
     .search-input {
-        width: 100%;
-        padding: 10px 42px 10px 18px;
-        border: 2px solid #e0e0e0;
-        border-radius: 30px;
-        font-size: 0.85rem;
-        transition: all 0.3s;
-        background: #f8f9fa;
-        color: #333;
+        width: 100%; padding: 10px 42px 10px 18px;
+        border: 2px solid #e0e0e0; border-radius: 30px;
+        font-size: 0.85rem; transition: all 0.3s;
+        background: #f8f9fa; color: #333;
     }
-    [data-theme="dark"] .search-input {
-        background: #1a1a2e;
-        color: #e0e0e0;
-        border-color: #2a2a40;
-    }
-    .search-input:focus {
-        outline: none;
-        border-color: #00b4d8;
-        box-shadow: 0 0 0 4px rgba(0,180,216,0.1);
-        background: #fff;
-    }
+    [data-theme="dark"] .search-input { background: #1a1a2e; color: #e0e0e0; border-color: #2a2a40; }
+    .search-input:focus { outline: none; border-color: #00b4d8; box-shadow: 0 0 0 4px rgba(0,180,216,0.1); background: #fff; }
     .search-btn {
-        position: absolute;
-        right: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: none;
-        border: none;
-        color: #00b4d8;
-        cursor: pointer;
+        position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+        background: none; border: none; color: #00b4d8; cursor: pointer;
     }
-    .header-actions {
-        display: flex;
-        align-items: center;
-        gap: 12px;
+    .header-icons { display: flex; align-items: center; gap: 12px; padding-left: 15px; border-left: 2px solid #e0e0e0; }
+    .header-icon {
+        position: relative; color: #666; text-decoration: none;
+        font-size: 1.2rem; transition: all 0.3s;
+        padding: 8px; border-radius: 12px; border: 2px solid transparent;
     }
+    .header-icon:hover { color: #0077b6; background: rgba(0,180,216,0.1); transform: translateY(-2px); border-color: rgba(0,180,216,0.2); }
+    .cart-badge {
+        position: absolute; top: -2px; right: -2px;
+        background: #e74c3c; color: #fff; font-size: 0.6rem;
+        min-width: 18px; height: 18px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        border: 2px solid #fff;
+    }
+    .header-actions { display: flex; align-items: center; gap: 12px; }
     .btn-infinity {
-        border-radius: 30px;
-        padding: 8px 20px;
-        font-weight: 600;
-        font-size: 0.85rem;
-        transition: all 0.3s;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        text-decoration: none;
-        cursor: pointer;
-        border: 2px solid transparent;
+        border-radius: 30px; padding: 8px 20px; font-weight: 600;
+        font-size: 0.85rem; transition: all 0.3s;
+        display: inline-flex; align-items: center; gap: 8px;
+        text-decoration: none; cursor: pointer; border: 2px solid transparent;
     }
-    .btn-welcome {
-        background: linear-gradient(135deg, #0077b6, #00b4d8);
-        color: #fff;
-        opacity: 0.7;
-    }
-    .btn-login-header {
-        background: transparent;
-        color: #0077b6;
-        border: 2px solid #0077b6;
-        border-radius: 30px;
-    }
-    .btn-login-header:hover {
-        background: #0077b6;
-        color: #fff;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 6px rgba(0,0,0,0.07), 0 0 20px rgba(0,180,216,0.3);
-    }
+    .btn-welcome { background: linear-gradient(135deg, #0077b6, #00b4d8); color: #fff; opacity: 0.7; }
+    .btn-login-header { background: transparent; color: #0077b6; border: 2px solid #0077b6; border-radius: 30px; }
+    .btn-login-header:hover { background: #0077b6; color: #fff; transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.07), 0 0 20px rgba(0,180,216,0.3); }
+    .btn-logout-header { background: transparent; color: #e74c3c; border: 2px solid #e74c3c; border-radius: 30px; }
+    .btn-logout-header:hover { background: #e74c3c; color: #fff; transform: translateY(-2px); }
 
     /* ----- NAVIGATION ----- */
     .main-navbar {
-        background: #fff;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        position: sticky;
-        top: 86px;
-        z-index: 999;
-        overflow-x: auto;
-        white-space: nowrap;
+        background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        position: sticky; top: 86px; z-index: 999;
+        overflow-x: auto; white-space: nowrap;
         -webkit-overflow-scrolling: touch;
         border-bottom: 2px solid transparent;
-        border-image: linear-gradient(135deg, #0077b6, #00b4d8);
-        border-image-slice: 1;
+        border-image: linear-gradient(135deg, #0077b6, #00b4d8); border-image-slice: 1;
     }
-    [data-theme="dark"] .main-navbar {
-        background: #1a1a2e;
-    }
-    .main-navbar::-webkit-scrollbar {
-        height: 4px;
-    }
-    .main-navbar::-webkit-scrollbar-thumb {
-        background: linear-gradient(135deg, #0077b6, #00b4d8);
-        border-radius: 4px;
-    }
-    .nav-container {
-        display: flex;
-        align-items: center;
-        min-width: max-content;
-    }
-    .navbar-nav {
-        display: flex;
-        flex-direction: row;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        flex-wrap: nowrap;
-    }
-    .nav-item {
-        position: relative;
-    }
+    [data-theme="dark"] .main-navbar { background: #1a1a2e; }
+    .main-navbar::-webkit-scrollbar { height: 4px; }
+    .main-navbar::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #0077b6, #00b4d8); border-radius: 4px; }
+    .nav-container { display: flex; align-items: center; min-width: max-content; }
+    .navbar-nav { display: flex; flex-direction: row; margin: 0; padding: 0; list-style: none; flex-wrap: nowrap; }
+    .nav-item { position: relative; }
     .nav-link {
-        color: #2c3e50 !important;
-        font-weight: 500;
-        padding: 14px 20px !important;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 0.9rem;
-        text-decoration: none;
+        color: #2c3e50 !important; font-weight: 500;
+        padding: 14px 18px !important;
+        display: flex; align-items: center; gap: 6px;
+        font-size: 0.9rem; text-decoration: none;
         border-bottom: 3px solid transparent;
-        transition: all 0.3s;
-        white-space: nowrap;
+        transition: all 0.3s; white-space: nowrap;
     }
     .nav-link::before {
-        content: '';
-        position: absolute;
-        bottom: -3px;
-        left: 50%;
-        width: 0;
-        height: 3px;
+        content: ''; position: absolute; bottom: -3px; left: 50%;
+        width: 0; height: 3px;
         background: linear-gradient(135deg, #0077b6, #00b4d8);
-        transition: all 0.3s;
-        transform: translateX(-50%);
+        transition: all 0.3s; transform: translateX(-50%);
         border-radius: 3px 3px 0 0;
     }
-    .nav-link:hover {
-        color: #0077b6 !important;
-        background: rgba(0, 180, 216, 0.05);
-    }
-    .nav-link:hover::before {
-        width: 60%;
-    }
+    .nav-link:hover { color: #0077b6 !important; background: rgba(0,180,216,0.05); }
+    .nav-link:hover::before { width: 60%; }
     .nav-item.active .nav-link {
-        color: #0077b6 !important;
-        background: rgba(0, 180, 216, 0.1);
-        font-weight: 600;
-        border-bottom: 3px solid #0077b6;
+        color: #0077b6 !important; background: rgba(0,180,216,0.1);
+        font-weight: 600; border-bottom: 3px solid #0077b6;
     }
 
     @media (max-width: 991px) {
-        .main-navbar {
-            top: 0;
-        }
-        .header-content {
-            flex-direction: column;
-        }
+        .main-navbar { top: 0; }
+        .header-content { flex-direction: column; }
+        .search-box { width: 200px; }
     }
 </style>
 
@@ -273,13 +137,12 @@
 <header class="main-header" id="mainHeader">
     <div class="container">
         <div class="header-content">
+            <!-- Logo -->
             <div class="logo-section">
                 <a href="/index.html" class="brand-container">
                     <div class="logo-wrapper">
-                        <div class="logo-circle">
-                            <i class="fas fa-laptop-code"></i>
-                        </div>
-                        <div class="logo-badge">✓</div>
+                        <div class="logo-circle"><i class="fas fa-laptop-code"></i></div>
+                       
                     </div>
                     <div class="brand-text">
                         <span class="company-name">HAN-TECH LTD</span>
@@ -287,20 +150,47 @@
                     </div>
                 </a>
             </div>
+
+            <!-- Search -->
             <div class="header-tools">
                 <div class="search-box">
                     <form action="javascript:void(0);">
-                        <input type="text" id="searchInput" class="search-input" placeholder="Search products, services..." aria-label="Search">
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search..." aria-label="Search">
                         <button type="submit" class="search-btn"><i class="bi bi-search"></i></button>
                     </form>
                 </div>
             </div>
+
+            <!-- Header Icons -->
+            <div class="header-icons">
+                <!-- Cart -->
+                <a href="#" class="header-icon" id="cartIcon" title="Cart">
+                    <i class="bi bi-cart3"></i>
+                    <span class="cart-badge" id="cartBadge" style="display:none;">0</span>
+                </a>
+                <!-- Notifications -->
+                <a href="/client-portal/notifications/" class="header-icon" title="Notifications">
+                    <i class="bi bi-bell"></i>
+                </a>
+                <!-- User Profile (when logged in) -->
+                <a href="/client-portal/profile/" class="header-icon" id="profileIcon" style="display:none;" title="Profile">
+                    <i class="bi bi-person-circle"></i>
+                </a>
+            </div>
+
+            <!-- Actions -->
             <div class="header-actions">
+                <!-- Welcome (logged in) -->
                 <button class="btn-infinity btn-welcome" id="welcomeBtn" disabled>
                     <i class="fas fa-hand-wave"></i> Welcome
                 </button>
-                <a href="#" class="btn-infinity btn-login-header">
+                <!-- Sign In (logged out) -->
+                <a href="/auth/login/index.html" class="btn-infinity btn-login-header" id="signInBtn">
                     <i class="bi bi-box-arrow-in-right"></i> Sign-in
+                </a>
+                <!-- Sign Out (logged in) -->
+                <a href="/auth/logout/redirect.html" class="btn-infinity btn-logout-header" id="signOutBtn" style="display:none;">
+                    <i class="bi bi-box-arrow-right"></i> Sign Out
                 </a>
             </div>
         </div>
@@ -331,10 +221,16 @@
                     <a class="nav-link" href="/pages/about/"><i class="bi bi-info-circle"></i> About Us</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/pages/careers/"><i class="bi bi-people"></i> Careers</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/pages/support/"><i class="bi bi-headset"></i> Support</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/incubation/"><i class="bi bi-rocket-takeoff"></i> Incubation</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pages/contact/"><i class="bi bi-envelope"></i> Contact</a>
                 </li>
             </ul>
         </div>
@@ -344,22 +240,24 @@
 <!-- HEADER SCRIPTS -->
 <script>
     (function() {
-        // Set active nav link based on absolute path
+        // ========== Active Link Detection ==========
         const currentPath = window.location.pathname;
         document.querySelectorAll('.nav-link').forEach(link => {
             const parent = link.parentElement;
             parent.classList.remove('active');
             const href = link.getAttribute('href');
-            if (href && currentPath.endsWith(href.replace(/\/?$/, '/'))) {
+            if (!href) return;
+            // Match exact or startsWith for sub-pages
+            if (currentPath === href || (href !== '/index.html' && currentPath.startsWith(href.replace(/\/?$/, '/')))) {
                 parent.classList.add('active');
             }
-            // Also set Home active if we are at the root or under /pages/home/
-            if ((href === '/index.html' && (currentPath === '/' || currentPath === '/index.html' || currentPath.startsWith('/pages/home/')))) {
+            // Home active for root or /index.html
+            if (href === '/index.html' && (currentPath === '/' || currentPath === '/index.html')) {
                 parent.classList.add('active');
             }
         });
 
-        // Welcome button greeting
+        // ========== Welcome Button Greeting ==========
         const welcomeBtn = document.getElementById('welcomeBtn');
         if (welcomeBtn) {
             const hour = new Date().getHours();
@@ -367,12 +265,71 @@
             welcomeBtn.innerHTML = `<i class="fas fa-hand-wave"></i> ${greeting}`;
         }
 
-        // Header scroll effect
+        // ========== Auth State Toggle ==========
+        const signInBtn = document.getElementById('signInBtn');
+        const signOutBtn = document.getElementById('signOutBtn');
+        const profileIcon = document.getElementById('profileIcon');
+        
+        function updateAuthUI() {
+            const token = sessionStorage.getItem('authToken') || localStorage.getItem('authToken');
+            const userEmail = sessionStorage.getItem('userEmail') || localStorage.getItem('userEmail');
+            
+            if (token) {
+                // Logged in
+                if (signInBtn) signInBtn.style.display = 'none';
+                if (signOutBtn) signOutBtn.style.display = 'inline-flex';
+                if (profileIcon) profileIcon.style.display = 'block';
+                if (welcomeBtn) {
+                    welcomeBtn.disabled = false;
+                    welcomeBtn.style.opacity = '1';
+                    if (userEmail) {
+                        const firstName = userEmail.split('@')[0];
+                        welcomeBtn.innerHTML = `<i class="fas fa-user-circle"></i> ${firstName}`;
+                    }
+                }
+            } else {
+                // Logged out
+                if (signInBtn) signInBtn.style.display = 'inline-flex';
+                if (signOutBtn) signOutBtn.style.display = 'none';
+                if (profileIcon) profileIcon.style.display = 'none';
+                if (welcomeBtn) {
+                    welcomeBtn.disabled = true;
+                    welcomeBtn.style.opacity = '0.7';
+                }
+            }
+        }
+
+        updateAuthUI();
+
+        // Listen for storage changes (if logged in/out in another tab)
+        window.addEventListener('storage', updateAuthUI);
+
+        // ========== Cart Badge ==========
+        const cartBadge = document.getElementById('cartBadge');
+        const cartCount = parseInt(sessionStorage.getItem('cartCount')) || 0;
+        if (cartCount > 0 && cartBadge) {
+            cartBadge.style.display = 'flex';
+            cartBadge.textContent = cartCount;
+        }
+
+        // ========== Header Scroll Effect ==========
         window.addEventListener('scroll', () => {
             const header = document.getElementById('mainHeader');
-            if (header) {
-                header.classList.toggle('scrolled', window.scrollY > 50);
-            }
+            if (header) header.classList.toggle('scrolled', window.scrollY > 50);
         });
+
+        // ========== Search Suggestions (basic) ==========
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const query = searchInput.value.trim();
+                    if (query) {
+                        window.location.href = '/pages/search/results.html?q=' + encodeURIComponent(query);
+                    }
+                }
+            });
+        }
     })();
 </script>
