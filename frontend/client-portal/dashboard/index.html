@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Han-Tech Ltd</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --tech-blue: #0077b6; --gradient-tech: linear-gradient(135deg, #0077b6, #00b4d8); }
+        body { font-family: 'Inter', sans-serif; background: #f5f7fa; color: #2c3e50; }
+        [data-theme="dark"] body { background: #0f0f1a; color: #e0e0e0; }
+        
+        /* Top Bar */
+        .dashboard-topbar { background: #fff; padding: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 30px; }
+        [data-theme="dark"] .dashboard-topbar { background: #1a1a2e; }
+        .dashboard-topbar h1 { font-family: 'Poppins', sans-serif; font-size: 1.8rem; font-weight: 700; margin: 0; }
+        .user-info { display: flex; align-items: center; gap: 10px; }
+        .user-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--gradient-tech); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; }
+        
+        /* Stats Cards */
+        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .stat-card { background: #fff; border-radius: 16px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: 0.3s; border-left: 4px solid transparent; }
+        [data-theme="dark"] .stat-card { background: #1a1a2e; }
+        .stat-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .stat-card.services { border-left-color: #0077b6; }
+        .stat-card.tickets { border-left-color: #f39c12; }
+        .stat-card.invoices { border-left-color: #2ecc71; }
+        .stat-card.certs { border-left-color: #9b59b6; }
+        .stat-icon { font-size: 2rem; margin-bottom: 10px; }
+        .stat-card h3 { font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 700; margin: 5px 0; }
+        .stat-card p { color: #666; margin: 0; font-size: 0.9rem; }
+        [data-theme="dark"] .stat-card p { color: #94a3b8; }
+        
+        /* Widgets Grid */
+        .widgets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
+        @media (max-width: 768px) { .widgets-grid { grid-template-columns: 1fr; } }
+        .widget { background: #fff; border-radius: 16px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        [data-theme="dark"] .widget { background: #1a1a2e; }
+        .widget h5 { font-family: 'Poppins', sans-serif; font-weight: 600; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid #f0f0f0; }
+        [data-theme="dark"] .widget h5 { border-color: #2a2a40; }
+        
+        /* Quick Actions */
+        .quick-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+        .btn-action { padding: 10px 20px; border-radius: 10px; font-weight: 500; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: 0.3s; background: #f0f4f8; color: #2c3e50; border: none; cursor: pointer; }
+        [data-theme="dark"] .btn-action { background: #2a2a40; color: #ccc; }
+        .btn-action:hover { background: var(--gradient-tech); color: #fff; transform: translateY(-2px); }
+        
+        /* Ticket & Invoice Items */
+        .list-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+        [data-theme="dark"] .list-item { border-color: #2a2a40; }
+        .list-item:last-child { border: none; }
+        .badge-status { padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+        .badge-open { background: #fef3cd; color: #856404; }
+        .badge-resolved { background: #d4edda; color: #155724; }
+        .badge-pending { background: #fff3cd; color: #856404; }
+        .badge-paid { background: #d4edda; color: #155724; }
+        
+        /* Activity Feed */
+        .activity-item { padding: 10px 0; border-bottom: 1px solid #f0f0f0; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; }
+        [data-theme="dark"] .activity-item { border-color: #2a2a40; }
+        .activity-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .activity-dot.success { background: #2ecc71; }
+        .activity-dot.warning { background: #f39c12; }
+        .activity-dot.info { background: #3498db; }
+        
+        /* Session Timer */
+        .session-timer { font-size: 0.8rem; color: #666; }
+        [data-theme="dark"] .session-timer { color: #94a3b8; }
+        .logout-warning { background: #fff3cd; border: 1px solid #ffc107; padding: 10px 15px; border-radius: 10px; margin-top: 20px; display: none; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <!-- Top Bar -->
+    <div class="dashboard-topbar">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 id="greeting">Welcome back!</h1>
+                    <p class="text-muted mb-0 session-timer">Session expires in <strong id="sessionCountdown">--:--</strong></p>
+                </div>
+                <div class="user-info">
+                    <div class="user-avatar" id="userInitials">U</div>
+                    <div>
+                        <strong id="userName">User</strong>
+                        <br><small class="text-muted" id="userRole">Client</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Session Expiry Warning -->
+    <div class="container">
+        <div class="logout-warning" id="logoutWarning">
+            ⚠️ Your session will expire in <strong id="warningMinutes">2</strong> minutes. <a href="/auth/login/index.html">Refresh session</a>
+        </div>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="container">
+        <div class="stats-row">
+            <div class="stat-card services">
+                <div class="stat-icon"><i class="fas fa-cogs" style="color:#0077b6;"></i></div>
+                <p>Active Services</p>
+                <h3 id="activeServices">3</h3>
+            </div>
+            <div class="stat-card tickets">
+                <div class="stat-icon"><i class="fas fa-ticket-alt" style="color:#f39c12;"></i></div>
+                <p>Open Tickets</p>
+                <h3 id="openTickets">2</h3>
+            </div>
+            <div class="stat-card invoices">
+                <div class="stat-icon"><i class="fas fa-file-invoice" style="color:#2ecc71;"></i></div>
+                <p>Pending Invoices</p>
+                <h3 id="pendingInvoices">1</h3>
+            </div>
+            <div class="stat-card certs">
+                <div class="stat-icon"><i class="fas fa-certificate" style="color:#9b59b6;"></i></div>
+                <p>Certificates</p>
+                <h3 id="certCount">5</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Widgets Grid -->
+    <div class="container">
+        <div class="widgets-grid">
+            <!-- Quick Actions -->
+            <div class="widget">
+                <h5><i class="bi bi-lightning-charge me-2"></i>Quick Actions</h5>
+                <div class="quick-actions">
+                    <a href="/client-portal/tickets/create.html" class="btn-action"><i class="bi bi-plus-circle"></i> New Ticket</a>
+                    <a href="/client-portal/invoices/" class="btn-action"><i class="bi bi-file-text"></i> View Invoices</a>
+                    <a href="/client-portal/subscriptions/" class="btn-action"><i class="bi bi-arrow-repeat"></i> Manage Subscription</a>
+                    <a href="/client-portal/support/" class="btn-action"><i class="bi bi-headset"></i> Get Support</a>
+                </div>
+            </div>
+
+            <!-- Recent Tickets -->
+            <div class="widget">
+                <h5><i class="bi bi-ticket-detailed me-2"></i>Recent Tickets</h5>
+                <div class="list-item">
+                    <div><strong>#1001</strong> - Network issue</div>
+                    <span class="badge-status badge-open">Open</span>
+                </div>
+                <div class="list-item">
+                    <div><strong>#1000</strong> - Billing question</div>
+                    <span class="badge-status badge-resolved">Resolved</span>
+                </div>
+                <div class="list-item">
+                    <div><strong>#0999</strong> - Cloud storage</div>
+                    <span class="badge-status badge-resolved">Resolved</span>
+                </div>
+            </div>
+
+            <!-- Upcoming Invoices -->
+            <div class="widget">
+                <h5><i class="bi bi-receipt me-2"></i>Upcoming Invoices</h5>
+                <div class="list-item">
+                    <div><strong>#INV-2025-07</strong> - Jul 1</div>
+                    <div><strong>$499</strong> <span class="badge-status badge-pending ms-2">Pending</span></div>
+                </div>
+                <div class="list-item">
+                    <div><strong>#INV-2025-06</strong> - Jun 1</div>
+                    <div><strong>$299</strong> <span class="badge-status badge-paid">Paid</span></div>
+                </div>
+            </div>
+
+            <!-- Activity Feed -->
+            <div class="widget">
+                <h5><i class="bi bi-activity me-2"></i>Activity Feed</h5>
+                <div class="activity-item"><span class="activity-dot success"></span> Invoice #INV-2025-06 paid</div>
+                <div class="activity-item"><span class="activity-dot warning"></span> Ticket #1001 created</div>
+                <div class="activity-item"><span class="activity-dot info"></span> Certificate downloaded</div>
+                <div class="activity-item"><span class="activity-dot success"></span> Subscription renewed</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        (function() {
+            // ========== AUTH CHECK ==========
+            const token = sessionStorage.getItem('authToken') || localStorage.getItem('authToken');
+            if (!token) {
+                window.location.href = '/auth/login/index.html?redirect=' + encodeURIComponent(window.location.pathname);
+                return;
+            }
+
+            // ========== USER INFO ==========
+            const userEmail = sessionStorage.getItem('userEmail') || 'user@example.com';
+            const userName = userEmail.split('@')[0];
+            document.getElementById('userName').textContent = userName.charAt(0).toUpperCase() + userName.slice(1);
+            document.getElementById('userInitials').textContent = userName.substring(0, 2).toUpperCase();
+            document.getElementById('userRole').textContent = 'Client';
+            
+            // Greeting
+            const hour = new Date().getHours();
+            const greeting = hour < 12 ? 'Good Morning' : hour < 17 ? 'Good Afternoon' : 'Good Evening';
+            document.getElementById('greeting').textContent = greeting + ', ' + userName + '!';
+
+            // ========== SESSION TIMER (2 hours) ==========
+            const SESSION_DURATION = 2 * 60 * 60; // 2 hours in seconds
+            const WARNING_THRESHOLD = 5 * 60; // Warn at 5 minutes
+            let sessionTimeLeft = SESSION_DURATION;
+            
+            function updateSessionTimer() {
+                const mins = Math.floor(sessionTimeLeft / 60);
+                const secs = sessionTimeLeft % 60;
+                document.getElementById('sessionCountdown').textContent = 
+                    String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+                
+                if (sessionTimeLeft <= WARNING_THRESHOLD && sessionTimeLeft > 0) {
+                    document.getElementById('logoutWarning').style.display = 'block';
+                    document.getElementById('warningMinutes').textContent = Math.ceil(sessionTimeLeft / 60);
+                }
+                
+                if (sessionTimeLeft <= 0) {
+                    // Auto logout
+                    alert('Your session has expired. Please login again.');
+                    sessionStorage.clear();
+                    window.location.href = '/auth/login/index.html';
+                }
+                sessionTimeLeft--;
+            }
+            
+            setInterval(updateSessionTimer, 1000);
+            updateSessionTimer();
+
+            // ========== LOAD HEADER & FOOTER ==========
+            async function load(u, i) {
+                try { const r = await fetch(u); document.getElementById(i).innerHTML = await r.text(); } catch(e) {}
+            }
+            load('/components/layouts/header.html', 'header-container');
+            load('/components/layouts/footer.html', 'footer-container');
+        })();
+    </script>
+</body>
+</html>
