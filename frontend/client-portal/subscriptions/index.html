@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscriptions | Han-Tech Ltd</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #f5f7fa; color: #2c3e50; }
+        [data-theme="dark"] body { background: #0f0f1a; color: #e0e0e0; }
+        .page-header { background: #fff; padding: 30px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 30px; }
+        [data-theme="dark"] .page-header { background: #1a1a2e; }
+        .page-header h1 { font-family: 'Poppins', sans-serif; font-size: 1.8rem; font-weight: 700; }
+        .sub-card { background: #fff; border-radius: 18px; padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); margin-bottom: 20px; transition: 0.3s; }
+        [data-theme="dark"] .sub-card { background: #1a1a2e; }
+        .sub-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+        .sub-card h5 { font-family: 'Poppins', sans-serif; font-weight: 600; }
+        .badge-active { background: #d4edda; color: #155724; padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .badge-expiring { background: #fff3cd; color: #856404; padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .btn-upgrade { background: linear-gradient(135deg, #0077b6, #00b4d8); color: #fff; border: none; padding: 10px 22px; border-radius: 12px; font-weight: 600; }
+        .btn-cancel { background: none; border: 2px solid #e74c3c; color: #e74c3c; padding: 10px 22px; border-radius: 12px; font-weight: 600; }
+        .session-bar { background: #fff; padding: 8px 0; font-size: 0.8rem; color: #888; text-align: center; border-bottom: 1px solid #eee; }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+    <div class="session-bar">🔒 Session expires in <strong id="sessionCountdown">--:--</strong> | <a href="#" onclick="AuthGuard.refreshSession()">Refresh</a></div>
+    <div class="page-header"><div class="container"><h1>Your Subscriptions</h1></div></div>
+    <div class="container">
+        <div class="sub-card"><div class="d-flex justify-content-between align-items-center"><div><h5>Cloud Starter <span class="badge-active ms-2">Active</span></h5><p class="text-muted mb-0">$199/mo · Next billing: July 1, 2025</p></div><div class="d-flex gap-2"><a href="detail.html" class="btn btn-outline-primary btn-sm">Details</a><a href="upgrade.html" class="btn-upgrade btn-sm">Upgrade</a></div></div></div>
+        <div class="sub-card"><div class="d-flex justify-content-between align-items-center"><div><h5>Network Basic <span class="badge-expiring">Expiring</span></h5><p class="text-muted mb-0">$299/mo · Renew by: July 5, 2025</p></div><div class="d-flex gap-2"><a href="detail.html" class="btn btn-outline-primary btn-sm">Details</a><a href="#" class="btn-upgrade btn-sm">Renew</a></div></div></div>
+    </div>
+    <div id="footer-container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/client-portal/auth-guard.js"></script>
+    <script>
+        (function(){if(!AuthGuard.check())return;AuthGuard.startSessionTimer(document.getElementById('sessionCountdown'));async function load(u,i){try{const r=await fetch(u);document.getElementById(i).innerHTML=await r.text()}catch(e){}}load('/components/layouts/header.html','header-container');load('/components/layouts/footer.html','footer-container');})();
+    </script>
+</body>
+</html>
