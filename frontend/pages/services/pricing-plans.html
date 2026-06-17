@@ -1,0 +1,109 @@
+<!-- frontend/pages/services/pricing-plans.html -->
+<style>
+    .pricing-plans {
+        padding: 80px 0;
+        background: #fff;
+    }
+    [data-theme="dark"] .pricing-plans { background: #1a1a2e; }
+    .plan-card {
+        background: #f9fafb;
+        border-radius: 20px;
+        padding: 40px 30px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        height: 100%;
+        text-align: center;
+        border: 2px solid transparent;
+        transition: 0.3s;
+    }
+    [data-theme="dark"] .plan-card { background: #0f0f1a; }
+    .plan-card.featured {
+        background: #fff;
+        border-color: #00b4d8;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transform: scale(1.02);
+    }
+    [data-theme="dark"] .plan-card.featured { background: #1e1e3a; }
+    .plan-card h4 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+    [data-theme="dark"] .plan-card h4 { color: #e0e0e0; }
+    .plan-price {
+        font-family: 'Poppins', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #0077b6;
+        margin: 20px 0 10px;
+    }
+    .plan-features {
+        list-style: none;
+        padding: 0;
+        margin: 25px 0;
+        text-align: left;
+    }
+    .plan-features li {
+        margin-bottom: 12px;
+        color: #666;
+    }
+    [data-theme="dark"] .plan-features li { color: #94a3b8; }
+    .plan-features i {
+        color: #2ecc71;
+        margin-right: 8px;
+    }
+    .plan-card .btn {
+        width: 100%;
+        padding: 12px;
+        border-radius: 50px;
+        font-weight: 600;
+    }
+</style>
+
+<section class="pricing-plans">
+    <div class="container">
+        <h2 class="text-center mb-5">Flexible Pricing for Every Business</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="plan-card">
+                    <h4>Starter</h4>
+                    <p class="text-muted">For small teams</p>
+                    <div class="plan-price">$299/mo</div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check-circle"></i> Basic IT Support</li>
+                        <li><i class="fas fa-check-circle"></i> 5 Devices</li>
+                        <li><i class="fas fa-check-circle"></i> Email & Chat</li>
+                    </ul>
+                    <a href="/pages/contact/" class="btn btn-outline-primary">Get Started</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="plan-card featured">
+                    <h4>Professional</h4>
+                    <p class="text-muted">Growing businesses</p>
+                    <div class="plan-price">$799/mo</div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check-circle"></i> 24/7 Support</li>
+                        <li><i class="fas fa-check-circle"></i> Unlimited Devices</li>
+                        <li><i class="fas fa-check-circle"></i> Cloud Backup</li>
+                        <li><i class="fas fa-check-circle"></i> Security Monitoring</li>
+                    </ul>
+                    <a href="/pages/contact/" class="btn btn-primary">Most Popular</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="plan-card">
+                    <h4>Enterprise</h4>
+                    <p class="text-muted">Large organisations</p>
+                    <div class="plan-price">Custom</div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check-circle"></i> Dedicated Engineer</li>
+                        <li><i class="fas fa-check-circle"></i> SLA 99.99%</li>
+                        <li><i class="fas fa-check-circle"></i> Full Stack Services</li>
+                        <li><i class="fas fa-check-circle"></i> Compliance Audits</li>
+                    </ul>
+                    <a href="/pages/contact/" class="btn btn-outline-primary">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
