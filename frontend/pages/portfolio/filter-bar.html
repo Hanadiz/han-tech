@@ -1,0 +1,25 @@
+<style>
+    .filter-bar { padding: 40px 0; background: #fff; }
+    [data-theme="dark"] .filter-bar { background: #1a1a2e; }
+    .filter-btn { background: #f0f0f0; border: none; padding: 8px 18px; border-radius: 30px; font-size: 0.9rem; margin: 0 5px; cursor: pointer; transition: 0.3s; color: #333; }
+    [data-theme="dark"] .filter-btn { background: #2a2a40; color: #ccc; }
+    .filter-btn.active, .filter-btn:hover { background: linear-gradient(135deg, #0077b6, #00b4d8); color: #fff; }
+</style>
+<section class="filter-bar">
+    <div class="container text-center">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="networking">Networking</button>
+        <button class="filter-btn" data-filter="cloud">Cloud</button>
+        <button class="filter-btn" data-filter="security">Security</button>
+        <button class="filter-btn" data-filter="software">Software</button>
+    </div>
+</section>
+<script>
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            // Future: filter project cards
+        });
+    });
+</script>
