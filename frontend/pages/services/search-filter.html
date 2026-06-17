@@ -1,0 +1,92 @@
+<!-- frontend/pages/services/search-filter.html -->
+<style>
+    .search-filter-section {
+        padding: 50px 0;
+        background: #fff;
+    }
+    [data-theme="dark"] .search-filter-section { background: #1a1a2e; }
+    .search-filter-box {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+    .search-filter-box input {
+        width: 100%;
+        padding: 16px 50px 16px 24px;
+        border-radius: 50px;
+        border: 2px solid #e0e0e0;
+        font-size: 1rem;
+        transition: 0.3s;
+    }
+    [data-theme="dark"] .search-filter-box input {
+        background: #1a1a2e;
+        color: #e0e0e0;
+        border-color: #2a2a40;
+    }
+    .search-filter-box input:focus {
+        outline: none;
+        border-color: #00b4d8;
+        box-shadow: 0 0 0 3px rgba(0,180,216,0.2);
+    }
+    .filter-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+        justify-content: center;
+    }
+    .filter-tag {
+        background: #f0f0f0;
+        border: none;
+        padding: 8px 18px;
+        border-radius: 30px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: 0.3s;
+        color: #333;
+    }
+    [data-theme="dark"] .filter-tag { background: #2a2a40; color: #ccc; }
+    .filter-tag:hover, .filter-tag.active {
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+        color: #fff;
+    }
+</style>
+
+<section class="search-filter-section">
+    <div class="container">
+        <div class="search-filter-box">
+            <div class="position-relative">
+                <input type="text" placeholder="Search services... (e.g., Cloud, Security)">
+                <i class="fas fa-search position-absolute" style="right:20px; top:50%; transform:translateY(-50%); color:#00b4d8;"></i>
+            </div>
+            <div class="filter-tags">
+                <button class="filter-tag active" data-filter="all">All</button>
+                <button class="filter-tag" data-filter="infrastructure">Infrastructure</button>
+                <button class="filter-tag" data-filter="cloud">Cloud</button>
+                <button class="filter-tag" data-filter="security">Security</button>
+                <button class="filter-tag" data-filter="software">Software</button>
+                <button class="filter-tag" data-filter="fintech">FinTech</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    (function() {
+        const tags = document.querySelectorAll('.filter-tag');
+        const input = document.querySelector('.search-filter-box input');
+        // Simple filter demo – you can connect to actual card filtering later
+        tags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                tags.forEach(t => t.classList.remove('active'));
+                tag.classList.add('active');
+                // Future: filter category cards based on data-filter value
+                console.log('Filter:', tag.dataset.filter);
+            });
+        });
+        input.addEventListener('input', (e) => {
+            console.log('Search:', e.target.value);
+            // Future: live search implementation
+        });
+    })();
+</script>
