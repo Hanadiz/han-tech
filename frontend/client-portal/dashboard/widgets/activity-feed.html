@@ -1,1 +1,15 @@
- 
+ <style>
+    .activity-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #f0f0f0; font-size: 0.9rem; }
+    [data-theme="dark"] .activity-item { border-color: #2a2a40; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .dot-success { background: #2ecc71; }
+    .dot-warning { background: #f39c12; }
+    .dot-info { background: #3498db; }
+    .dot-danger { background: #e74c3c; }
+</style>
+<div>
+    <div class="activity-item"><span class="dot dot-success"></span> Invoice #INV-2025-06 paid <small class="text-muted ms-auto">2h ago</small></div>
+    <div class="activity-item"><span class="dot dot-warning"></span> Ticket #1001 created <small class="text-muted ms-auto">1d ago</small></div>
+    <div class="activity-item"><span class="dot dot-info"></span> Certificate downloaded <small class="text-muted ms-auto">3d ago</small></div>
+    <div class="activity-item"><span class="dot dot-danger"></span> Failed login blocked <small class="text-muted ms-auto">5d ago</small></div>
+</div>
