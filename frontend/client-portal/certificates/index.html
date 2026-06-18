@@ -1,1 +1,91 @@
- 
+ <!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Certificates | Han-Tech Ltd</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #f5f7fa; color: #2c3e50; }
+        [data-theme="dark"] body { background: #0f0f1a; color: #e0e0e0; }
+        .top-bar { background: #fff; padding: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 30px; }
+        [data-theme="dark"] .top-bar { background: #1a1a2e; }
+        .top-bar h1 { font-family: 'Poppins', sans-serif; font-size: 1.8rem; font-weight: 700; }
+        .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .cert-card { background: #fff; border-radius: 18px; padding: 25px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); transition: 0.3s; border-top: 5px solid #9b59b6; }
+        [data-theme="dark"] .cert-card { background: #1a1a2e; }
+        .cert-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .cert-card h5 { font-family: 'Poppins', sans-serif; font-weight: 600; margin-bottom: 5px; }
+        .cert-meta { color: #888; font-size: 0.85rem; }
+        .badge-issued { background: #d4edda; color: #155724; }
+        .badge-expiring { background: #fff3cd; color: #856404; }
+        .search-box { max-width: 400px; margin-bottom: 25px; }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <div class="top-bar">
+        <div class="container">
+            <h1><i class="bi bi-award me-2"></i>My Certificates</h1>
+            <p class="text-muted mb-0">Professional certifications and training credentials</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="search-box">
+            <input type="text" class="form-control" placeholder="Search certificates...">
+        </div>
+
+        <div class="certs-grid">
+            <!-- Certificate 1 -->
+            <div class="cert-card">
+                <h5>Cloud Fundamentals</h5>
+                <p class="cert-meta">Issued: May 15, 2025 · Valid until: May 15, 2027</p>
+                <span class="badge badge-issued">Active</span>
+                <div class="mt-3">
+                    <a href="detail.html" class="btn btn-outline-primary btn-sm me-2"><i class="bi bi-eye"></i> View</a>
+                    <a href="download.html" class="btn btn-primary btn-sm"><i class="bi bi-download"></i> Download PDF</a>
+                </div>
+            </div>
+
+            <!-- Certificate 2 -->
+            <div class="cert-card">
+                <h5>Network Security Basics</h5>
+                <p class="cert-meta">Issued: March 2, 2025 · Valid until: March 2, 2026</p>
+                <span class="badge badge-expiring">Expiring Soon</span>
+                <div class="mt-3">
+                    <a href="detail.html" class="btn btn-outline-primary btn-sm me-2"><i class="bi bi-eye"></i> View</a>
+                    <a href="download.html" class="btn btn-primary btn-sm"><i class="bi bi-download"></i> Download PDF</a>
+                </div>
+            </div>
+
+            <!-- Certificate 3 -->
+            <div class="cert-card">
+                <h5>ITIL Foundation</h5>
+                <p class="cert-meta">Issued: Dec 10, 2024 · Valid until: Dec 10, 2026</p>
+                <span class="badge badge-issued">Active</span>
+                <div class="mt-3">
+                    <a href="detail.html" class="btn btn-outline-primary btn-sm me-2"><i class="bi bi-eye"></i> View</a>
+                    <a href="download.html" class="btn btn-primary btn-sm"><i class="bi bi-download"></i> Download PDF</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/client-portal/auth-guard.js"></script>
+    <script>
+        (function() {
+            if (!AuthGuard.check()) return;
+            async function load(u, i) { try { const r = await fetch(u); document.getElementById(i).innerHTML = await r.text(); } catch(e) {} }
+            load('/components/layouts/header.html', 'header-container');
+            load('/components/layouts/footer.html', 'footer-container');
+        })();
+    </script>
+</body>
+</html>
