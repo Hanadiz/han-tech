@@ -1,1 +1,39 @@
- 
+ <!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Certificate | Han-Tech Ltd</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #f5f7fa; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; text-align: center; }
+        .download-card { background: #fff; border-radius: 20px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); max-width: 450px; }
+        [data-theme="dark"] .download-card { background: #1a1a2e; }
+        .spinner { width: 60px; height: 60px; border: 5px solid #e0e0e0; border-top-color: #9b59b6; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .btn-manual { background: #9b59b6; color: #fff; border: none; padding: 12px 25px; border-radius: 12px; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="download-card">
+        <div class="spinner" id="spinner"></div>
+        <h3 style="font-family:'Poppins',sans-serif;">Your download is starting...</h3>
+        <p class="text-muted">If it doesn't start automatically, click the button below.</p>
+        <button class="btn-manual" id="manualDownload">Download Now</button>
+    </div>
+
+    <script>
+        // Simulate download
+        setTimeout(() => {
+            document.getElementById('spinner').style.display = 'none';
+            // In production, this would trigger a file download
+            alert('Certificate downloaded successfully! (Simulated)');
+        }, 2000);
+
+        document.getElementById('manualDownload').addEventListener('click', function() {
+            alert('Certificate downloaded successfully! (Simulated)');
+        });
+    </script>
+</body>
+</html>
