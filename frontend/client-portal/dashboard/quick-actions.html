@@ -1,1 +1,15 @@
- 
+ <style>
+    .quick-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; }
+    .quick-link { background: #f0f4f8; border-radius: 12px; padding: 15px; text-align: center; text-decoration: none; color: #2c3e50; transition: 0.3s; font-weight: 500; }
+    [data-theme="dark"] .quick-link { background: #252540; color: #ccc; }
+    .quick-link:hover { background: linear-gradient(135deg, #0077b6, #00b4d8); color: #fff; transform: translateY(-2px); }
+    .quick-link i { font-size: 1.5rem; display: block; margin-bottom: 6px; }
+</style>
+<div class="quick-links">
+    <a href="/client-portal/tickets/create.html" class="quick-link"><i class="bi bi-plus-circle"></i>New Ticket</a>
+    <a href="/client-portal/invoices/" class="quick-link"><i class="bi bi-file-text"></i>Invoices</a>
+    <a href="/client-portal/subscriptions/" class="quick-link"><i class="bi bi-arrow-repeat"></i>Plans</a>
+    <a href="/client-portal/support/" class="quick-link"><i class="bi bi-headset"></i>Support</a>
+    <a href="/client-portal/referrals/" class="quick-link"><i class="bi bi-people"></i>Referrals</a>
+    <a href="/client-portal/knowledge-base/" class="quick-link"><i class="bi bi-book"></i>Help</a>
+</div>
