@@ -1,0 +1,83 @@
+<!-- ============================================ -->
+<!-- HAN-TECH CLIENT PORTAL SIDEBAR               -->
+<!-- Location: frontend/components/layouts/sidebar-client.html -->
+<!-- ============================================ -->
+<style>
+    .client-layout { display: flex; min-height: calc(100vh - 140px); }
+    .client-sidebar {
+        width: 260px; background: #1a1a2e; color: #94a3b8;
+        padding: 20px 0; flex-shrink: 0;
+    }
+    [data-theme="dark"] .client-sidebar { background: #0f0f1a; }
+    .client-sidebar .nav-link {
+        color: #94a3b8 !important; padding: 12px 24px;
+        display: flex; align-items: center; gap: 10px;
+        font-size: 0.9rem; border-left: 3px solid transparent;
+        transition: 0.3s; text-decoration: none;
+    }
+    .client-sidebar .nav-link:hover,
+    .client-sidebar .nav-link.active {
+        background: rgba(0,180,216,0.08);
+        color: #fff !important;
+        border-left-color: #00b4d8;
+    }
+    .client-main { flex: 1; padding: 30px; background: #f5f7fa; overflow-x: auto; }
+    [data-theme="dark"] .client-main { background: #0f0f1a; }
+    @media (max-width: 768px) { .client-sidebar { display: none; } }
+</style>
+
+<aside class="client-sidebar">
+    <div class="px-3 mb-4">
+        <strong style="color:#fff;font-family:'Poppins',sans-serif;">Client Portal</strong>
+    </div>
+    <nav>
+        <a class="nav-link active" href="/client-portal/dashboard/index.html">
+            <i class="bi bi-speedometer2"></i> Dashboard
+        </a>
+        <a class="nav-link" href="/client-portal/subscriptions/index.html">
+            <i class="bi bi-arrow-repeat"></i> Subscriptions
+        </a>
+        <a class="nav-link" href="/client-portal/tickets/index.html">
+            <i class="bi bi-ticket-detailed"></i> Tickets
+        </a>
+        <a class="nav-link" href="/client-portal/invoices/index.html">
+            <i class="bi bi-receipt"></i> Invoices
+        </a>
+        <a class="nav-link" href="/client-portal/certificates/index.html">
+            <i class="bi bi-award"></i> Certificates
+        </a>
+        <a class="nav-link" href="/client-portal/assets/index.html">
+            <i class="bi bi-pc-display"></i> Assets
+        </a>
+        <a class="nav-link" href="/client-portal/usage/index.html">
+            <i class="bi bi-bar-chart"></i> Usage
+        </a>
+        <a class="nav-link" href="/client-portal/notifications/index.html">
+            <i class="bi bi-bell"></i> Notifications
+        </a>
+        <a class="nav-link" href="/client-portal/messages/index.html">
+            <i class="bi bi-envelope"></i> Messages
+        </a>
+        <a class="nav-link" href="/client-portal/payments/history.html">
+            <i class="bi bi-credit-card"></i> Payments
+        </a>
+        <a class="nav-link" href="/client-portal/referrals/index.html">
+            <i class="bi bi-people"></i> Referrals
+        </a>
+        <a class="nav-link" href="/client-portal/support/index.html">
+            <i class="bi bi-headset"></i> Support
+        </a>
+        <a class="nav-link" href="/client-portal/profile/index.html">
+            <i class="bi bi-person"></i> Profile
+        </a>
+        <a class="nav-link" href="/client-portal/settings/index.html">
+            <i class="bi bi-sliders"></i> Settings
+        </a>
+        <a class="nav-link" href="/client-portal/knowledge-base/index.html">
+            <i class="bi bi-book"></i> Knowledge Base
+        </a>
+        <a class="nav-link" href="/client-portal/api-docs/index.html">
+            <i class="bi bi-code-slash"></i> API Docs
+        </a>
+    </nav>
+</aside>
