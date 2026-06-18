@@ -3,34 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Han-Tech Ltd</title>
+    <title>Our Portfolio | Han-Tech Ltd</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background: #f9fafb; color: #2c3e50; }
-        .page-hero { background: linear-gradient(135deg, #0f0f1a, #1a1a2e, #16213e); color: #fff; padding: 100px 0 60px; text-align: center; }
-        .page-hero h1 { font-family: 'Poppins', sans-serif; font-size: 3rem; font-weight: 700; }
+        body { font-family: 'Inter', sans-serif; background: #f5f7fa; }
+        .page-hero { background: linear-gradient(135deg, #0f0f1a, #1a1a2e, #16213e); color: #fff; padding: 80px 0 50px; text-align: center; }
+        .page-hero h1 { font-family: 'Poppins', sans-serif; font-size: 2.8rem; font-weight: 700; }
+        .filter-bar { background: #fff; padding: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 30px; position: sticky; top: 86px; z-index: 10; }
+        [data-theme="dark"] .filter-bar { background: #1a1a2e; }
+        .filter-btn { background: #f0f0f0; border: none; padding: 8px 20px; border-radius: 30px; font-size: 0.9rem; cursor: pointer; transition: 0.3s; margin: 0 5px; }
+        [data-theme="dark"] .filter-btn { background: #2a2a40; color: #ccc; }
+        .filter-btn.active, .filter-btn:hover { background: linear-gradient(135deg, #0077b6, #00b4d8); color: #fff; }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding-bottom: 60px; }
+        .project-card { background: #fff; border-radius: 18px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); transition: 0.3s; }
+        [data-theme="dark"] .project-card { background: #1a1a2e; }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .project-card h5 { font-family: 'Poppins', sans-serif; font-weight: 600; }
+        .badge-category { font-size: 0.75rem; padding: 4px 10px; border-radius: 20px; background: #eef2ff; color: #0077b6; }
+        [data-theme="dark"] .badge-category { background: #252540; color: #90e0ef; }
+        .product-status { font-size: 0.8rem; font-weight: 600; }
     </style>
 </head>
 <body>
     <div id="header-container"></div>
-    <section class="page-hero"><div class="container"><h1>Our Portfolio</h1><p>Showcasing our finest work</p></div></section>
-    <div id="filter-bar-container"></div>
-    <div id="project-grid-container"></div>
-    <div id="client-logos-container"></div>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Our Portfolio</h1>
+            <p>Explore the full range of products, platforms, and hardware we deliver.</p>
+        </div>
+    </section>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <div class="container text-center">
+            <button class="filter-btn active" data-filter="deployed">Deployed</button>
+            <button class="filter-btn" data-filter="development">Under Development</button>
+            <button class="filter-btn" data-filter="proposed">Planned</button>
+            <button class="filter-btn" data-filter="hardware">Hardware</button>
+            <button class="filter-btn" data-filter="saas">SaaS</button>
+        </div>
+    </div>
+
+    <!-- Project Grid -->
+    <div class="container">
+        <div class="project-grid" id="projectGrid">
+            <!-- Cards will be loaded here -->
+        </div>
+    </div>
+
     <div id="footer-container"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        async function load(url, id) { try { const r = await fetch(url); document.getElementById(id).innerHTML = await r.text(); } catch(e){} }
+        // Product Data
+        const products = [
+            // ========== DEPLOYED ==========
+            { name: "Han-Tech USSD Gateway", category: "USSD Services", description: "Multi‑tenant USSD platform for businesses to deploy interactive menus.", status: "deployed", icon: "fas fa-mobile-alt" },
+            { name: "Mobile Money Aggregator API", category: "FinTech", description: "Unified API for MTN & Airtel mobile money payments (sandbox + production).", status: "deployed", icon: "fas fa-coins" },
+            { name: "AgriSense IoT Kit", category: "IoT & Smart Systems", description: "Soil moisture + temperature sensors with SMS alerts for farmers.", status: "deployed", icon: "fas fa-seedling" },
+            { name: "E-School Manager", category: "EdTech", description: "School management system (attendance, fees, exams, report cards).", status: "deployed", icon: "fas fa-graduation-cap" },
+            { name: "ClinicCare EMR", category: "Health Tech", description: "Electronic medical records for small clinics and health centres.", status: "deployed", icon: "fas fa-hospital" },
+            { name: "Smart Cargo Tracker", category: "IoT & Logistics", description: "GPS + temperature/humidity tracker for cross‑border cargo.", status: "deployed", icon: "fas fa-truck" },
+            { name: "Han-Tech Helpdesk", category: "IT Service Management", description: "Ticketing system for internal IT support (staff & clients).", status: "deployed", icon: "fas fa-headset" },
+            { name: "Certificate Verifier", category: "Blockchain/Digital ID", description: "QR‑code‑based blockchain certificate verification portal.", status: "deployed", icon: "fas fa-certificate" },
+            { name: "Inventory Manager", category: "Enterprise Apps", description: "Basic inventory & stock management for SMEs.", status: "deployed", icon: "fas fa-boxes" },
+            { name: "StaffPay HRM", category: "Enterprise Apps", description: "Payroll & leave management for small organisations.", status: "deployed", icon: "fas fa-users-cog" },
+            { name: "Customer Feedback USSD", category: "USSD Services", description: "USSD‑based customer satisfaction survey tool.", status: "deployed", icon: "fas fa-comment-dots" },
+            { name: "Solar Monitor", category: "IoT & Energy", description: "Remote monitoring of solar inverter and battery status.", status: "deployed", icon: "fas fa-solar-panel" },
+
+            // ========== UNDER DEVELOPMENT ==========
+            { name: "Han-Tech ERP Lite", category: "ERP", description: "Lightweight ERP for SMEs. Expected Q3 2026.", status: "development", icon: "fas fa-industry" },
+            { name: "TeleMed Uganda", category: "Health Tech", description: "Telemedicine platform for remote consultations. Expected Q4 2026.", status: "development", icon: "fas fa-video" },
+            { name: "Smart Farmer Dashboard", category: "AgriTech", description: "Dashboard for precision agriculture. Expected Q3 2026.", status: "development", icon: "fas fa-chart-line" },
+            { name: "E-Procurement Portal", category: "E-Government", description: "Government procurement management. Expected Q4 2026.", status: "development", icon: "fas fa-landmark" },
+            { name: "Loan Origination System", category: "FinTech", description: "Digital loan application and approval. Expected Q1 2027.", status: "development", icon: "fas fa-hand-holding-usd" },
+            { name: "Starlink Management Portal", category: "Networking", description: "Client self-service for Starlink accounts. Expected Q3 2026.", status: "development", icon: "fas fa-satellite" },
+            { name: "Han-Tech LMS", category: "EdTech", description: "Learning management system. Expected Q4 2026.", status: "development", icon: "fas fa-laptop-code" },
+            { name: "Cross‑Border Trade Platform", category: "Trade Facilitation", description: "Streamlining regional trade. Expected Q2 2027.", status: "development", icon: "fas fa-globe-africa" },
+            { name: "AI Chatbot (WhatsApp)", category: "AI/ML", description: "Customer support chatbot. Expected Q1 2027.", status: "development", icon: "fas fa-robot" },
+            { name: "Asset Tracking System", category: "Asset Management", description: "Real‑time asset location tracking. Expected Q3 2026.", status: "development", icon: "fas fa-map-marker-alt" },
+            { name: "Disaster Risk Mapping Tool", category: "GIS", description: "Flood and hazard mapping. Expected Q4 2026.", status: "development", icon: "fas fa-mountain" },
+            { name: "Cyber Hygiene Scanner", category: "Cybersecurity", description: "Automated vulnerability scanner. Expected Q1 2027.", status: "development", icon: "fas fa-shield-virus" },
+
+            // ========== PROPOSED / PLANNED ==========
+            { name: "Han-Tech CRM", category: "CRM", description: "Customer relationship management. Target Q2 2027.", status: "proposed", icon: "fas fa-address-book" },
+            { name: "E-Voting System", category: "Governance", description: "Secure digital voting. Target Q3 2027.", status: "proposed", icon: "fas fa-vote-yea" },
+            { name: "Digital Land Registry", category: "GIS/Blockchain", description: "Blockchain‑based land title management. Target Q4 2027.", status: "proposed", icon: "fas fa-landmark" },
+            { name: "Smart School IoT", category: "EdTech/IoT", description: "IoT sensors for smart classrooms. Target Q2 2027.", status: "proposed", icon: "fas fa-chalkboard-teacher" },
+            { name: "Farmer Coop Platform", category: "AgriTech", description: "Cooperative management for farmer groups. Target Q3 2027.", status: "proposed", icon: "fas fa-tractor" },
+            { name: "Han-Tech POS", category: "Retail", description: "Point of sale system. Target Q1 2027.", status: "proposed", icon: "fas fa-cash-register" },
+            { name: "Warranty Management System", category: "Asset Management", description: "Product warranty tracking. Target Q2 2027.", status: "proposed", icon: "fas fa-clipboard-check" },
+            { name: "Drone Fleet Management", category: "GIS/Drone", description: "Manage drone operations. Target Q4 2027.", status: "proposed", icon: "fas fa-helicopter" },
+            { name: "Energy Billing System", category: "Energy Tech", description: "Smart metering and billing. Target Q3 2027.", status: "proposed", icon: "fas fa-bolt" },
+            { name: "Digital Bus Ticketing", category: "Transport", description: "Mobile ticketing for buses. Target Q2 2027.", status: "proposed", icon: "fas fa-bus" },
+            { name: "Online Dispute Resolution", category: "LegalTech", description: "ADR platform for legal disputes. Target Q4 2027.", status: "proposed", icon: "fas fa-gavel" },
+            { name: "Han-Tech BI Dashboard", category: "Analytics", description: "Business intelligence dashboards. Target Q1 2027.", status: "proposed", icon: "fas fa-chart-bar" },
+            { name: "Community Health Worker App", category: "Health Tech", description: "Mobile app for CHWs. Target Q3 2027.", status: "proposed", icon: "fas fa-user-nurse" },
+            { name: "Warehouse Management System", category: "Logistics", description: "Warehouse inventory and picking. Target Q2 2027.", status: "proposed", icon: "fas fa-warehouse" },
+            { name: "Digital Skills Marketplace", category: "Training", description: "Platform for freelancers and trainers. Target Q4 2027.", status: "proposed", icon: "fas fa-chalkboard" },
+            { name: "Smart Water Management", category: "IoT/Utilities", description: "Water quality and usage monitoring. Target Q3 2027.", status: "proposed", icon: "fas fa-water" },
+            { name: "Blockchain Notary", category: "LegalTech", description: "Document notarisation on blockchain. Target Q4 2027.", status: "proposed", icon: "fas fa-file-contract" },
+
+            // ========== HARDWARE ==========
+            { name: "Starlink Installation Kit", category: "Networking", description: "Complete Starlink kit with professional installation.", status: "hardware", icon: "fas fa-satellite-dish" },
+            { name: "Solar‑Powered Router", category: "Networking", description: "Router with integrated solar panel and battery.", status: "hardware", icon: "fas fa-sun" },
+            { name: "Rugged IoT Gateway", category: "IoT", description: "Industrial IoT gateway for harsh environments.", status: "hardware", icon: "fas fa-hdd" },
+            { name: "POS Terminal Bundle", category: "Retail", description: "Touchscreen POS terminal with receipt printer.", status: "hardware", icon: "fas fa-cash-register" },
+            { name: "Biometric Attendance Device", category: "HR/Asset", description: "Fingerprint & face recognition for attendance.", status: "hardware", icon: "fas fa-fingerprint" },
+            { name: "CCTV Solution", category: "Security", description: "IP camera systems with NVR and remote access.", status: "hardware", icon: "fas fa-camera" },
+            { name: "UPS & Power Backup", category: "Infrastructure", description: "Uninterruptible power supplies for critical equipment.", status: "hardware", icon: "fas fa-plug" },
+            { name: "Pre‑built Server", category: "Infrastructure", description: "Ready‑to‑deploy tower/rack servers.", status: "hardware", icon: "fas fa-server" },
+
+            // ========== SAAS ==========
+            { name: "Han-Tech Helpdesk", category: "ITSM", description: "Ticketing system (UGX 50k/month).", status: "saas", icon: "fas fa-headset" },
+            { name: "AgriSense IoT Platform", category: "AgriTech", description: "Sensor data platform (UGX 30k/device/month).", status: "saas", icon: "fas fa-leaf" },
+            { name: "E-School Manager", category: "EdTech", description: "School management (UGX 500k/year).", status: "saas", icon: "fas fa-school" },
+            { name: "Mobile Money Aggregator API", category: "FinTech", description: "Payment API (1% per transaction).", status: "saas", icon: "fas fa-money-bill-wave" },
+            { name: "USSD Gateway as a Service", category: "USSD", description: "USSD platform (UGX 100k/month + 5 UGX/session).", status: "saas", icon: "fas fa-phone" },
+            { name: "Certificate Verifier", category: "Blockchain", description: "Free + premium plans.", status: "saas", icon: "fas fa-certificate" }
+        ];
+
+        function renderCards(filter) {
+            const grid = document.getElementById('projectGrid');
+            grid.innerHTML = '';
+            products
+                .filter(p => !filter || p.status === filter)
+                .forEach(p => {
+                    const card = document.createElement('div');
+                    card.className = 'project-card';
+                    card.innerHTML = `
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="${p.icon} fa-2x me-3" style="color:#0077b6;"></i>
+                            <div>
+                                <h5 class="mb-0">${p.name}</h5>
+                                <small class="badge-category">${p.category}</small>
+                            </div>
+                        </div>
+                        <p class="text-muted small">${p.description}</p>
+                        <div class="product-status text-end">
+                            ${p.status === 'deployed' ? '<span class="text-success">✔ Live</span>' : ''}
+                            ${p.status === 'development' ? '<span class="text-warning">⚙ In Progress</span>' : ''}
+                            ${p.status === 'proposed' ? '<span class="text-secondary">📋 Planned</span>' : ''}
+                            ${p.status === 'hardware' ? '<span class="text-info">🖨 Available</span>' : ''}
+                            ${p.status === 'saas' ? '<span class="text-primary">☁ Subscription</span>' : ''}
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+        }
+
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const filter = this.dataset.filter;
+                renderCards(filter);
+            });
+        });
+
+        // Load header, footer, and initial cards
+        async function load(u, i) {
+            try { const r = await fetch(u); document.getElementById(i).innerHTML = await r.text(); } catch(e) {}
+        }
         (async () => {
             await load('/components/layouts/header.html', 'header-container');
-            await load('/pages/portfolio/filter-bar.html', 'filter-bar-container');
-            await load('/pages/portfolio/project-grid.html', 'project-grid-container');
-            await load('/pages/portfolio/client-logos.html', 'client-logos-container');
             await load('/components/layouts/footer.html', 'footer-container');
+            renderCards('deployed'); // default tab
         })();
     </script>
 </body>
