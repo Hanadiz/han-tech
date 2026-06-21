@@ -1,100 +1,28 @@
-<!-- frontend/pages/about/timeline.html -->
 <style>
-    .timeline {
-        padding: 80px 0;
-        background: #f9fafb;
-    }
-    [data-theme="dark"] .timeline { background: #0f0f1a; }
-    .timeline-item {
-        display: flex;
-        gap: 30px;
-        margin-bottom: 40px;
-        position: relative;
-    }
-    .timeline-year {
-        min-width: 100px;
-        text-align: right;
-        font-family: 'Poppins', sans-serif;
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: #00b4d8;
-    }
-    .timeline-content {
-        background: #fff;
-        padding: 25px 30px;
-        border-radius: 16px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        flex: 1;
-    }
-    [data-theme="dark"] .timeline-content { background: #1a1a2e; }
-    .timeline-content h4 {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 600;
-        color: #2c3e50;
-        margin-bottom: 8px;
-    }
-    [data-theme="dark"] .timeline-content h4 { color: #e0e0e0; }
-    .timeline-content p {
-        color: #666;
-        margin-bottom: 0;
-    }
+    .milestones-section { padding: 80px 0; background: #fff; }
+    [data-theme="dark"] .milestones-section { background: #1a1a2e; }
+    .section-title { text-align: center; font-family: 'Poppins', sans-serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 40px; color: #2c3e50; }
+    [data-theme="dark"] .section-title { color: #e0e0e0; }
+    .gradient-text { background: linear-gradient(135deg, #0077b6, #00b4d8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .timeline { position: relative; padding-left: 50px; max-width: 800px; margin: 0 auto; }
+    .timeline::before { content: ''; position: absolute; left: 15px; top: 0; width: 3px; height: 100%; background: linear-gradient(180deg, #0077b6, #00b4d8); }
+    .timeline-item { position: relative; margin-bottom: 35px; }
+    .timeline-marker { position: absolute; left: -45px; top: 0; background: linear-gradient(135deg, #0077b6, #00b4d8); color: #fff; padding: 4px 16px; border-radius: 20px; font-weight: 600; font-size: 0.85rem; }
+    .timeline-content { background: #f9fafb; padding: 20px 25px; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.04); margin-left: 20px; }
+    [data-theme="dark"] .timeline-content { background: #252540; }
+    .timeline-content h5 { font-family: 'Poppins', sans-serif; font-weight: 600; margin: 0; }
+    .timeline-content p { color: #666; margin: 5px 0 0; }
     [data-theme="dark"] .timeline-content p { color: #94a3b8; }
-    .timeline-line {
-        position: absolute;
-        left: 110px;
-        top: 0;
-        bottom: 0;
-        width: 2px;
-        background: #e0e0e0;
-    }
-    [data-theme="dark"] .timeline-line { background: #2a2a40; }
-    @media (max-width: 768px) {
-        .timeline-item { flex-direction: column; gap: 10px; }
-        .timeline-year { text-align: left; }
-        .timeline-line { display: none; }
-    }
 </style>
 
-<section class="timeline">
+<section class="milestones-section">
     <div class="container">
-        <h2 class="section-title text-center">Our Journey</h2>
-        <div class="position-relative mt-5">
-            <div class="timeline-line"></div>
-            <div class="timeline-item">
-                <div class="timeline-year">2014</div>
-                <div class="timeline-content">
-                    <h4>Foundation</h4>
-                    <p>Han-Tech Ltd founded in Yumbe as a computer repair and networking shop.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2017</div>
-                <div class="timeline-content">
-                    <h4>First Enterprise Client</h4>
-                    <p>Signed a major contract to manage IT infrastructure for a national healthcare provider.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2019</div>
-                <div class="timeline-content">
-                    <h4>Cloud & Security Expansion</h4>
-                    <p>Launched cloud migration and cybersecurity service lines, becoming an AWS Partner.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2022</div>
-                <div class="timeline-content">
-                    <h4>Starlink Authorised Reseller</h4>
-                    <p>Became one of the first official Starlink partners in Uganda.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2024</div>
-                <div class="timeline-content">
-                    <h4>200+ Clients & Growing</h4>
-                    <p>Expanded to 15 service categories, serving clients across East Africa with a team of 50+ engineers.</p>
-                </div>
-            </div>
+        <h2 class="section-title">Our <span class="gradient-text">Journey</span></h2>
+        <div class="timeline">
+            <div class="timeline-item"><div class="timeline-marker">2010</div><div class="timeline-content"><h5>Founded</h5><p>Started in Yumbe with 3 engineers.</p></div></div>
+            <div class="timeline-item"><div class="timeline-marker">2015</div><div class="timeline-content"><h5>Regional Expansion</h5><p>Opened offices in Kenya & Tanzania.</p></div></div>
+            <div class="timeline-item"><div class="timeline-marker">2020</div><div class="timeline-content"><h5>Innovation Lab</h5><p>Launched AI & cloud research center.</p></div></div>
+            <div class="timeline-item"><div class="timeline-marker">2024</div><div class="timeline-content"><h5>Industry Leader</h5><p>200+ clients across 4 countries.</p></div></div>
         </div>
     </div>
 </section>
