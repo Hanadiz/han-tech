@@ -13,6 +13,29 @@
         body { font-family: 'Inter', sans-serif; background: #f9fafb; color: #2c3e50; }
         .category-hero { background: var(--gradient-dark); color: #fff; padding: 100px 0 60px; text-align: center; }
         .category-hero h1 { font-family: 'Poppins', sans-serif; font-size: 3rem; font-weight: 700; }
+
+        /* Horizontal scrollable sub‑nav */
+        .sub-nav {
+            background: #fff; padding: 12px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            position: sticky; top: 86px; z-index: 10;
+            overflow-x: auto; white-space: nowrap;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        [data-theme="dark"] .sub-nav { background: #1a1a2e; border-color: #2a2a40; }
+        .sub-nav::-webkit-scrollbar { height: 0; }
+        .sub-nav .sub-link {
+            display: inline-block; padding: 8px 20px; margin: 0 4px;
+            border-radius: 30px; font-size: 0.9rem; font-weight: 500;
+            color: #2c3e50; text-decoration: none; transition: 0.3s;
+            background: #f0f4f8;
+        }
+        [data-theme="dark"] .sub-nav .sub-link { background: #252540; color: #ccc; }
+        .sub-nav .sub-link:hover,
+        .sub-nav .sub-link.active {
+            background: var(--gradient-tech); color: #fff;
+        }
+
         .section { padding: 80px 0; }
         .service-card { background: #fff; border-radius: 20px; padding: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; height: 100%; text-align: center; }
         [data-theme="dark"] .service-card { background: #1a1a2e; }
@@ -23,6 +46,7 @@
 <body>
     <div id="header-container"></div>
 
+    <!-- Hero -->
     <section class="category-hero">
         <div class="container">
             <h1>Core Infrastructure</h1>
@@ -30,6 +54,19 @@
         </div>
     </section>
 
+    <!-- Horizontal scrollable sub‑navigation (links to all sub‑pages) -->
+    <div class="sub-nav text-center" id="subNav">
+        <a href="overview.html" class="sub-link">Overview</a>
+        <a href="service-list.html" class="sub-link">Services List</a>
+        <a href="features.html" class="sub-link">Features</a>
+        <a href="benefits.html" class="sub-link">Benefits</a>
+        <a href="use-cases.html" class="sub-link">Use Cases</a>
+        <a href="pricing.html" class="sub-link">Pricing</a>
+        <a href="faq.html" class="sub-link">FAQ</a>
+        <a href="cta.html" class="sub-link">Get Started</a>
+    </div>
+
+    <!-- Main service cards (index content) -->
     <section class="section">
         <div class="container">
             <div class="row g-4">
@@ -74,6 +111,15 @@
         async function load(u,i){ try { const r=await fetch(u); document.getElementById(i).innerHTML=await r.text(); } catch(e){} }
         load('/components/layouts/header.html','header-container');
         load('/components/layouts/footer.html','footer-container');
+
+        // Highlight current sub‑page link
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('#subNav .sub-link').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href === currentPage || (currentPage === 'index.html' && href === 'index.html')) {
+                link.classList.add('active');
+            }
+        });
     </script>
 </body>
 </html>
