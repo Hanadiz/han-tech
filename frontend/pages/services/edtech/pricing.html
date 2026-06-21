@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdTech Pricing | Han-Tech Ltd</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>.category-hero{background:linear-gradient(135deg,#0f0f1a,#1a1a2e,#16213e);color:#fff;padding:100px 0 60px;text-align:center}.pricing-card{background:#fff;border-radius:20px;padding:40px;box-shadow:0 4px 6px rgba(0,0,0,0.05);text-align:center;height:100%}[data-theme="dark"] .pricing-card{background:#1a1a2e}.pricing-card.featured{border:2px solid #00b4d8;transform:scale(1.02)}.price{font-family:'Poppins',sans-serif;font-size:2.5rem;font-weight:700;color:#0077b6}</style>
+</head>
+<body>
+    <div id="header-container"></div>
+    <section class="category-hero"><div class="container"><h1>Pricing Plans</h1></div></section>
+    <section class="container py-5"><div class="row g-4">
+        <div class="col-md-4"><div class="pricing-card"><h4>Starter</h4><div class="price">$299/mo</div><p>Up to 500 learners</p><a href="/pages/contact/" class="btn btn-outline-primary">Get Started</a></div></div>
+        <div class="col-md-4"><div class="pricing-card featured"><h4>Professional</h4><div class="price">$899/mo</div><p>Unlimited learners + custom branding</p><a href="/pages/contact/" class="btn btn-primary">Most Popular</a></div></div>
+        <div class="col-md-4"><div class="pricing-card"><h4>Enterprise</h4><div class="price">Custom</div><p>Dedicated instance & API access</p><a href="/pages/contact/" class="btn btn-outline-primary">Contact Sales</a></div></div>
+    </div></section>
+    <div id="footer-container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>async function load(u,i){try{const r=await fetch(u);document.getElementById(i).innerHTML=await r.text()}catch(e){}}load('/components/layouts/header.html','header-container');load('/components/layouts/footer.html','footer-container')</script>
+</body>
+</html>
