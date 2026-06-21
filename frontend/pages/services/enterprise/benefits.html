@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Benefits | Han-Tech Ltd</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>.category-hero{background:linear-gradient(135deg,#0f0f1a,#1a1a2e,#16213e);color:#fff;padding:100px 0 60px;text-align:center}.benefit-item{display:flex;align-items:flex-start;gap:20px;margin-bottom:40px}.benefit-icon{width:50px;height:50px;background:linear-gradient(135deg,#0077b6,#00b4d8);border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.5rem;flex-shrink:0}.benefit-item h5{font-family:'Poppins',sans-serif;font-weight:600}</style>
+</head>
+<body>
+    <div id="header-container"></div>
+    <section class="category-hero"><div class="container"><h1>Benefits</h1></div></section>
+    <section class="container py-5">
+        <div class="benefit-item"><div class="benefit-icon"><i class="fas fa-tachometer-alt"></i></div><div><h5>Streamlined Operations</h5><p>Automate repetitive tasks and free up your team for higher‑value work.</p></div></div>
+        <div class="benefit-item"><div class="benefit-icon"><i class="fas fa-handshake"></i></div><div><h5>Improved Collaboration</h5><p>Centralised data and workflows break down silos between departments.</p></div></div>
+        <div class="benefit-item"><div class="benefit-icon"><i class="fas fa-tasks"></i></div><div><h5>Reduced Manual Work</h5><p>Digital forms and automated approvals replace paper and email chains.</p></div></div>
+        <div class="benefit-item"><div class="benefit-icon"><i class="fas fa-database"></i></div><div><h5>Data Centralisation</h5><p>One source of truth for your entire organisation.</p></div></div>
+    </section>
+    <div id="footer-container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>async function load(u,i){try{const r=await fetch(u);document.getElementById(i).innerHTML=await r.text()}catch(e){}}load('/components/layouts/header.html','header-container');load('/components/layouts/footer.html','footer-container')</script>
+</body>
+</html>
