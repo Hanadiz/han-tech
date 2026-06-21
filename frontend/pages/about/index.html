@@ -8,52 +8,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     <style>
-        :root { --bg-primary: #f9fafb; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: #2c3e50; margin: 0; }
-
-        /* Scrollable portfolio tabs */
-        .scrollable-tabs {
-            background: #fff; padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-            overflow-x: auto; white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-            border-bottom: 2px solid #f0f0f0;
-            margin-bottom: 30px;
-        }
-        [data-theme="dark"] .scrollable-tabs { background: #1a1a2e; border-color: #2a2a40; }
-        .scrollable-tabs::-webkit-scrollbar { height: 0; }
-        .tab-btn {
-            display: inline-block; background: #f0f4f8; border: none;
-            padding: 10px 22px; border-radius: 30px; font-size: 0.9rem;
-            font-weight: 500; margin: 0 6px; cursor: pointer;
-            transition: all 0.3s; color: #2c3e50;
-        }
-        [data-theme="dark"] .tab-btn { background: #252540; color: #ccc; }
-        .tab-btn.active, .tab-btn:hover {
-            background: linear-gradient(135deg, #0077b6, #00b4d8);
-            color: #fff; transform: translateY(-2px);
-        }
-
-        /* Product cards */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px; padding: 0 15px 60px;
-        }
-        .project-card {
-            background: #fff; border-radius: 18px; padding: 24px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-            transition: 0.3s; position: relative; overflow: hidden;
-        }
-        [data-theme="dark"] .project-card { background: #1a1a2e; }
-        .project-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
-        .project-card h5 { font-family: 'Poppins', sans-serif; font-weight: 600; }
-        .badge-category { font-size: 0.75rem; padding: 4px 10px; border-radius: 20px; background: #eef2ff; color: #0077b6; display: inline-block; margin-bottom: 10px; }
-        [data-theme="dark"] .badge-category { background: #252540; color: #90e0ef; }
-        .product-status { font-size: 0.8rem; font-weight: 600; position: absolute; bottom: 20px; right: 20px; }
-
-        /* Back‑to‑top */
+        body { font-family: 'Inter', sans-serif; background: #f0f2f5; color: #333; margin: 0; }
+        [data-theme="dark"] body { background: #0f0f1a; color: #e0e0e0; }
         .back-to-top {
             position: fixed; bottom: 30px; right: 30px;
             width: 48px; height: 48px;
@@ -65,35 +23,20 @@
             transition: all 0.3s ease; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
         }
         .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
-        .back-to-top:hover { transform: translateY(-4px) !important; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25), 0 0 20px rgba(0,180,216,0.3); }
+        .back-to-top:hover { transform: translateY(-4px) !important; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); }
     </style>
 </head>
 <body>
     <div id="header-container"></div>
     <div id="hero-container"></div>
-
-    <!-- Company story, mission/vision, team, values, partners, timeline, awards -->
     <div id="company-story-container"></div>
     <div id="mission-vision-container"></div>
-    <div id="team-container"></div>
     <div id="values-container"></div>
-    <div id="partners-container"></div>
+    <div id="team-container"></div>
     <div id="timeline-container"></div>
+    <div id="partners-container"></div>
     <div id="awards-container"></div>
-
-    <!-- Portfolio showcase with scrollable tabs -->
-    <section class="container">
-        <h2 class="text-center mb-4" style="font-family:'Poppins',sans-serif;">Our Products</h2>
-        <div class="scrollable-tabs text-center" id="scrollableTabs">
-            <button class="tab-btn active" data-filter="deployed">Deployed</button>
-            <button class="tab-btn" data-filter="development">Under Development</button>
-            <button class="tab-btn" data-filter="proposed">Planned</button>
-            <button class="tab-btn" data-filter="hardware">Hardware</button>
-            <button class="tab-btn" data-filter="saas">SaaS</button>
-        </div>
-        <div class="project-grid" id="projectGrid"></div>
-    </section>
-
+    <div id="cta-container"></div>
     <div id="footer-container"></div>
 
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
@@ -101,101 +44,8 @@
     </button>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        // ========== PRODUCT DATABASE ==========
-        const products = [
-            // deployed (12)
-            { name: "Han-Tech USSD Gateway", category: "USSD", description: "Multi‑tenant USSD platform for interactive menus.", status: "deployed", icon: "fas fa-mobile-alt" },
-            { name: "Mobile Money Aggregator API", category: "FinTech", description: "Unified API for MTN & Airtel mobile money payments.", status: "deployed", icon: "fas fa-coins" },
-            { name: "AgriSense IoT Kit", category: "IoT & Smart Systems", description: "Soil moisture + temperature sensors with SMS alerts.", status: "deployed", icon: "fas fa-seedling" },
-            { name: "E-School Manager", category: "EdTech", description: "School management system (attendance, fees, exams).", status: "deployed", icon: "fas fa-graduation-cap" },
-            { name: "ClinicCare EMR", category: "Health Tech", description: "Electronic medical records for small clinics.", status: "deployed", icon: "fas fa-hospital" },
-            { name: "Smart Cargo Tracker", category: "IoT & Logistics", description: "GPS + temperature/humidity tracker for cargo.", status: "deployed", icon: "fas fa-truck" },
-            { name: "Han-Tech Helpdesk", category: "ITSM", description: "Ticketing system for internal IT support.", status: "deployed", icon: "fas fa-headset" },
-            { name: "Certificate Verifier", category: "Blockchain", description: "QR‑code blockchain certificate verification.", status: "deployed", icon: "fas fa-certificate" },
-            { name: "Inventory Manager", category: "Enterprise", description: "Basic inventory & stock management for SMEs.", status: "deployed", icon: "fas fa-boxes" },
-            { name: "StaffPay HRM", category: "Enterprise", description: "Payroll & leave management for small orgs.", status: "deployed", icon: "fas fa-users-cog" },
-            { name: "Customer Feedback USSD", category: "USSD", description: "USSD customer satisfaction survey tool.", status: "deployed", icon: "fas fa-comment-dots" },
-            { name: "Solar Monitor", category: "IoT & Energy", description: "Remote solar inverter and battery monitoring.", status: "deployed", icon: "fas fa-solar-panel" },
-            // under development (12)
-            { name: "Han-Tech ERP Lite", category: "ERP", description: "Lightweight ERP for SMEs. Expected Q3 2026.", status: "development", icon: "fas fa-industry" },
-            { name: "TeleMed Uganda", category: "Health Tech", description: "Telemedicine platform. Expected Q4 2026.", status: "development", icon: "fas fa-video" },
-            { name: "Smart Farmer Dashboard", category: "AgriTech", description: "Precision agriculture dashboard. Expected Q3 2026.", status: "development", icon: "fas fa-chart-line" },
-            { name: "E-Procurement Portal", category: "E-Government", description: "Government procurement management. Expected Q4 2026.", status: "development", icon: "fas fa-landmark" },
-            { name: "Loan Origination System", category: "FinTech", description: "Digital loan application. Expected Q1 2027.", status: "development", icon: "fas fa-hand-holding-usd" },
-            { name: "Starlink Management Portal", category: "Networking", description: "Client self‑service for Starlink. Expected Q3 2026.", status: "development", icon: "fas fa-satellite" },
-            { name: "Han-Tech LMS", category: "EdTech", description: "Learning management system. Expected Q4 2026.", status: "development", icon: "fas fa-laptop-code" },
-            { name: "Cross‑Border Trade Platform", category: "Trade", description: "Regional trade facilitation. Expected Q2 2027.", status: "development", icon: "fas fa-globe-africa" },
-            { name: "AI Chatbot (WhatsApp)", category: "AI/ML", description: "Customer support chatbot. Expected Q1 2027.", status: "development", icon: "fas fa-robot" },
-            { name: "Asset Tracking System", category: "Asset Mgmt", description: "Real‑time asset location tracking. Expected Q3 2026.", status: "development", icon: "fas fa-map-marker-alt" },
-            { name: "Disaster Risk Mapping Tool", category: "GIS", description: "Flood and hazard mapping. Expected Q4 2026.", status: "development", icon: "fas fa-mountain" },
-            { name: "Cyber Hygiene Scanner", category: "Cybersecurity", description: "Automated vulnerability scanner. Expected Q1 2027.", status: "development", icon: "fas fa-shield-virus" },
-            // proposed (17)
-            { name: "Han-Tech CRM", category: "CRM", description: "Customer relationship management. Target Q2 2027.", status: "proposed", icon: "fas fa-address-book" },
-            { name: "E-Voting System", category: "Governance", description: "Secure digital voting. Target Q3 2027.", status: "proposed", icon: "fas fa-vote-yea" },
-            { name: "Digital Land Registry", category: "GIS/Blockchain", description: "Blockchain land title management. Target Q4 2027.", status: "proposed", icon: "fas fa-landmark" },
-            { name: "Smart School IoT", category: "EdTech/IoT", description: "IoT sensors for smart classrooms. Target Q2 2027.", status: "proposed", icon: "fas fa-chalkboard-teacher" },
-            { name: "Farmer Coop Platform", category: "AgriTech", description: "Cooperative management for farmer groups. Target Q3 2027.", status: "proposed", icon: "fas fa-tractor" },
-            { name: "Han-Tech POS", category: "Retail", description: "Point of sale system. Target Q1 2027.", status: "proposed", icon: "fas fa-cash-register" },
-            { name: "Warranty Management System", category: "Asset Mgmt", description: "Product warranty tracking. Target Q2 2027.", status: "proposed", icon: "fas fa-clipboard-check" },
-            { name: "Drone Fleet Management", category: "GIS/Drone", description: "Manage drone operations. Target Q4 2027.", status: "proposed", icon: "fas fa-helicopter" },
-            { name: "Energy Billing System", category: "Energy", description: "Smart metering and billing. Target Q3 2027.", status: "proposed", icon: "fas fa-bolt" },
-            { name: "Digital Bus Ticketing", category: "Transport", description: "Mobile ticketing for buses. Target Q2 2027.", status: "proposed", icon: "fas fa-bus" },
-            { name: "Online Dispute Resolution", category: "LegalTech", description: "ADR platform. Target Q4 2027.", status: "proposed", icon: "fas fa-gavel" },
-            { name: "Han-Tech BI Dashboard", category: "Analytics", description: "Business intelligence dashboards. Target Q1 2027.", status: "proposed", icon: "fas fa-chart-bar" },
-            { name: "Community Health Worker App", category: "Health", description: "Mobile app for CHWs. Target Q3 2027.", status: "proposed", icon: "fas fa-user-nurse" },
-            { name: "Warehouse Management System", category: "Logistics", description: "Warehouse inventory & picking. Target Q2 2027.", status: "proposed", icon: "fas fa-warehouse" },
-            { name: "Digital Skills Marketplace", category: "Training", description: "Platform for freelancers. Target Q4 2027.", status: "proposed", icon: "fas fa-chalkboard" },
-            { name: "Smart Water Management", category: "IoT/Utilities", description: "Water quality monitoring. Target Q3 2027.", status: "proposed", icon: "fas fa-water" },
-            { name: "NilePay Global", category: "FinTech/Mobile Payments", description: "Single mobile app for all payment types across Uganda, East Africa, Africa, Europe, Gulf, US, and Asia. Target Q4 2028.", status: "proposed", icon: "fas fa-globe" },
-            // hardware (8)
-            { name: "Starlink Installation Kit", category: "Networking", description: "Complete Starlink kit with installation.", status: "hardware", icon: "fas fa-satellite-dish" },
-            { name: "Solar‑Powered Router", category: "Networking", description: "Router with integrated solar panel.", status: "hardware", icon: "fas fa-sun" },
-            { name: "Rugged IoT Gateway", category: "IoT", description: "Industrial IoT gateway for harsh environments.", status: "hardware", icon: "fas fa-hdd" },
-            { name: "POS Terminal Bundle", category: "Retail", description: "Touchscreen POS with receipt printer.", status: "hardware", icon: "fas fa-cash-register" },
-            { name: "Biometric Attendance Device", category: "HR", description: "Fingerprint & face recognition.", status: "hardware", icon: "fas fa-fingerprint" },
-            { name: "CCTV Solution", category: "Security", description: "IP camera systems with NVR.", status: "hardware", icon: "fas fa-camera" },
-            { name: "UPS & Power Backup", category: "Infrastructure", description: "Uninterruptible power supplies.", status: "hardware", icon: "fas fa-plug" },
-            { name: "Pre‑built Server", category: "Infrastructure", description: "Ready‑to‑deploy tower/rack servers.", status: "hardware", icon: "fas fa-server" },
-            // saas (6)
-            { name: "Han-Tech Helpdesk", category: "ITSM", description: "Ticketing system (UGX 50k/month).", status: "saas", icon: "fas fa-headset" },
-            { name: "AgriSense IoT Platform", category: "AgriTech", description: "Sensor data platform (UGX 30k/device/month).", status: "saas", icon: "fas fa-leaf" },
-            { name: "E-School Manager", category: "EdTech", description: "School management (UGX 500k/year).", status: "saas", icon: "fas fa-school" },
-            { name: "Mobile Money Aggregator API", category: "FinTech", description: "Payment API (1% per transaction).", status: "saas", icon: "fas fa-money-bill-wave" },
-            { name: "USSD Gateway as a Service", category: "USSD", description: "USSD platform (UGX 100k/month + 5 UGX/session).", status: "saas", icon: "fas fa-phone" },
-            { name: "Certificate Verifier", category: "Blockchain", description: "Free + premium plans.", status: "saas", icon: "fas fa-certificate" }
-        ];
-
-        function renderCards(filter) {
-            const grid = document.getElementById('projectGrid');
-            grid.innerHTML = '';
-            products
-                .filter(p => !filter || p.status === filter)
-                .forEach(p => {
-                    const card = document.createElement('div');
-                    card.className = 'project-card';
-                    card.innerHTML = `
-                        <div class="d-flex align-items-center mb-3">
-                            <i class="${p.icon} fa-2x me-3" style="color:#0077b6;"></i>
-                            <div>
-                                <h5 class="mb-1">${p.name}</h5>
-                                <span class="badge-category">${p.category}</span>
-                            </div>
-                        </div>
-                        <p class="text-muted small">${p.description}</p>
-                        <div class="product-status">
-                            ${p.status === 'deployed' ? '<span class="text-success"><i class="fas fa-check-circle"></i> Live</span>' : ''}
-                            ${p.status === 'development' ? '<span class="text-warning"><i class="fas fa-cogs"></i> In Progress</span>' : ''}
-                            ${p.status === 'proposed' ? '<span class="text-secondary"><i class="fas fa-lightbulb"></i> Planned</span>' : ''}
-                            ${p.status === 'hardware' ? '<span class="text-info"><i class="fas fa-box"></i> Available</span>' : ''}
-                            ${p.status === 'saas' ? '<span class="text-primary"><i class="fas fa-cloud"></i> Subscription</span>' : ''}
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                });
-        }
-
-        // ========== COMPONENT LOADER ==========
         async function load(url, containerId) {
             try {
                 const r = await fetch(url);
@@ -204,46 +54,25 @@
         }
 
         (async function() {
-            // Load header and footer
             await load('/components/layouts/header.html', 'header-container');
             await load('/components/layouts/footer.html', 'footer-container');
-
-            // Load hero from hero.html
             await load('/pages/about/hero.html', 'hero-container');
-
-            // Load about section fragments
             await load('/pages/about/company-story.html', 'company-story-container');
             await load('/pages/about/mission-vision.html', 'mission-vision-container');
-            await load('/pages/about/team-section.html', 'team-container');
             await load('/pages/about/values.html', 'values-container');
-            await load('/pages/about/partners.html', 'partners-container');
+            await load('/pages/about/team-section.html', 'team-container');
             await load('/pages/about/timeline.html', 'timeline-container');
+            await load('/pages/about/partners.html', 'partners-container');
             await load('/pages/about/awards.html', 'awards-container');
+            await load('/pages/about/cta.html', 'cta-container');
 
-            // Render default portfolio tab (deployed)
-            renderCards('deployed');
+            // Initialize AOS
+            AOS.init({ duration: 800, once: true, offset: 50 });
 
-            // --- Portfolio tab switching ---
-            const tabs = document.querySelectorAll('#scrollableTabs .tab-btn');
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    tabs.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    const filter = this.dataset.filter;
-                    renderCards(filter);
-                    // Scroll active tab into view
-                    this.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                });
-            });
-
-            // --- Back‑to‑top button ---
+            // Back-to-top
             const backBtn = document.getElementById('backToTop');
-            window.addEventListener('scroll', () => {
-                backBtn.classList.toggle('visible', window.scrollY > 400);
-            });
-            backBtn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
+            window.addEventListener('scroll', () => backBtn.classList.toggle('visible', window.scrollY > 400));
+            backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
         })();
     </script>
 </body>
