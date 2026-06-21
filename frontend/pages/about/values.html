@@ -1,87 +1,45 @@
-<!-- frontend/pages/about/values.html -->
 <style>
-    .values {
-        padding: 80px 0;
-        background: #f9fafb;
+    .values-section { padding: 80px 0; background: #fff; }
+    [data-theme="dark"] .values-section { background: #1a1a2e; }
+    .value-card {
+        background: #f9fafb; border-radius: 20px; padding: 30px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s;
+        position: relative; overflow: hidden;
     }
-    [data-theme="dark"] .values { background: #0f0f1a; }
-    .value-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 20px;
-        margin-bottom: 40px;
-    }
-    .value-icon {
-        width: 50px; height: 50px;
-        background: linear-gradient(135deg, #0077b6, #00b4d8);
-        border-radius: 14px;
-        display: flex; align-items: center; justify-content: center;
-        color: #fff;
-        font-size: 1.5rem;
-        flex-shrink: 0;
-    }
-    .value-item h4 {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 600;
-        color: #2c3e50;
-        margin-bottom: 8px;
-    }
-    [data-theme="dark"] .value-item h4 { color: #e0e0e0; }
-    .value-item p {
-        color: #666;
-        line-height: 1.6;
-    }
-    [data-theme="dark"] .value-item p { color: #94a3b8; }
+    [data-theme="dark"] .value-card { background: #252540; }
+    .value-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+    .value-number { position: absolute; top: 15px; right: 20px; font-size: 3rem; font-weight: 800; color: rgba(0,119,182,0.05); }
+    .value-icon { width: 60px; height: 60px; background: linear-gradient(135deg, #e3f2fd, #bbdefb); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #0077b6; margin-bottom: 20px; }
+    .value-card h5 { font-family: 'Poppins', sans-serif; font-weight: 600; }
+    .value-card p { color: #666; }
+    [data-theme="dark"] .value-card p { color: #94a3b8; }
 </style>
 
-<section class="values">
+<section class="values-section">
     <div class="container">
-        <h2 class="section-title text-center">Our Core Values</h2>
-        <div class="row mt-5">
-            <div class="col-md-6">
-                <div class="value-item">
-                    <div class="value-icon"><i class="fas fa-handshake"></i></div>
-                    <div>
-                        <h4>Integrity</h4>
-                        <p>We build trust through transparency, honesty, and ethical business practices.</p>
-                    </div>
-                </div>
-                <div class="value-item">
-                    <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
-                    <div>
-                        <h4>Innovation</h4>
-                        <p>We constantly explore new technologies to deliver creative, future‑ready solutions.</p>
-                    </div>
-                </div>
-                <div class="value-item">
-                    <div class="value-icon"><i class="fas fa-users"></i></div>
-                    <div>
-                        <h4>Collaboration</h4>
-                        <p>We work closely with clients, partners, and communities to achieve shared success.</p>
-                    </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="value-card">
+                    <div class="value-number">01</div>
+                    <div class="value-icon"><i class="bi bi-lightbulb"></i></div>
+                    <h5>Innovation First</h5>
+                    <p>We constantly explore new technologies to deliver cutting-edge solutions.</p>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="value-item">
-                    <div class="value-icon"><i class="fas fa-star"></i></div>
-                    <div>
-                        <h4>Excellence</h4>
-                        <p>We are committed to delivering high‑quality work that exceeds expectations every time.</p>
-                    </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="value-card">
+                    <div class="value-number">02</div>
+                    <div class="value-icon"><i class="bi bi-shield-check"></i></div>
+                    <h5>Uncompromising Integrity</h5>
+                    <p>Highest ethical standards, building trust through transparency.</p>
                 </div>
-                <div class="value-item">
-                    <div class="value-icon"><i class="fas fa-globe-africa"></i></div>
-                    <div>
-                        <h4>Impact</h4>
-                        <p>We measure success by the positive change we create in businesses and communities.</p>
-                    </div>
-                </div>
-                <div class="value-item">
-                    <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
-                    <div>
-                        <h4>Reliability</h4>
-                        <p>24/7 availability, robust SLAs, and a team that stands by you when it matters most.</p>
-                    </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="value-card">
+                    <div class="value-number">03</div>
+                    <div class="value-icon"><i class="bi bi-trophy"></i></div>
+                    <h5>Pursuit of Excellence</h5>
+                    <p>Quality solutions that exceed expectations and drive results.</p>
                 </div>
             </div>
         </div>
