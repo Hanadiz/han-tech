@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Services | Han-Tech Ltd</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>.category-hero{background:linear-gradient(135deg,#0f0f1a,#1a1a2e,#16213e);color:#fff;padding:100px 0 60px;text-align:center}.list-group-item{border:none;padding:20px;font-size:1.1rem}.list-group-item i{color:#0077b6;margin-right:10px}</style>
+</head>
+<body>
+    <div id="header-container"></div>
+    <section class="category-hero"><div class="container"><h1>Our Training Services</h1></div></section>
+    <section class="container py-5"><ul class="list-group list-group-flush">
+        <li class="list-group-item"><i class="fas fa-chalkboard-teacher"></i> Corporate IT Training</li>
+        <li class="list-group-item"><i class="fas fa-certificate"></i> Certification Bootcamps</li>
+        <li class="list-group-item"><i class="fas fa-laptop-code"></i> Custom Workshops</li>
+        <li class="list-group-item"><i class="fas fa-book-open"></i> e‑Learning Content</li>
+        <li class="list-group-item"><i class="fas fa-clipboard-check"></i> Skills Assessment</li>
+    </ul></section>
+    <div id="footer-container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>async function load(u,i){try{const r=await fetch(u);document.getElementById(i).innerHTML=await r.text()}catch(e){}}load('/components/layouts/header.html','header-container');load('/components/layouts/footer.html','footer-container')</script>
+</body>
+</html>
