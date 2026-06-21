@@ -1,30 +1,25 @@
-<!-- frontend/pages/about/partners.html -->
 <style>
-    .about-partners {
-        padding: 80px 0;
-        background: #fff;
-    }
-    [data-theme="dark"] .about-partners { background: #1a1a2e; }
-    .partner-logo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        opacity: 0.6;
+    .partners-section { padding: 80px 0; background: #f9fafb; }
+    [data-theme="dark"] .partners-section { background: #0f0f1a; }
+    .partner-card {
+        background: #fff; border-radius: 16px; padding: 25px;
+        text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.04);
         transition: 0.3s;
     }
-    .partner-logo:hover { opacity: 1; transform: scale(1.05); }
-    .partner-logo img { max-height: 40px; }
+    [data-theme="dark"] .partner-card { background: #1a1a2e; }
+    .partner-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+    .partner-card i { font-size: 2.5rem; }
+    .partner-card small { display: block; margin-top: 8px; font-weight: 600; color: #2c3e50; }
+    [data-theme="dark"] .partner-card small { color: #e0e0e0; }
 </style>
 
-<section class="about-partners">
+<section class="partners-section">
     <div class="container">
-        <h2 class="section-title text-center">Our Strategic Partners</h2>
-        <div class="row g-4 align-items-center mt-5">
-            <div class="col-6 col-md-3"><div class="partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/2560px-Microsoft_logo_%282012%29.svg.png" alt="Microsoft"></div></div>
-            <div class="col-6 col-md-3"><div class="partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/2560px-Amazon_Web_Services_Logo.svg.png" alt="AWS"></div></div>
-            <div class="col-6 col-md-3"><div class="partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png" alt="Google"></div></div>
-            <div class="col-6 col-md-3"><div class="partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Cisco_logo_%282017%29.svg/2560px-Cisco_logo_%282017%29.svg.png" alt="Cisco"></div></div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-4 col-md-2"><div class="partner-card"><i class="fab fa-microsoft" style="color:#00a4ef;"></i><small>Microsoft</small></div></div>
+            <div class="col-4 col-md-2"><div class="partner-card"><i class="fab fa-aws" style="color:#ff9900;"></i><small>AWS</small></div></div>
+            <div class="col-4 col-md-2"><div class="partner-card"><i class="fab fa-google" style="color:#4285f4;"></i><small>Google</small></div></div>
+            <div class="col-4 col-md-2"><div class="partner-card"><i class="fab fa-cisco" style="color:#1ba0d7;"></i><small>Cisco</small></div></div>
         </div>
     </div>
 </section>
