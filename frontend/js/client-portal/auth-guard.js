@@ -1,5 +1,5 @@
 // ============================================
-// HAN-TECH CLIENT PORTAL AUTH GUARD
+// HAN-TECH AUTH GUARD (with RBAC)
 // Location: frontend/js/client-portal/auth-guard.js
 // ============================================
 
@@ -10,14 +10,50 @@
     let timerInterval = null;
 
     window.AuthGuard = {
-        check() {
+        /**
+         * Check if user is logged in and optionally verify a role.
+         * @param {string} requiredRole - The role required to access the page.
+         *   If omitted, any authenticated user is allowed.
+         * @returns {boolean} true if access granted, false if redirected.
+         */
+        check(requiredRole) {
             const token = sessionStorage.getItem('authToken') || localStorage.getItem('authToken');
             if (!token) {
                 const currentPath = window.location.pathname;
                 window.location.href = '/auth/login/index.html?redirect=' + encodeURIComponent(currentPath);
                 return false;
             }
+
+            if (requiredRole) {
+                const userRole = sessionStorage.getItem('userRole') || localStorage.getItem('userRole');
+                if (userRole !== requiredRole) {
+                    // Role mismatch – redirect to the user’s correct dashboard
+                    this.redirectToOwnDashboard(userRole);
+                    return false;
+                }
+            }
+
             return true;
+        },
+
+        /**
+         * Redirect the user to the dashboard that matches their role.
+         * @param {string} role - The user's actual role.
+         */
+        redirectToOwnDashboard(role) {
+            const portals = {
+                'super_admin': '/super-admin/dashboard/index.html',
+                'admin': '/admin/dashboard/index.html',
+                'client': '/client-portal/dashboard/index.html',
+                'support_agent': '/support-agent/dashboard/index.html',
+                'sales_rep': '/sales-rep/dashboard/index.html',
+                'technical_engineer': '/technical-engineer/dashboard/index.html',
+                'course_instructor': '/course-instructor/dashboard/index.html',
+                'finance_officer': '/finance-officer/dashboard/index.html',
+                'content_manager': '/content-manager/dashboard/index.html'
+            };
+            const target = portals[role] || '/index.html';
+            window.location.href = target;
         },
 
         getUser() {
