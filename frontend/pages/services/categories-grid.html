@@ -221,23 +221,32 @@
     </div>
 </section>
 
+
+
+
 <script>
     (function() {
-        let currentGroup = 1;
-        const totalGroups = 5;
         const btn = document.getElementById('btnSeeMore');
         const wrapper = document.getElementById('seeMoreWrapper');
 
-        btn.addEventListener('click', function() {
-            currentGroup++;
-            const nextGroup = document.querySelectorAll(`.category-group[data-group="${currentGroup}"]`);
-            nextGroup.forEach(el => el.classList.remove('hidden-row'));
+        // Get all category cards that are currently hidden
+        const hiddenCards = Array.from(document.querySelectorAll('.category-group.hidden-row'));
 
-            if (currentGroup >= totalGroups) {
+        if (hiddenCards.length === 0) {
+            // Nothing hidden – hide the button
+            if (wrapper) wrapper.style.display = 'none';
+            return;
+        }
+
+        btn.addEventListener('click', function() {
+            // Reveal the next 3 hidden cards (or however many remain)
+            const batch = hiddenCards.splice(0, 3);
+            batch.forEach(card => card.classList.remove('hidden-row'));
+
+            // If no more hidden cards, remove the button
+            if (hiddenCards.length === 0) {
                 wrapper.style.display = 'none';
-            } else {
-                btn.textContent = 'See More Services';
             }
         });
     })();
-</script>
+</script> 
