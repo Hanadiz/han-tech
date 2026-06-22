@@ -30,9 +30,14 @@
         box-shadow: 0 4px 6px rgba(0,0,0,0.07), 0 0 20px rgba(0,180,216,0.3);
         border: 2px solid rgba(255,255,255,0.3);
         transition: all 0.3s;
+        overflow: hidden; /* ensure image fits inside */
     }
     .brand-container:hover .logo-circle { transform: rotate(-5deg) scale(1.05); }
-    .logo-circle i { font-size: 26px; color: #fff; }
+    .logo-circle img {
+        width: 80%;
+        height: 80%;
+        object-fit: contain;
+    }
     .logo-badge {
         position: absolute; bottom: -2px; right: -2px;
         background: #2ecc71; color: #fff; font-size: 8px; font-weight: 700;
@@ -141,8 +146,13 @@
             <div class="logo-section">
                 <a href="/index.html" class="brand-container">
                     <div class="logo-wrapper">
-                        <div class="logo-circle"><i class="fas fa-laptop-code"></i></div>
-                       
+                        <div class="logo-circle">
+                            <!-- Light theme logo -->
+                            <img src="/assets/images/logo/logo-light.svg" alt="Han-Tech Ltd Logo" class="logo-light" style="display: block;">
+                            <!-- Dark theme logo (hidden by default) -->
+                            <img src="/assets/images/logo/logo.jpeg" alt="Han-Tech Ltd Logo" class="logo-dark" style="display: none;">
+                        </div>
+                         <!--<div class="logo-badge">✓</div> -->
                     </div>
                     <div class="brand-text">
                         <span class="company-name">HAN-TECH LTD</span>
@@ -247,23 +257,27 @@
             parent.classList.remove('active');
             const href = link.getAttribute('href');
             if (!href) return;
-            // Match exact or startsWith for sub-pages
             if (currentPath === href || (href !== '/index.html' && currentPath.startsWith(href.replace(/\/?$/, '/')))) {
                 parent.classList.add('active');
             }
-            // Home active for root or /index.html
             if (href === '/index.html' && (currentPath === '/' || currentPath === '/index.html')) {
                 parent.classList.add('active');
             }
         });
 
-        // ========== Welcome Button Greeting ==========
+        // ========== Dynamic Greeting (with Good Night) ==========
         const welcomeBtn = document.getElementById('welcomeBtn');
-        if (welcomeBtn) {
+        function updateGreeting() {
+            if (!welcomeBtn) return;
             const hour = new Date().getHours();
-            const greeting = hour < 12 ? 'Good Morning' : hour < 17 ? 'Good Afternoon' : 'Good Evening';
+            let greeting;
+            if (hour >= 5 && hour < 12) greeting = 'Good Morning';
+            else if (hour >= 12 && hour < 17) greeting = 'Good Afternoon';
+            else if (hour >= 17 && hour < 21) greeting = 'Good Evening';
+            else greeting = 'Good Night';
             welcomeBtn.innerHTML = `<i class="fas fa-hand-wave"></i> ${greeting}`;
         }
+        updateGreeting();
 
         // ========== Auth State Toggle ==========
         const signInBtn = document.getElementById('signInBtn');
@@ -275,7 +289,6 @@
             const userEmail = sessionStorage.getItem('userEmail') || localStorage.getItem('userEmail');
             
             if (token) {
-                // Logged in
                 if (signInBtn) signInBtn.style.display = 'none';
                 if (signOutBtn) signOutBtn.style.display = 'inline-flex';
                 if (profileIcon) profileIcon.style.display = 'block';
@@ -285,23 +298,23 @@
                     if (userEmail) {
                         const firstName = userEmail.split('@')[0];
                         welcomeBtn.innerHTML = `<i class="fas fa-user-circle"></i> ${firstName}`;
+                    } else {
+                        updateGreeting(); // fallback to time greeting
                     }
                 }
             } else {
-                // Logged out
                 if (signInBtn) signInBtn.style.display = 'inline-flex';
                 if (signOutBtn) signOutBtn.style.display = 'none';
                 if (profileIcon) profileIcon.style.display = 'none';
                 if (welcomeBtn) {
                     welcomeBtn.disabled = true;
                     welcomeBtn.style.opacity = '0.7';
+                    updateGreeting(); // show time greeting when logged out
                 }
             }
         }
 
         updateAuthUI();
-
-        // Listen for storage changes (if logged in/out in another tab)
         window.addEventListener('storage', updateAuthUI);
 
         // ========== Cart Badge ==========
@@ -318,6 +331,19 @@
             if (header) header.classList.toggle('scrolled', window.scrollY > 50);
         });
 
+        // ========== Theme‑aware Logo Swap ==========
+        function updateLogo() {
+            const theme = document.documentElement.getAttribute('data-theme') || 'light';
+            const lightLogos = document.querySelectorAll('.logo-light');
+            const darkLogos = document.querySelectorAll('.logo-dark');
+            lightLogos.forEach(img => img.style.display = theme === 'dark' ? 'none' : 'block');
+            darkLogos.forEach(img => img.style.display = theme === 'dark' ? 'block' : 'none');
+        }
+        updateLogo();
+        // Observe attribute changes on <html> for theme toggling
+        const observer = new MutationObserver(updateLogo);
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
         // ========== Search Suggestions (basic) ==========
         const searchInput = document.getElementById('searchInput');
         if (searchInput) {
@@ -332,4 +358,4 @@
             });
         }
     })();
-</script>
+</script> 
