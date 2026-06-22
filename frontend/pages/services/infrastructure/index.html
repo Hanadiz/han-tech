@@ -1,77 +1,271 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Core Infrastructure | Han-Tech Ltd</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Infrastructure Services</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 (Free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
     <style>
-        body { font-family: 'Inter', sans-serif; background: #f0f2f5; color: #333; margin: 0; }
-        [data-theme="dark"] body { background: #0f0f1a; color: #e0e0e0; }
-        .back-to-top {
-            position: fixed; bottom: 30px; right: 30px;
-            width: 48px; height: 48px;
-            background: linear-gradient(135deg, #0077b6, #00b4d8);
-            color: #fff; border: 2px solid rgba(255,255,255,0.2);
-            border-radius: 14px; display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem; cursor: pointer; z-index: 999;
-            opacity: 0; visibility: hidden; transform: translateY(20px);
-            transition: all 0.3s ease; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        /* ----- Reset & Base ----- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
-        .back-to-top:hover { transform: translateY(-4px) !important; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            color: #0b1a33;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ----- Loading state ----- */
+        #app {
+            min-height: 100vh;
+        }
+
+        .component-placeholder {
+            padding: 60px 0;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        .component-placeholder i {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        /* ----- Utility spacing (applied by components) ----- */
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-padding-sm {
+            padding: 48px 0;
+        }
+
+        /* ----- Responsive tweaks ----- */
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 56px 0;
+            }
+            .section-padding-sm {
+                padding: 32px 0;
+            }
+        }
     </style>
 </head>
+
 <body>
-    <div id="header-container"></div>
-    <div id="hero-container"></div>
-    <div id="overview-container"></div>
-    <div id="service-list-container"></div>
-    <div id="features-container"></div>
-    <div id="benefits-container"></div>
-    <div id="use-cases-container"></div>
-    <div id="pricing-container"></div>
-    <div id="faq-container"></div>
-    <div id="cta-container"></div>
-    <div id="footer-container"></div>
 
-    <button class="back-to-top" id="backToTop" aria-label="Back to top">
-        <i class="bi bi-arrow-up"></i>
-    </button>
+    <!-- ============================================================ -->
+    <!--  APP ROOT — all partials are injected here via JavaScript      -->
+    <!-- ============================================================ -->
+    <div id="app"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <!-- ============================================================ -->
+    <!--  JAVASCRIPT — Load & assemble all infrastructure partials      -->
+    <!-- ============================================================ -->
     <script>
-        async function load(url, containerId) {
-            try {
-                const r = await fetch(url);
-                document.getElementById(containerId).innerHTML = await r.text();
-            } catch(e) { console.error(e); }
-        }
+        (function() {
+            'use strict';
 
-        (async function() {
-            await load('/components/layouts/header.html', 'header-container');
-            await load('/components/layouts/footer.html', 'footer-container');
-            await load('hero.html', 'hero-container');
-            await load('overview.html', 'overview-container');
-            await load('service-list.html', 'service-list-container');
-            await load('features.html', 'features-container');
-            await load('benefits.html', 'benefits-container');
-            await load('use-cases.html', 'use-cases-container');
-            await load('pricing.html', 'pricing-container');
-            await load('faq.html', 'faq-container');
-            await load('cta.html', 'cta-container');
+            // ------------------------------------------------------------
+            // 1. List of all partials in the order they should appear
+            //    (relative path from index.html to each file)
+            // ------------------------------------------------------------
+            const partials = [
+                { id: 'hero', file: 'infrastructure/hero.html' },
+                { id: 'overview', file: 'infrastructure/overview.html' },
+                { id: 'service-list', file: 'infrastructure/service-list.html' },
+                { id: 'features', file: 'infrastructure/features.html' },
+                { id: 'benefits', file: 'infrastructure/benefits.html' },
+                { id: 'use-cases', file: 'infrastructure/use-cases.html' },
+                { id: 'pricing', file: 'infrastructure/pricing.html' },
+                { id: 'faq', file: 'infrastructure/faq.html' },
+                { id: 'cta', file: 'infrastructure/cta.html' },
+            ];
 
-            AOS.init({ duration: 800, once: true, offset: 50 });
+            const app = document.getElementById('app');
 
-            const backBtn = document.getElementById('backToTop');
-            window.addEventListener('scroll', () => backBtn.classList.toggle('visible', window.scrollY > 400));
-            backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+            // ------------------------------------------------------------
+            // 2. Helper: fetch a partial with a timeout
+            // ------------------------------------------------------------
+            function fetchPartial(url) {
+                return new Promise((resolve, reject) => {
+                    const timeout = setTimeout(() => {
+                        reject(new Error(`Timeout loading ${url}`));
+                    }, 8000);
+
+                    fetch(url)
+                        .then((res) => {
+                            clearTimeout(timeout);
+                            if (!res.ok) throw new Error(`HTTP ${res.status} — ${url}`);
+                            return res.text();
+                        })
+                        .then((html) => resolve(html))
+                        .catch((err) => {
+                            clearTimeout(timeout);
+                            reject(err);
+                        });
+                });
+            }
+
+            // ------------------------------------------------------------
+            // 3. Render a placeholder while loading
+            // ------------------------------------------------------------
+            function renderPlaceholder(id) {
+                const names = {
+                    hero: 'Hero',
+                    overview: 'Overview',
+                    'service-list': 'Service List',
+                    features: 'Features',
+                    benefits: 'Benefits',
+                    'use-cases': 'Use Cases',
+                    pricing: 'Pricing',
+                    faq: 'FAQ',
+                    cta: 'CTA',
+                };
+                const label = names[id] || id;
+                return `
+                        <div class="component-placeholder" data-component="${id}">
+                            <i class="fas fa-spinner fa-pulse"></i>
+                            <span>Loading ${label}…</span>
+                        </div>
+                    `;
+            }
+
+            // ------------------------------------------------------------
+            // 4. Render a "failed" fallback
+            // ------------------------------------------------------------
+            function renderError(id, error) {
+                return `
+                        <div class="component-placeholder" data-component="${id}" style="border:1px solid #fee2e2;background:#fef2f2;border-radius:12px;padding:40px 20px;">
+                            <i class="fas fa-exclamation-triangle" style="color:#dc2626;"></i>
+                            <span style="color:#991b1b;display:block;margin-top:8px;">Could not load ${id}</span>
+                            <small style="color:#7f1d1d;font-size:0.8rem;display:block;margin-top:4px;">${error.message || 'Unknown error'}</small>
+                        </div>
+                    `;
+            }
+
+            // ------------------------------------------------------------
+            // 5. Main assembly
+            // ------------------------------------------------------------
+            async function assemblePage() {
+                // --- 5a. Show placeholders immediately ---
+                let placeholderHTML = '';
+                const placeholderMap = {};
+                partials.forEach((p) => {
+                    const html = renderPlaceholder(p.id);
+                    placeholderMap[p.id] = html;
+                    placeholderHTML += html;
+                });
+                app.innerHTML = placeholderHTML;
+
+                // --- 5b. Fetch all partials in parallel ---
+                const fetchPromises = partials.map((p) =>
+                    fetchPartial(p.file)
+                    .then((html) => ({ id: p.id, html, ok: true }))
+                    .catch((err) => ({ id: p.id, html: null, ok: false, error: err }))
+                );
+
+                const results = await Promise.all(fetchPromises);
+
+                // --- 5c. Replace each placeholder with real content or error ---
+                results.forEach((result) => {
+                    const placeholderEl = app.querySelector(
+                        `[data-component="${result.id}"]`
+                    );
+                    if (!placeholderEl) return;
+
+                    if (result.ok) {
+                        // Wrap the partial HTML in a section with a data attribute
+                        // so we can identify it later if needed.
+                        const wrapper = document.createElement('div');
+                        wrapper.dataset.component = result.id;
+                        wrapper.innerHTML = result.html;
+
+                        // If the partial has a single root element, use its classes.
+                        // Otherwise, wrap it in a container.
+                        const children = wrapper.children;
+                        if (children.length === 1) {
+                            // Replace placeholder with the single child
+                            placeholderEl.replaceWith(children[0]);
+                        } else {
+                            // Multiple roots: wrap them in a container div
+                            const container = document.createElement('div');
+                            container.dataset.component = result.id;
+                            while (wrapper.firstChild) {
+                                container.appendChild(wrapper.firstChild);
+                            }
+                            placeholderEl.replaceWith(container);
+                        }
+                    } else {
+                        // Show error
+                        const errorHTML = renderError(result.id, result.error);
+                        placeholderEl.outerHTML = errorHTML;
+                    }
+                });
+
+                // --- 5d. Dispatch a custom event so any component scripts can run ---
+                document.dispatchEvent(new CustomEvent('infrastructure:assembled', {
+                    detail: { partials: results }
+                }));
+
+                console.log('✅ Infrastructure page assembled successfully.');
+            }
+
+            // ------------------------------------------------------------
+            // 6. Kick it off
+            // ------------------------------------------------------------
+            assemblePage().catch((err) => {
+                console.error('❌ Failed to assemble infrastructure page:', err);
+                app.innerHTML = `
+                        <div style="padding:80px 24px;text-align:center;max-width:600px;margin:0 auto;color:#991b1b;">
+                            <i class="fas fa-circle-exclamation" style="font-size:3rem;color:#dc2626;margin-bottom:16px;display:block;"></i>
+                            <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:8px;">Something went wrong</h2>
+                            <p style="color:#7f1d1d;">We couldn't load the infrastructure components. Please check the console for details.</p>
+                            <pre style="margin-top:16px;background:#fef2f2;padding:16px;border-radius:8px;font-size:0.8rem;overflow:auto;text-align:left;color:#991b1b;">${err.message || 'Unknown error'}</pre>
+                        </div>
+                    `;
+            });
+
         })();
     </script>
+
 </body>
-</html> 
+</html>
