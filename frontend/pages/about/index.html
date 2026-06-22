@@ -66,10 +66,10 @@
             await load('/pages/about/awards.html', 'awards-container');
             await load('/pages/about/cta.html', 'cta-container');
 
-            // Initialize AOS
+            // Initialize AOS animations
             AOS.init({ duration: 800, once: true, offset: 50 });
 
-            // Back-to-top
+            // Back-to-top button
             const backBtn = document.getElementById('backToTop');
             window.addEventListener('scroll', () => backBtn.classList.toggle('visible', window.scrollY > 400));
             backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
