@@ -1,0 +1,16 @@
+'connections' => [
+    'pgsql' => [
+        'driver' => 'pgsql',
+        'url' => env('DATABASE_URL'),
+        'host' => env('DB_HOST', 'dpg-d8v368rsq97s73ftekv0-a.virginia-postgres.render.com'),
+        'port' => env('DB_PORT', '5432'),
+        'database' => env('DB_DATABASE', 'hanadiz_db'),
+        'username' => env('DB_USERNAME', 'hanadiz_user'),
+        'password' => env('DB_PASSWORD', 'upIuiVL1O5VuTLQITwKQLvMnI7kpWysv'),
+        'charset' => 'utf8',
+        'prefix' => '',
+        'prefix_indexes' => true,
+        'search_path' => 'public',
+        'sslmode' => env('DB_SSLMODE', 'require'),
+    ],
+],
