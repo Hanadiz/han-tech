@@ -9,3 +9,4 @@ composer update --no-dev --with-all-dependencies
 
 # Verify the new lock file
 composer validate
+
