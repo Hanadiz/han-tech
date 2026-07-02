@@ -1,0 +1,7 @@
+# Make sure Composer is up to date
+composer self-update
+
+# Generate/update the lock file
+composer update --no-dev
+
+# This creates/updates composer.lock
