@@ -14,7 +14,7 @@ services:
       - APP_DEBUG=false
       - APP_URL=https://hanadiz-api.onrender.com
       - DB_CONNECTION=pgsql
-      - DB_HOST=dpg-d8v368rsq97s73ftekv0-a.virginia-postgres.render.com
+      - DB_HOST=dpg-d8v368rsq97s73ftekv0-a
       - DB_PORT=5432
       - DB_DATABASE=hanadiz_db
       - DB_USERNAME=hanadiz_user
@@ -28,6 +28,8 @@ services:
       - ./storage:/var/www/html/storage
     networks:
       - han-tech-network
+    depends_on:
+      - redis
 
   redis:
     image: redis:7-alpine
