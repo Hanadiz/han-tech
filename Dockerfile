@@ -10,13 +10,15 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     nginx \
-    supervisor
+    supervisor \
+    libpq-dev
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+# Install PHP extensions (including PostgreSQL)
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd \
+    && docker-php-ext-install pdo_pgsql
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -31,8 +33,14 @@ COPY . /var/www/html
 COPY deploy/nginx.conf /etc/nginx/sites-available/default
 COPY deploy/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+# Copy environment file (if .env doesn't exist, use .env.ci)
+RUN if [ ! -f .env ]; then cp .env.ci .env; fi
+
 # Install dependencies
 RUN composer install --no-interaction --optimize-autoloader --no-dev
+
+# Generate application key if not set
+RUN php artisan key:generate --force || true
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html \
