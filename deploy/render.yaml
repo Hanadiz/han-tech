@@ -1,0 +1,52 @@
+services:
+  - type: web
+    name: han-tech-api
+    runtime: docker
+    repo: https://github.com/yourusername/han-tech
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_URL
+        value: https://hanadiz-api.onrender.com
+      - key: APP_KEY
+        generateValue: true
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        fromDatabase:
+          name: han-tech-db
+          property: host
+      - key: DB_PORT
+        value: 5432
+      - key: DB_DATABASE
+        fromDatabase:
+          name: han-tech-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: han-tech-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: han-tech-db
+          property: password
+      - key: SESSION_DRIVER
+        value: database
+      - key: SESSION_LIFETIME
+        value: "120"
+      - key: SESSION_DOMAIN
+        value: hanadiz-api.onrender.com
+      - key: SESSION_SECURE_COOKIE
+        value: "true"
+      - key: SESSION_SAME_SITE
+        value: lax
+
+  - type: postgresql
+    name: han-tech-db
+    plan: starter
+    databaseName: hantech_db
+    user: hantech_user
