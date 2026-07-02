@@ -1,41 +1,46 @@
-FROM php:8.2-fpm-alpine
+FROM php:8.2-fpm
 
-RUN apk add --no-cache \
-    nginx supervisor postgresql-dev \
-    libpng-dev libjpeg-turbo-dev freetype-dev \
-    zip unzip git curl oniguruma-dev libxml2-dev
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip \
+    nginx \
+    supervisor
 
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) \
-    pdo_pgsql pgsql gd mbstring xml bcmath opcache
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Set working directory
 WORKDIR /var/www/html
 
-# Copy composer files first for layer caching
-COPY backend/composer.json /var/www/html/composer.json
-COPY backend/composer.lock /var/www/html/composer.lock
+# Copy existing application directory contents
+COPY . /var/www/html
 
-# Install from lock file (NEVER updates)
-RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-progress
-
-# Copy the remaining backend code
-COPY backend/ /var/www/html/
-
-# Create .env file
-RUN if [ -f /var/www/html/.env.example ]; then \
-        cp /var/www/html/.env.example /var/www/html/.env; \
-    else \
-        touch /var/www/html/.env; \
-    fi
-
-RUN php artisan key:generate --force
-RUN mkdir -p storage/framework/{cache,testing,sessions,views} storage/logs bootstrap/cache
-RUN chown -R www-data:www-data storage bootstrap/cache
-
-COPY deploy/nginx.conf /etc/nginx/nginx.conf
+# Copy deploy configurations
+COPY deploy/nginx.conf /etc/nginx/sites-available/default
 COPY deploy/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+# Install dependencies
+RUN composer install --no-interaction --optimize-autoloader --no-dev
+
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html/storage \
+    && chmod -R 755 /var/www/html/bootstrap/cache
+
+# Expose port 80
 EXPOSE 80
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+
+# Start supervisord
+CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
