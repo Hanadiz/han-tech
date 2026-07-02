@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: han-tech-api
+    name: hanadiz
     runtime: docker
     repo: https://github.com/yourusername/han-tech
     plan: starter
@@ -17,7 +17,7 @@ services:
       - key: DB_CONNECTION
         value: pgsql
       - key: DB_HOST
-        value: dpg-d8v368rsq97s73ftekv0-a.virginia-postgres.render.com
+        value: dpg-d8v368rsq97s73ftekv0-a
       - key: DB_PORT
         value: 5432
       - key: DB_DATABASE
@@ -36,3 +36,7 @@ services:
         value: "true"
       - key: SESSION_SAME_SITE
         value: lax
+      - key: LOG_CHANNEL
+        value: stack
+      - key: LOG_LEVEL
+        value: error
