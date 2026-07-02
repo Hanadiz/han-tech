@@ -1,13 +1,17 @@
-# Environment files
+# Environment files - NEVER commit these!
 .env
 .env.local
 .env.*.local
+.env.production
+.env.staging
+.env.testing
+
+# Allow the CI template
 !.env.ci
 
 # PHP
 vendor/
 composer.phar
-composer.lock
 
 # Laravel
 storage/
@@ -20,6 +24,7 @@ public/build
 *.log
 *.sqlite
 *.sqlite-journal
+storage/logs/*
 
 # IDE
 .vscode/
