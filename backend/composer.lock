@@ -1,7 +1,11 @@
-# Make sure Composer is up to date
-composer self-update
+# Validate JSON syntax
+composer validate
 
-# Generate/update the lock file
-composer update --no-dev
+# Remove old lock file (if it exists and is corrupted)
+rm -f composer.lock
 
-# This creates/updates composer.lock
+# Generate a fresh, valid lock file
+composer update --no-dev --with-all-dependencies
+
+# Verify the new lock file
+composer validate
