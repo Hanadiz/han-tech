@@ -17,23 +17,15 @@ services:
       - key: DB_CONNECTION
         value: pgsql
       - key: DB_HOST
-        fromDatabase:
-          name: han-tech-db
-          property: host
+        value: dpg-d8v368rsq97s73ftekv0-a.virginia-postgres.render.com
       - key: DB_PORT
         value: 5432
       - key: DB_DATABASE
-        fromDatabase:
-          name: han-tech-db
-          property: database
+        value: hanadiz_db
       - key: DB_USERNAME
-        fromDatabase:
-          name: han-tech-db
-          property: user
+        value: hanadiz_user
       - key: DB_PASSWORD
-        fromDatabase:
-          name: han-tech-db
-          property: password
+        value: upIuiVL1O5VuTLQITwKQLvMnI7kpWysv
       - key: SESSION_DRIVER
         value: database
       - key: SESSION_LIFETIME
@@ -44,9 +36,3 @@ services:
         value: "true"
       - key: SESSION_SAME_SITE
         value: lax
-
-  - type: postgresql
-    name: han-tech-db
-    plan: starter
-    databaseName: hantech_db
-    user: hantech_user
