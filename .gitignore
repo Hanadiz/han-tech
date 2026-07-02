@@ -1,0 +1,40 @@
+# Environment files
+.env
+.env.local
+.env.*.local
+!.env.ci
+
+# PHP
+vendor/
+composer.phar
+composer.lock
+
+# Laravel
+storage/
+bootstrap/cache/
+public/storage
+public/hot
+public/build
+
+# Logs
+*.log
+*.sqlite
+*.sqlite-journal
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
+
+# Testing
+coverage/
+.phpunit.result.cache
+.phpunit.cache
+
+# Deployment
+.env.production
