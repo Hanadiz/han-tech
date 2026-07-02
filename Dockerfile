@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install -y \
     unzip \
     nginx \
     supervisor \
-    libpq-dev
+    libpq-dev \
+    postgresql-client
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -42,10 +43,17 @@ RUN composer install --no-interaction --optimize-autoloader --no-dev
 # Generate application key if not set
 RUN php artisan key:generate --force || true
 
+# Test database connection (optional - remove if causing issues)
+RUN php artisan migrate --force || echo "Migration skipped - database may not be ready"
+
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html/storage \
     && chmod -R 755 /var/www/html/bootstrap/cache
+
+# Healthcheck
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost/api/health || exit 1
 
 # Expose port 80
 EXPOSE 80
