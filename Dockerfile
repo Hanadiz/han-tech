@@ -19,15 +19,15 @@ WORKDIR /var/www/html
 # Copy entire backend
 COPY backend/ /var/www/html/
 
-# Create .env file from .env.example if it exists, otherwise create a blank one
+# Create .env from .env.example
 RUN if [ -f /var/www/html/.env.example ]; then \
         cp /var/www/html/.env.example /var/www/html/.env; \
     else \
         touch /var/www/html/.env; \
     fi
 
-# Install Composer dependencies
-RUN if [ -f composer.json ]; then composer install --no-dev --optimize-autoloader; fi
+# Install Composer dependencies (with lock file present)
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
 # Generate app key
 RUN php artisan key:generate --force
