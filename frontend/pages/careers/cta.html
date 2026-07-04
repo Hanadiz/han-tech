@@ -1,0 +1,77 @@
+<!-- Call to Action Section -->
+<section class="cta-section" data-aos="zoom-in">
+    <div class="container">
+        <h2>Ready to Join Our Team?</h2>
+        <p>Take the first step towards an exciting career at Han-Tech Ltd. We're waiting to hear from you.</p>
+        <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+            <a href="#open-positions" class="btn btn-primary" onclick="document.getElementById('open-positions')?.scrollIntoView({behavior:'smooth'})">View Open Positions</a>
+            <a href="mailto:hr@hantech.co.ug" class="btn btn-outline-light">Contact HR</a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .cta-section {
+        padding: 60px 0;
+        background: linear-gradient(135deg, var(--primary), var(--primary-light));
+        color: white;
+        text-align: center;
+    }
+    .cta-section h2 {
+        font-family: var(--font-poppins);
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: white;
+    }
+    .cta-section p {
+        font-size: 1.05rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+    }
+    .btn-primary {
+        background: var(--accent);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 2rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .btn-primary:hover {
+        background: var(--accent-dark);
+        transform: translateY(-2px);
+    }
+    .btn-outline-light {
+        background: transparent;
+        border: 2px solid white;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 2rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .btn-outline-light:hover {
+        background: white;
+        color: var(--primary);
+        transform: translateY(-2px);
+    }
+    @media (max-width: 768px) {
+        .cta-section h2 { font-size: 2rem; }
+        .cta-section { padding: 50px 0; }
+    }
+    @media (max-width: 480px) {
+        .cta-section h2 { font-size: 1.8rem; }
+        .cta-section div { flex-direction: column; align-items: center; }
+        .btn-primary, .btn-outline-light { width: 100%; justify-content: center; }
+    }
+</style>
