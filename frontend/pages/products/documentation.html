@@ -1,0 +1,79 @@
+<style>
+    .docs-section { padding: 80px 0; background: #f9fafb; }
+    [data-theme="dark"] .docs-section { background: #0f0f1a; }
+    .docs-section h2 {
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 50px;
+        color: #2c3e50;
+    }
+    [data-theme="dark"] .docs-section h2 { color: #e0e0e0; }
+    .docs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+    }
+    .doc-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+        transition: all 0.3s;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+    [data-theme="dark"] .doc-card { background: #1a1a2e; }
+    .doc-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    .doc-card i {
+        font-size: 2rem;
+        color: #0077b6;
+        margin-bottom: 15px;
+    }
+    .doc-card h5 { font-family: 'Poppins', sans-serif; font-weight: 600; }
+    .doc-card p { color: #666; font-size: 0.9rem; }
+    [data-theme="dark"] .doc-card p { color: #94a3b8; }
+</style>
+
+<section class="docs-section">
+    <div class="container">
+        <h2>Documentation</h2>
+        <div class="docs-grid">
+            <a href="#" class="doc-card">
+                <i class="fas fa-book"></i>
+                <h5>Getting Started Guide</h5>
+                <p>Learn the basics of setting up and configuring your Han‑Tech products.</p>
+            </a>
+            <a href="#" class="doc-card">
+                <i class="fas fa-code"></i>
+                <h5>API Reference</h5>
+                <p>Complete API documentation with endpoints, parameters, and examples.</p>
+            </a>
+            <a href="#" class="doc-card">
+                <i class="fas fa-plug"></i>
+                <h5>Integration Guides</h5>
+                <p>Step‑by‑step instructions for integrating with third‑party systems.</p>
+            </a>
+            <a href="#" class="doc-card">
+                <i class="fas fa-shield-alt"></i>
+                <h5>Security & Compliance</h5>
+                <p>Information about encryption, data protection, and regulatory compliance.</p>
+            </a>
+            <a href="#" class="doc-card">
+                <i class="fas fa-question-circle"></i>
+                <h5>Troubleshooting</h5>
+                <p>Common issues and their solutions for all Han‑Tech products.</p>
+            </a>
+            <a href="#" class="doc-card">
+                <i class="fas fa-sync-alt"></i>
+                <h5>Changelog</h5>
+                <p>Version history and release notes for all product updates.</p>
+            </a>
+        </div>
+    </div>
+</section>
