@@ -1,25 +1,198 @@
-<style>
-    .partners-section { padding: 80px 0; background: #f9fafb; }
-    [data-theme="dark"] .partners-section { background: #0f0f1a; }
-    .partner-card {
-        background: #fff; border-radius: 16px; padding: 25px;
-        text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.04);
-        transition: 0.3s;
-    }
-    [data-theme="dark"] .partner-card { background: #1a1a2e; }
-    .partner-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
-    .partner-card i { font-size: 2.5rem; }
-    .partner-card small { display: block; margin-top: 8px; font-weight: 600; color: #2c3e50; }
-    [data-theme="dark"] .partner-card small { color: #e0e0e0; }
-</style>
-
-<section class="partners-section">
+<!-- Partners Section -->
+<section class="partners-section section section-white" id="partners">
     <div class="container">
-        <div class="row g-4 justify-content-center">
-            <div class="col-4 col-md-2"><div class="partner-card"><i class="fab fa-microsoft" style="color:#00a4ef;"></i><small>Microsoft</small></div></div>
-            <div class="col-4 col-md-2"><div class="partner-card"><i class="fab fa-aws" style="color:#ff9900;"></i><small>AWS</small></div></div>
-            <div class="col-4 col-md-2"><div class="partner-card"><i class="fab fa-google" style="color:#4285f4;"></i><small>Google</small></div></div>
-            <div class="col-4 col-md-2"><div class="partner-card"><i class="fab fa-cisco" style="color:#1ba0d7;"></i><small>Cisco</small></div></div>
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">Trusted Partners</span>
+            <h2 class="section-title">Our Technology <span style="color: #e67e22;">Partners</span></h2>
+            <p class="section-subtitle">Collaborating with industry leaders to deliver world-class solutions</p>
+        </div>
+
+        <div class="partners-grid">
+            <div class="partner-item" data-aos="fade-up" data-aos-delay="0">
+                <div class="partner-icon-wrapper" style="background: rgba(0, 164, 239, 0.1);">
+                    <i class="fab fa-microsoft" style="color: #00a4ef;"></i>
+                </div>
+                <span class="partner-name">Microsoft</span>
+                <span class="partner-badge">Gold Partner</span>
+            </div>
+
+            <div class="partner-item" data-aos="fade-up" data-aos-delay="50">
+                <div class="partner-icon-wrapper" style="background: rgba(255, 153, 0, 0.1);">
+                    <i class="fab fa-aws" style="color: #ff9900;"></i>
+                </div>
+                <span class="partner-name">Amazon Web Services</span>
+                <span class="partner-badge">Advanced Partner</span>
+            </div>
+
+            <div class="partner-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="partner-icon-wrapper" style="background: rgba(66, 133, 244, 0.1);">
+                    <i class="fab fa-google" style="color: #4285f4;"></i>
+                </div>
+                <span class="partner-name">Google Cloud</span>
+                <span class="partner-badge">Premier Partner</span>
+            </div>
+
+            <div class="partner-item" data-aos="fade-up" data-aos-delay="150">
+                <div class="partner-icon-wrapper" style="background: rgba(27, 160, 215, 0.1);">
+                    <i class="fas fa-network-wired" style="color: #1ba0d7;"></i>
+                </div>
+                <span class="partner-name">Cisco</span>
+                <span class="partner-badge">Gold Partner</span>
+            </div>
+
+            <div class="partner-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="partner-icon-wrapper" style="background: rgba(5, 47, 173, 0.1);">
+                    <i class="fas fa-server" style="color: #052fad;"></i>
+                </div>
+                <span class="partner-name">IBM</span>
+                <span class="partner-badge">Strategic Partner</span>
+            </div>
+
+            <div class="partner-item" data-aos="fade-up" data-aos-delay="250">
+                <div class="partner-icon-wrapper" style="background: rgba(103, 114, 229, 0.1);">
+                    <i class="fab fa-stripe" style="color: #6772e5;"></i>
+                </div>
+                <span class="partner-name">Stripe</span>
+                <span class="partner-badge">Payments Partner</span>
+            </div>
+
+            <div class="partner-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="partner-icon-wrapper" style="background: rgba(139, 92, 246, 0.1);">
+                    <i class="fas fa-satellite" style="color: #8b5cf6;"></i>
+                </div>
+                <span class="partner-name">Starlink</span>
+                <span class="partner-badge">Authorized Installer</span>
+            </div>
+
+            <div class="partner-item" data-aos="fade-up" data-aos-delay="350">
+                <div class="partner-icon-wrapper" style="background: rgba(255, 45, 32, 0.1);">
+                    <i class="fab fa-laravel" style="color: #ff2d20;"></i>
+                </div>
+                <span class="partner-name">Laravel</span>
+                <span class="partner-badge">Community Partner</span>
+            </div>
         </div>
     </div>
 </section>
+
+<style>
+    .partners-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .partner-item {
+        background: white;
+        border-radius: 1rem;
+        padding: 1.8rem 1.2rem;
+        text-align: center;
+        border: 1px solid #e2e8f0;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    [data-theme="dark"] .partner-item {
+        background: #2d2d44;
+        border-color: #3d3d5c;
+    }
+
+    .partner-item:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        border-color: #e67e22;
+    }
+
+    .partner-icon-wrapper {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 1rem;
+        font-size: 2rem;
+        transition: all 0.3s ease;
+    }
+
+    .partner-item:hover .partner-icon-wrapper {
+        transform: scale(1.05);
+    }
+
+    .partner-name {
+        display: block;
+        font-weight: 600;
+        color: #1e293b;
+        font-size: 0.85rem;
+        margin-bottom: 0.3rem;
+    }
+
+    [data-theme="dark"] .partner-name {
+        color: #e0e0e0;
+    }
+
+    .partner-badge {
+        display: inline-block;
+        background: rgba(230, 126, 34, 0.1);
+        color: #e67e22;
+        font-size: 0.6rem;
+        font-weight: 600;
+        padding: 0.15rem 0.6rem;
+        border-radius: 1rem;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+
+    @media (max-width: 992px) {
+        .partners-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .partners-grid {
+            grid-template-columns: 1fr 1fr;
+            max-width: 400px;
+        }
+        .partner-item {
+            padding: 1.2rem 0.8rem;
+        }
+        .partner-icon-wrapper {
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .partners-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+    // Make partner items clickable
+    document.querySelectorAll('.partner-item').forEach(function(item) {
+        const partnerMap = {
+            'Microsoft': 'https://www.microsoft.com',
+            'Amazon Web Services': 'https://aws.amazon.com',
+            'Google Cloud': 'https://cloud.google.com',
+            'Cisco': 'https://www.cisco.com',
+            'IBM': 'https://www.ibm.com',
+            'Stripe': 'https://stripe.com',
+            'Starlink': 'https://www.starlink.com',
+            'Laravel': 'https://laravel.com'
+        };
+
+        item.addEventListener('click', function() {
+            const name = this.querySelector('.partner-name')?.textContent || '';
+            const url = partnerMap[name];
+            if (url) {
+                window.open(url, '_blank');
+            }
+        });
+    });
+</script>
