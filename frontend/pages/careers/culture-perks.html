@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culture & Perks | Han-Tech Ltd</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Same base styles as index.html */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary: #0a2463;
+            --accent: #e67e22;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-200: #e2e8f0;
+            --gray-500: #64748b;
+            --gray-800: #1e293b;
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --radius: 0.75rem;
+            --font-sans: 'Inter', sans-serif;
+            --font-poppins: 'Poppins', sans-serif;
+        }
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: var(--white);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .section-tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .section-title {
+            font-family: var(--font-poppins);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--gray-500);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .section {
+            padding: 80px 0;
+        }
+        .section-light {
+            background: var(--gray-50);
+        }
+        .section-white {
+            background: var(--white);
+        }
+
+        .page-header {
+            padding: 120px 0 40px;
+            background: linear-gradient(135deg, #0a2463, #1e3a8a);
+            color: white;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-family: var(--font-poppins);
+            font-size: 3rem;
+            font-weight: 800;
+        }
+        .page-header h1 span {
+            color: var(--accent);
+        }
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .perks-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .perk-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid var(--gray-200);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .perk-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+        }
+        .perk-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .perk-card h3 {
+            font-family: var(--font-poppins);
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .perk-card p {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .culture-values {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .culture-value {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid var(--gray-200);
+            text-align: center;
+        }
+        .culture-value .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .culture-value h4 {
+            font-family: var(--font-poppins);
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+        .culture-value p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+
+        @media (max-width: 1024px) {
+            .perks-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .culture-values {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .section {
+                padding: 50px 0;
+            }
+            .perks-grid {
+                grid-template-columns: 1fr;
+            }
+            .culture-values {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 1.6rem;
+            }
+            .section-title {
+                font-size: 1.7rem;
+            }
+            .culture-values {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        [data-theme="dark"] body {
+            background: #12121e;
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .section-light {
+            background: #1a1a2e;
+        }
+        [data-theme="dark"] .section-title {
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .perk-card,
+        [data-theme="dark"] .culture-value {
+            background: #2d2d44;
+            border-color: #3d3d5c;
+        }
+        [data-theme="dark"] .perk-card h3,
+        [data-theme="dark"] .culture-value h4 {
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .perk-card p,
+        [data-theme="dark"] .culture-value p {
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Culture & <span>Perks</span></h1>
+            <p>What makes Han-Tech a great place to work</p>
+        </div>
+    </section>
+
+    <section class="section section-white">
+        <div class="container">
+            <div class="section-header" style="text-align:center; margin-bottom:50px;">
+                <span class="section-tag">Why We're Different</span>
+                <h2 class="section-title">Our <span style="color: var(--accent);">Culture</span></h2>
+                <p class="section-subtitle">We believe in creating an environment where everyone can thrive</p>
+            </div>
+            <div class="culture-values">
+                <div class="culture-value" data-aos="fade-up" data-aos-delay="0">
+                    <div class="icon">🤝</div>
+                    <h4>Collaboration</h4>
+                    <p>We succeed together. Teamwork is at the heart of everything we do.</p>
+                </div>
+                <div class="culture-value" data-aos="fade-up" data-aos-delay="50">
+                    <div class="icon">💡</div>
+                    <h4>Innovation</h4>
+                    <p>We encourage curiosity and creative thinking to solve challenges.</p>
+                </div>
+                <div class="culture-value" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon">🌍</div>
+                    <h4>Diversity</h4>
+                    <p>We celebrate different perspectives and backgrounds.</p>
+                </div>
+                <div class="culture-value" data-aos="fade-up" data-aos-delay="150">
+                    <div class="icon">❤️</div>
+                    <h4>Respect</h4>
+                    <p>We treat everyone with dignity, kindness, and respect.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <div class="section-header" style="text-align:center; margin-bottom:50px;">
+                <span class="section-tag">Benefits</span>
+                <h2 class="section-title">Employee <span style="color: var(--accent);">Perks</span></h2>
+                <p class="section-subtitle">We invest in our team's well-being and growth</p>
+            </div>
+            <div class="perks-grid">
+                <div class="perk-card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="icon">🏥</div>
+                    <h3>Health Insurance</h3>
+                    <p>Comprehensive medical coverage for you and your family.</p>
+                </div>
+                <div class="perk-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon">📚</div>
+                    <h3>Learning & Development</h3>
+                    <p>Annual training budget, certifications, and conference attendance.</p>
+                </div>
+                <div class="perk-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon">🏠</div>
+                    <h3>Flexible Work</h3>
+                    <p>Hybrid and remote work options with flexible hours.</p>
+                </div>
+                <div class="perk-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="icon">💰</div>
+                    <h3>Competitive Salary</h3>
+                    <p>Market-leading compensation with performance bonuses.</p>
+                </div>
+                <div class="perk-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="icon">🚀</div>
+                    <h3>Career Growth</h3>
+                    <p>Clear progression paths and mentorship programs.</p>
+                </div>
+                <div class="perk-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="icon">🎉</div>
+                    <h3>Team Events</h3>
+                    <p>Regular social events, team building, and celebrations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 600, once: true, offset: 50 });
+
+        async function loadComponent(url, id) {
+            try {
+                const res = await fetch(url);
+                const html = await res.text();
+                document.getElementById(id).innerHTML = html;
+            } catch (e) { console.error(`Failed to load ${url}:`, e); }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadComponent('/components/header.html', 'header-placeholder');
+            loadComponent('/components/footer.html', 'footer-placeholder');
+        });
+    </script>
+
+</body>
+</html>
