@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Contact Us | Han-Tech Ltd - Uganda's Complete Technology Partner</title>
-    <meta name="description" content="Get in touch with Han-Tech Ltd for IT solutions, cloud services, cybersecurity, and technology support in Uganda.">
-    <meta name="keywords" content="contact Han-Tech, IT support Uganda, technology contact, Kampala IT services">
+    <meta name="description" content="Get in touch with Han-Tech Ltd for IT solutions, cloud services, cybersecurity, and technology support in Uganda. Multiple ways to reach us.">
+    <meta name="keywords" content="contact Han-Tech, IT support Uganda, technology contact, Kampala IT services, sales inquiry, technical support">
     <meta name="author" content="Han-Tech Ltd">
     <meta name="robots" content="index, follow">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://hantech.com/pages/contact/">
     <meta property="og:title" content="Contact Us | Han-Tech Ltd">
-    <meta property="og:description" content="Get in touch with Han-Tech Ltd for all your technology needs in Uganda.">
+    <meta property="og:description" content="Multiple ways to reach Han-Tech Ltd for all your technology needs in Uganda.">
     <link rel="icon" type="image/x-icon" href="/assets/images/logo/favicon.ico">
     <link rel="canonical" href="https://hantech.com/pages/contact/">
     
@@ -31,6 +31,7 @@
             --primary-dark: #023e8a;
             --primary-light: #00b4d8;
             --primary-lighter: #48cae4;
+            --primary-bg: rgba(0,119,182,0.08);
             --dark-bg: #0a0e27;
             --dark-secondary: #1a1f3a;
             --white: #ffffff;
@@ -59,6 +60,7 @@
             --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
             --shadow-xl: 0 20px 60px rgba(0,0,0,0.15);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.2s ease;
         }
         
         [data-theme="dark"] {
@@ -72,6 +74,7 @@
             --gray-700: #cbd5e1;
             --gray-800: #e2e8f0;
             --gray-900: #f1f5f9;
+            --primary-bg: rgba(0,180,216,0.12);
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -84,14 +87,15 @@
             -webkit-font-smoothing: antialiased;
         }
         
-        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-track { background: var(--gray-100); }
         ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 10px; }
         ::selection { background: rgba(0, 180, 216, 0.25); color: var(--gray-900); }
         
+        /* ============ PAGE HERO ============ */
         .page-hero { 
             background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 40%, #0f1535 100%); 
-            color: #fff; padding: 140px 0 80px; text-align: center; position: relative; overflow: hidden; 
+            color: #fff; padding: 140px 0 60px; text-align: center; position: relative; overflow: hidden; 
         }
         .page-hero::before {
             content: ''; position: absolute; inset: 0;
@@ -102,19 +106,157 @@
         @keyframes rotateBg { to { transform: rotate(360deg); } }
         .page-hero h1 { 
             font-family: 'Poppins', sans-serif; font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; 
-            position: relative; z-index: 2; 
+            position: relative; z-index: 2; margin-bottom: 12px;
         }
         .page-hero .highlight {
             background: linear-gradient(135deg, var(--primary), var(--primary-light), var(--primary-lighter));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
         .page-hero .subtitle { 
-            color: rgba(255,255,255,0.7); font-size: 1.1rem; position: relative; z-index: 2; 
-            max-width: 550px; margin: 16px auto 0; 
+            color: rgba(255,255,255,0.7); font-size: 1.05rem; position: relative; z-index: 2; 
+            max-width: 550px; margin: 0 auto; 
         }
         
-        .contact-layout {
-            padding: 80px 0;
+        /* ============ HORIZONTAL SCROLLING NAVIGATION ============ */
+        .contact-nav-wrapper {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 76px;
+            z-index: 999;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-sm);
+        }
+        [data-theme="dark"] .contact-nav-wrapper {
+            background: rgba(15,15,26,0.95);
+            border-bottom-color: rgba(255,255,255,0.06);
+        }
+        .contact-nav-wrapper.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+        
+        .contact-nav-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        /* Scroll buttons */
+        .nav-scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            color: var(--gray-600);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: var(--transition-fast);
+            box-shadow: var(--shadow-sm);
+            opacity: 0;
+            pointer-events: none;
+        }
+        [data-theme="dark"] .nav-scroll-btn {
+            background: var(--gray-100);
+            border-color: rgba(255,255,255,0.1);
+            color: var(--gray-700);
+        }
+        .nav-scroll-btn.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .nav-scroll-btn:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 4px 15px rgba(0,119,182,0.3);
+        }
+        .nav-scroll-btn-left { left: 0; }
+        .nav-scroll-btn-right { right: 0; }
+        
+        .contact-nav {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            gap: 4px;
+        }
+        .contact-nav::-webkit-scrollbar { display: none; }
+        
+        .contact-nav-item {
+            flex-shrink: 0;
+            padding: 16px 24px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            text-decoration: none;
+            white-space: nowrap;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            font-family: 'Inter', sans-serif;
+        }
+        [data-theme="dark"] .contact-nav-item { color: rgba(255,255,255,0.6); }
+        .contact-nav-item:hover {
+            color: var(--primary);
+            background: var(--primary-bg);
+        }
+        [data-theme="dark"] .contact-nav-item:hover { color: var(--primary-light); }
+        .contact-nav-item.active {
+            color: var(--primary);
+            font-weight: 600;
+            border-bottom-color: var(--primary);
+            background: var(--primary-bg);
+        }
+        [data-theme="dark"] .contact-nav-item.active { color: var(--primary-light); border-bottom-color: var(--primary-light); }
+        .contact-nav-item i { font-size: 1rem; }
+        
+        .contact-nav-item .badge-count {
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-left: 4px;
+        }
+        .contact-nav-item.active .badge-count {
+            background: var(--primary-dark);
+        }
+        
+        /* ============ CONTENT AREA ============ */
+        .contact-content-wrapper {
+            padding: 40px 0 80px;
+            min-height: 400px;
+            transition: opacity 0.3s ease;
+        }
+        .contact-content-wrapper.loading {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        
+        /* ============ CONTACT LAYOUT (for main view) ============ */
+        .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 32px;
@@ -125,10 +267,12 @@
             gap: 24px;
         }
         
-        .section-divider {
-            padding: 0 0 80px;
+        /* ============ FULL-WIDTH SECTIONS ============ */
+        .full-width-section {
+            padding: 0 0 60px;
         }
         
+        /* ============ LOADER PLACEHOLDER ============ */
         .loader-placeholder {
             background: var(--gray-100);
             border-radius: var(--radius-xl);
@@ -139,16 +283,14 @@
             color: var(--gray-400);
             font-size: 0.9rem;
         }
-        [data-theme="dark"] .loader-placeholder {
-            background: rgba(255,255,255,0.02);
-        }
+        [data-theme="dark"] .loader-placeholder { background: rgba(255,255,255,0.02); }
         .loader-placeholder::after {
             content: 'Loading...';
             animation: pulse 1.5s ease-in-out infinite;
         }
         @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
         
-        /* Toast system */
+        /* ============ TOAST SYSTEM ============ */
         .toast-container {
             position: fixed; bottom: 24px; right: 24px; z-index: 10000;
             display: flex; flex-direction: column; gap: 12px; pointer-events: none; max-width: 420px;
@@ -171,64 +313,130 @@
         @keyframes slideInRight { from { transform: translateX(120%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @keyframes slideOutRight { from { transform: translateX(0); opacity: 1; } to { transform: translateX(120%); opacity: 0; } }
         
+        /* ============ FOOTER ============ */
+        footer {
+            background: var(--dark-secondary); color: rgba(255,255,255,0.5);
+            padding: 24px 0; text-align: center; font-size: 0.85rem;
+        }
+        footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+        footer a:hover { color: var(--primary-light); }
+        
+        /* ============ RESPONSIVE ============ */
         @media (max-width: 992px) {
-            .contact-layout { grid-template-columns: 1fr; max-width: 650px; margin-left: auto; margin-right: auto; }
+            .contact-grid { grid-template-columns: 1fr; max-width: 650px; margin: 0 auto; }
             .contact-sidebar { order: 2; }
             #contact-form-loader { order: 1; }
+            .contact-nav-item { padding: 14px 18px; font-size: 0.85rem; }
         }
         @media (max-width: 768px) {
-            .page-hero { padding: 110px 0 50px; }
+            .page-hero { padding: 110px 0 40px; }
             .page-hero h1 { font-size: 1.8rem; }
-            .contact-layout { padding: 40px 0; gap: 20px; }
-            .section-divider { padding-bottom: 40px; }
+            .contact-nav-wrapper { top: 68px; }
+            .contact-nav-item { padding: 12px 16px; font-size: 0.8rem; gap: 6px; }
+            .contact-nav-item i { font-size: 0.9rem; }
+            .contact-content-wrapper { padding: 24px 0 60px; }
             .toast-container { left: 16px; right: 16px; bottom: 16px; }
+            .nav-scroll-btn { width: 30px; height: 30px; }
+        }
+        @media (max-width: 480px) {
+            .contact-nav-item { padding: 12px 14px; font-size: 0.75rem; }
+            .contact-nav-item .badge-count { font-size: 0.65rem; padding: 1px 6px; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- ============ HEADER ============ -->
     <div id="header-container"></div>
     
-    <!-- Hero Section -->
+    <!-- ============ PAGE HERO ============ -->
     <section class="page-hero" aria-labelledby="hero-heading">
         <div class="container">
             <h1 id="hero-heading">Get in <span class="highlight">Touch</span></h1>
-            <p class="subtitle">We'd love to hear from you. Reach out and let's discuss how we can transform your business with technology.</p>
+            <p class="subtitle">Choose how you'd like to reach us. We're here to help with all your technology needs.</p>
         </div>
     </section>
     
-    <!-- Main Contact Layout -->
-    <div class="container">
-        <div class="contact-layout">
-            <!-- Left Sidebar -->
-            <div class="contact-sidebar">
-                <div class="loader-placeholder" id="contact-info-loader"></div>
-                <div class="loader-placeholder" id="hours-loader"></div>
-                <div class="loader-placeholder" id="social-loader"></div>
+    <!-- ============ HORIZONTAL SCROLLING NAVIGATION ============ -->
+    <div class="contact-nav-wrapper" id="contactNavWrapper">
+        <div class="container">
+            <div class="contact-nav-container">
+                <!-- Left Scroll Button -->
+                <button class="nav-scroll-btn nav-scroll-btn-left" id="navScrollLeft" aria-label="Scroll navigation left">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                
+                <!-- Navigation Items -->
+                <nav class="contact-nav" id="contactNav" aria-label="Contact page navigation">
+                    <button class="contact-nav-item active" data-page="main" data-label="Contact Us">
+                        <i class="bi bi-chat-dots-fill"></i> Contact Us
+                    </button>
+                    <button class="contact-nav-item" data-page="general" data-label="General">
+                        <i class="bi bi-question-circle-fill"></i> General
+                    </button>
+                    <button class="contact-nav-item" data-page="sales" data-label="Sales">
+                        <i class="bi bi-graph-up-arrow"></i> Sales Inquiry
+                    </button>
+                    <button class="contact-nav-item" data-page="support" data-label="Support">
+                        <i class="bi bi-headset"></i> Technical Support
+                    </button>
+                    <button class="contact-nav-item" data-page="send-message" data-label="Message">
+                        <i class="bi bi-send-fill"></i> Send Message
+                    </button>
+                    <button class="contact-nav-item" data-page="office-locations" data-label="Offices">
+                        <i class="bi bi-geo-alt-fill"></i> Offices
+                    </button>
+                    <button class="contact-nav-item" data-page="map" data-label="Map">
+                        <i class="bi bi-map-fill"></i> Map
+                    </button>
+                    <button class="contact-nav-item" data-page="hours" data-label="Hours">
+                        <i class="bi bi-clock-fill"></i> Hours
+                    </button>
+                </nav>
+                
+                <!-- Right Scroll Button -->
+                <button class="nav-scroll-btn nav-scroll-btn-right visible" id="navScrollRight" aria-label="Scroll navigation right">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
             </div>
-            <!-- Right Column - Form -->
-            <div class="loader-placeholder" id="contact-form-loader" style="min-height: 500px;"></div>
         </div>
     </div>
     
-    <!-- Map Section -->
-    <div class="section-divider">
+    <!-- ============ DYNAMIC CONTENT AREA ============ -->
+    <main class="contact-content-wrapper" id="contactContent" aria-live="polite">
         <div class="container">
-            <div class="loader-placeholder" id="map-loader" style="min-height: 350px;"></div>
+            <!-- Default: Main Contact Layout -->
+            <div id="page-main" class="contact-page active">
+                <div class="contact-grid">
+                    <div class="contact-sidebar">
+                        <div class="loader-placeholder" id="contact-info-loader"></div>
+                        <div class="loader-placeholder" id="hours-loader"></div>
+                        <div class="loader-placeholder" id="social-loader"></div>
+                    </div>
+                    <div class="loader-placeholder" id="contact-form-loader" style="min-height: 500px;"></div>
+                </div>
+                <div class="full-width-section" style="padding-top: 40px;">
+                    <div class="loader-placeholder" id="map-loader" style="min-height: 350px;"></div>
+                </div>
+                <div class="full-width-section">
+                    <div class="loader-placeholder" id="newsletter-loader"></div>
+                </div>
+            </div>
+            
+            <!-- Other pages loaded dynamically -->
+            <div id="page-general" class="contact-page" style="display:none;"></div>
+            <div id="page-sales" class="contact-page" style="display:none;"></div>
+            <div id="page-support" class="contact-page" style="display:none;"></div>
+            <div id="page-send-message" class="contact-page" style="display:none;"></div>
+            <div id="page-office-locations" class="contact-page" style="display:none;"></div>
+            <div id="page-map" class="contact-page" style="display:none;"></div>
+            <div id="page-hours" class="contact-page" style="display:none;"></div>
         </div>
-    </div>
+    </main>
     
-    <!-- Newsletter Section -->
-    <div class="section-divider">
-        <div class="container">
-            <div class="loader-placeholder" id="newsletter-loader"></div>
-        </div>
-    </div>
-    
-    <!-- Footer -->
+    <!-- ============ FOOTER ============ -->
     <div id="footer-container"></div>
     
-    <!-- Toast Container -->
+    <!-- ============ TOAST CONTAINER ============ -->
     <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -238,12 +446,12 @@
         (function() {
             'use strict';
             
-            // Initialize AOS
+            // ============ INITIALIZATION ============
             if (typeof AOS !== 'undefined') {
-                AOS.init({ duration: 600, once: true, offset: 40 });
+                AOS.init({ duration: 600, once: true, offset: 40, disable: 'mobile' });
             }
             
-            // Global Toast System
+            // ============ GLOBAL TOAST SYSTEM ============
             window.showToast = function(message, type, duration) {
                 type = type || 'success';
                 duration = duration || 4000;
@@ -265,18 +473,15 @@
                 
                 container.appendChild(toast);
                 
-                // Close button
                 toast.querySelector('.toast-close').addEventListener('click', function() {
                     removeToast(toast);
                 });
                 
-                // Auto remove
                 let timer;
                 if (duration > 0) {
                     timer = setTimeout(function() { removeToast(toast); }, duration);
                 }
                 
-                // Pause on hover
                 toast.addEventListener('mouseenter', function() { clearTimeout(timer); });
                 toast.addEventListener('mouseleave', function() {
                     timer = setTimeout(function() { removeToast(toast); }, 2000);
@@ -288,11 +493,11 @@
                 }
             };
             
-            // Component Loader with retry
+            // ============ COMPONENT LOADER ============
             async function loadComponent(url, containerId, retries) {
                 retries = retries || 2;
                 const container = document.getElementById(containerId);
-                if (!container) return;
+                if (!container) return false;
                 
                 for (let i = 0; i <= retries; i++) {
                     try {
@@ -304,59 +509,268 @@
                         temp.innerHTML = html;
                         const content = temp.firstElementChild || temp;
                         
-                        // Replace loader
-                        container.replaceWith(content);
-                        // Update the element's id for any subsequent reference
-                        if (content.id !== containerId) {
-                            content.setAttribute('data-original-id', containerId);
-                        }
+                        container.innerHTML = '';
+                        container.appendChild(content);
+                        container.classList.remove('loader-placeholder');
                         
-                        // Execute any scripts
+                        // Execute scripts
                         temp.querySelectorAll('script').forEach(function(s) {
                             const ns = document.createElement('script');
-                            if (s.src) {
-                                ns.src = s.src;
-                            } else {
-                                ns.textContent = s.textContent;
-                            }
-                            document.body.appendChild(ns).remove();
+                            if (s.src) { ns.src = s.src; }
+                            else { ns.textContent = s.textContent; }
+                            document.body.appendChild(ns);
                         });
                         
-                        return;
+                        return true;
                     } catch (e) {
-                        console.warn('Load attempt ' + (i + 1) + ' failed for ' + url + ':', e.message);
                         if (i === retries) {
                             container.innerHTML = 
                                 '<div style="padding:20px;color:#ef4444;text-align:center;background:var(--gray-100);border-radius:var(--radius-xl);">' +
-                                '<i class="bi bi-exclamation-triangle-fill"></i> Failed to load component<br>' +
-                                '<small><a href="' + url + '" style="color:#0077b6;">Open directly →</a></small>' +
-                                '</div>';
-                        } else {
-                            await new Promise(function(r) { setTimeout(r, 1000 * (i + 1)); });
+                                '<i class="bi bi-exclamation-triangle-fill"></i> Failed to load<br>' +
+                                '<small><a href="' + url + '" style="color:#0077b6;">Open directly →</a></small></div>';
+                            return false;
                         }
+                        await new Promise(function(r) { setTimeout(r, 1000 * (i + 1)); });
                     }
+                }
+                return false;
+            }
+            
+            // Load page content into a container
+            async function loadPageContent(url, pageId) {
+                const container = document.getElementById('page-' + pageId);
+                if (!container) return false;
+                
+                container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--gray-400);">Loading...</div>';
+                
+                try {
+                    const resp = await fetch(url);
+                    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+                    const html = await resp.text();
+                    
+                    // Extract body content or use full HTML
+                    const temp = document.createElement('div');
+                    temp.innerHTML = html;
+                    
+                    // If it's a full HTML page, extract main content
+                    const mainContent = temp.querySelector('main') || temp.querySelector('.contact-content') || temp.querySelector('.container') || temp;
+                    
+                    container.innerHTML = '';
+                    if (mainContent !== temp) {
+                        container.innerHTML = mainContent.innerHTML;
+                    } else {
+                        container.appendChild(temp.firstElementChild || temp);
+                    }
+                    
+                    // Execute scripts
+                    temp.querySelectorAll('script').forEach(function(s) {
+                        const ns = document.createElement('script');
+                        if (s.src) { ns.src = s.src; }
+                        else { ns.textContent = s.textContent; }
+                        document.body.appendChild(ns);
+                    });
+                    
+                    return true;
+                } catch (e) {
+                    container.innerHTML = 
+                        '<div style="text-align:center;padding:40px;color:#ef4444;">' +
+                        '<i class="bi bi-exclamation-triangle-fill"></i> Failed to load page<br>' +
+                        '<small>' + e.message + '</small></div>';
+                    return false;
                 }
             }
             
-            // Load all components when DOM is ready
-            async function init() {
+            // ============ PAGE SWITCHING ============
+            function switchPage(pageId, navItem) {
+                // Hide all pages
+                document.querySelectorAll('.contact-page').forEach(function(p) {
+                    p.style.display = 'none';
+                    p.classList.remove('active');
+                });
+                
+                // Show selected page
+                const targetPage = document.getElementById('page-' + pageId);
+                if (targetPage) {
+                    targetPage.style.display = 'block';
+                    targetPage.classList.add('active');
+                }
+                
+                // Update nav active state
+                document.querySelectorAll('.contact-nav-item').forEach(function(item) {
+                    item.classList.remove('active');
+                });
+                if (navItem) {
+                    navItem.classList.add('active');
+                    // Scroll item into view
+                    navItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+                
+                // Scroll to content
+                document.getElementById('contactContent').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Update URL hash
+                if (pageId === 'main') {
+                    history.replaceState(null, '', window.location.pathname);
+                } else {
+                    history.replaceState(null, '', '#' + pageId);
+                }
+            }
+            
+            // ============ HORIZONTAL NAV SCROLL ============
+            function setupHorizontalNav() {
+                const nav = document.getElementById('contactNav');
+                const leftBtn = document.getElementById('navScrollLeft');
+                const rightBtn = document.getElementById('navScrollRight');
+                
+                if (!nav || !leftBtn || !rightBtn) return;
+                
+                function updateScrollButtons() {
+                    const scrollLeft = nav.scrollLeft;
+                    const maxScroll = nav.scrollWidth - nav.clientWidth;
+                    
+                    if (scrollLeft <= 0) {
+                        leftBtn.classList.remove('visible');
+                    } else {
+                        leftBtn.classList.add('visible');
+                    }
+                    
+                    if (scrollLeft >= maxScroll - 1) {
+                        rightBtn.classList.remove('visible');
+                    } else {
+                        rightBtn.classList.add('visible');
+                    }
+                }
+                
+                leftBtn.addEventListener('click', function() {
+                    nav.scrollBy({ left: -250, behavior: 'smooth' });
+                });
+                
+                rightBtn.addEventListener('click', function() {
+                    nav.scrollBy({ left: 250, behavior: 'smooth' });
+                });
+                
+                nav.addEventListener('scroll', updateScrollButtons);
+                window.addEventListener('resize', updateScrollButtons);
+                
+                // Initial check
+                setTimeout(updateScrollButtons, 100);
+                
+                // Show right button by default if scrollable
+                setTimeout(function() {
+                    if (nav.scrollWidth > nav.clientWidth) {
+                        rightBtn.classList.add('visible');
+                    }
+                }, 200);
+            }
+            
+            // ============ STICKY NAV SHADOW ============
+            function setupStickyNavShadow() {
+                const wrapper = document.getElementById('contactNavWrapper');
+                if (!wrapper) return;
+                
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 100) {
+                        wrapper.classList.add('scrolled');
+                    } else {
+                        wrapper.classList.remove('scrolled');
+                    }
+                });
+            }
+            
+            // ============ LOAD ALL COMPONENTS ============
+            async function loadAllComponents() {
                 const components = [
+                    // Header/Footer
                     { url: '/components/layouts/header.html', container: 'header-container' },
+                    
+                    // Main page components
                     { url: '/pages/contact/contact-form.html', container: 'contact-form-loader' },
                     { url: '/pages/contact/contact-info.html', container: 'contact-info-loader' },
                     { url: '/pages/contact/office-hours.html', container: 'hours-loader' },
                     { url: '/pages/contact/social-links.html', container: 'social-loader' },
                     { url: '/pages/contact/map-section.html', container: 'map-loader' },
                     { url: '/pages/contact/newsletter-signup.html', container: 'newsletter-loader' },
+                    
                     { url: '/components/layouts/footer.html', container: 'footer-container' }
                 ];
                 
-                // Load all in parallel (except header/footer which should load first/last)
-                for (const comp of components) {
-                    await loadComponent(comp.url, comp.container);
+                // Load main page components in parallel
+                await Promise.all(components.map(function(c) { return loadComponent(c.url, c.container); }));
+                
+                // Preload other pages in background
+                const pageMap = {
+                    'general': '/pages/contact/general.html',
+                    'sales': '/pages/contact/sales.html',
+                    'support': '/pages/contact/support.html',
+                    'send-message': '/pages/contact/send-message.html',
+                    'office-locations': '/pages/contact/office-locations.html'
+                };
+                
+                // Lazy load: only load when clicked
+                Object.keys(pageMap).forEach(function(pageId) {
+                    const navItem = document.querySelector('[data-page="' + pageId + '"]');
+                    if (navItem) {
+                        navItem.addEventListener('click', async function() {
+                            const container = document.getElementById('page-' + pageId);
+                            // Only load if not already loaded
+                            if (container && !container.dataset.loaded) {
+                                await loadPageContent(pageMap[pageId], pageId);
+                                container.dataset.loaded = 'true';
+                            }
+                            switchPage(pageId, this);
+                        });
+                    }
+                });
+                
+                // Special handlers for map and hours pages (reuse components)
+                document.querySelector('[data-page="map"]')?.addEventListener('click', function() {
+                    switchPage('map', this);
+                    const mapPage = document.getElementById('page-map');
+                    if (!mapPage.dataset.loaded) {
+                        const mapContent = document.getElementById('map-loader')?.innerHTML;
+                        if (mapContent) {
+                            mapPage.innerHTML = '<div class="container" style="padding:40px 0;">' + mapContent + '</div>';
+                            mapPage.dataset.loaded = 'true';
+                        }
+                    }
+                });
+                
+                document.querySelector('[data-page="hours"]')?.addEventListener('click', function() {
+                    switchPage('hours', this);
+                    const hoursPage = document.getElementById('page-hours');
+                    if (!hoursPage.dataset.loaded) {
+                        const hoursContent = document.getElementById('hours-loader')?.innerHTML;
+                        if (hoursContent) {
+                            hoursPage.innerHTML = '<div class="container" style="max-width:500px;padding:40px 0;">' + hoursContent + '</div>';
+                            hoursPage.dataset.loaded = 'true';
+                        }
+                    }
+                });
+            }
+            
+            // ============ MAIN INIT ============
+            async function init() {
+                setupHorizontalNav();
+                setupStickyNavShadow();
+                
+                // Nav click handlers for main page
+                document.querySelector('[data-page="main"]')?.addEventListener('click', function() {
+                    switchPage('main', this);
+                });
+                
+                // Handle hash on load
+                const hash = window.location.hash.replace('#', '');
+                if (hash && document.querySelector('[data-page="' + hash + '"]')) {
+                    setTimeout(function() {
+                        document.querySelector('[data-page="' + hash + '"]').click();
+                    }, 500);
                 }
                 
-                console.log('%c✅ Han-Tech Contact Page Ready', 'color: #00b4d8; font-weight: bold; font-size: 1.1rem;');
+                // Load all components
+                await loadAllComponents();
+                
+                console.log('%c✅ Han-Tech Contact Hub Ready %c| %cAll systems loaded',
+                    'color:#00b4d8;font-weight:bold;font-size:1.1rem;', '', 'color:#10b981;');
             }
             
             if (document.readyState === 'loading') {
