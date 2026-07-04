@@ -1,40 +1,221 @@
-<style>
-    .mv-section { padding: 80px 0; background: #f9fafb; }
-    [data-theme="dark"] .mv-section { background: #0f0f1a; }
-    .mv-card {
-        background: #fff; border-radius: 16px; padding: 30px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s;
-        border-left: 4px solid transparent; display: flex; gap: 15px;
-    }
-    [data-theme="dark"] .mv-card { background: #1a1a2e; }
-    .mv-card:hover { transform: translateX(8px); border-left-color: #0077b6; box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
-    .mv-card i { font-size: 2rem; color: #0077b6; }
-    .mv-card h5 { font-family: 'Poppins', sans-serif; font-weight: 600; }
-    .mv-card p { color: #666; }
-    [data-theme="dark"] .mv-card p { color: #94a3b8; }
-</style>
-
-<section class="mv-section">
+<!-- Mission & Vision Section -->
+<section class="mission-vision-section section section-light" id="mission-vision">
     <div class="container">
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="mv-card">
-                    <i class="bi bi-flag"></i>
-                    <div><h5>Our Goal</h5><p>To become Africa’s most trusted technology partner, delivering innovative, accessible, and reliable IT solutions that transform businesses and communities.</p></div>
-                </div>
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">Our Purpose</span>
+            <h2 class="section-title">Mission & <span style="color: #e67e22;">Vision</span></h2>
+            <p class="section-subtitle">Guiding principles that shape our journey</p>
+        </div>
+
+        <div class="mission-vision-grid">
+            <div class="mv-card" data-aos="fade-up" data-aos-delay="0">
+                <div class="mv-icon">🎯</div>
+                <h3>Our Mission</h3>
+                <p>To empower Ugandan businesses, government institutions, and communities with reliable, innovative, and affordable technology solutions that drive growth, efficiency, and digital inclusion.</p>
+                <ul class="mv-list">
+                    <li><i class="fas fa-check-circle"></i> Drive digital transformation</li>
+                    <li><i class="fas fa-check-circle"></i> Bridge the digital divide</li>
+                    <li><i class="fas fa-check-circle"></i> Empower local talent</li>
+                </ul>
             </div>
-            <div class="col-md-4">
-                <div class="mv-card">
-                    <i class="bi bi-bullseye"></i>
-                    <div><h5>Our Mission</h5><p>Empower businesses across Africa with innovative, reliable technology solutions that drive growth, efficiency, and digital inclusion.</p></div>
-                </div>
+
+            <div class="mv-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="mv-icon">👁️</div>
+                <h3>Our Vision</h3>
+                <p>To become the leading technology partner in Northern Uganda and a nationally recognised IT brand, known for excellence, integrity, and transformative impact.</p>
+                <ul class="mv-list">
+                    <li><i class="fas fa-check-circle"></i> Lead in innovation</li>
+                    <li><i class="fas fa-check-circle"></i> Build lasting partnerships</li>
+                    <li><i class="fas fa-check-circle"></i> Create regional impact</li>
+                </ul>
             </div>
-            <div class="col-md-4">
-                <div class="mv-card">
-                    <i class="bi bi-eye"></i>
-                    <div><h5>Our Vision</h5><p>Become the leading technology partner in Africa by 2030, recognised for engineering excellence and a customer‑first approach.</p></div>
+        </div>
+
+        <!-- Strategic Pillars -->
+        <div class="pillars" data-aos="fade-up">
+            <h4>Our Strategic Pillars</h4>
+            <div class="pillars-grid">
+                <div class="pillar">
+                    <i class="fas fa-users"></i>
+                    <span>People First</span>
+                </div>
+                <div class="pillar">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Innovation</span>
+                </div>
+                <div class="pillar">
+                    <i class="fas fa-handshake"></i>
+                    <span>Partnerships</span>
+                </div>
+                <div class="pillar">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Security</span>
+                </div>
+                <div class="pillar">
+                    <i class="fas fa-globe-africa"></i>
+                    <span>Local Impact</span>
+                </div>
+                <div class="pillar">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Sustainable Growth</span>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+    .mission-vision-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        max-width: 1000px;
+        margin: 0 auto 3rem;
+    }
+
+    .mv-card {
+        background: white;
+        border-radius: 1.5rem;
+        padding: 2.5rem;
+        border: 1px solid #e2e8f0;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+
+    [data-theme="dark"] .mv-card {
+        background: #2d2d44;
+        border-color: #3d3d5c;
+    }
+
+    .mv-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        border-color: #e67e22;
+    }
+
+    [data-theme="dark"] .mv-card:hover {
+        box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    }
+
+    .mv-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .mv-card h3 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.5rem;
+        color: #0a2463;
+        margin-bottom: 0.75rem;
+    }
+
+    [data-theme="dark"] .mv-card h3 {
+        color: #e0e0e0;
+    }
+
+    .mv-card p {
+        color: #64748b;
+        line-height: 1.7;
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    [data-theme="dark"] .mv-card p {
+        color: #94a3b8;
+    }
+
+    .mv-list {
+        list-style: none;
+        text-align: left;
+        display: inline-block;
+    }
+
+    .mv-list li {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.3rem 0;
+        font-size: 0.9rem;
+        color: #475569;
+    }
+
+    [data-theme="dark"] .mv-list li {
+        color: #94a3b8;
+    }
+
+    .mv-list i {
+        color: #10b981;
+    }
+
+    /* Pillars */
+    .pillars {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .pillars h4 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.2rem;
+        color: #0a2463;
+        margin-bottom: 1.5rem;
+    }
+
+    [data-theme="dark"] .pillars h4 {
+        color: #e0e0e0;
+    }
+
+    .pillars-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+
+    .pillar {
+        background: white;
+        padding: 0.8rem 1rem;
+        border-radius: 2rem;
+        border: 1px solid #e2e8f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: #1e293b;
+        transition: all 0.3s ease;
+    }
+
+    [data-theme="dark"] .pillar {
+        background: #2d2d44;
+        border-color: #3d3d5c;
+        color: #e0e0e0;
+    }
+
+    .pillar:hover {
+        border-color: #e67e22;
+        transform: translateY(-2px);
+    }
+
+    .pillar i {
+        color: #e67e22;
+    }
+
+    @media (max-width: 768px) {
+        .mission-vision-grid {
+            grid-template-columns: 1fr;
+        }
+        .pillars-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .mv-card {
+            padding: 1.8rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .pillars-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
