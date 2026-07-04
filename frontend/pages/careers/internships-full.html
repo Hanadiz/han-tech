@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Internships - Careers</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; padding: 20px; background: #f9fafb; }
+    .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .component-header, .component-footer { border: 1px solid #e5e7eb; padding: 12px; margin-bottom: 20px; background: #f3f4f6; border-radius: 4px; }
+    .component-footer { margin-top: 20px; margin-bottom: 0; }
+    .page-content { min-height: 400px; }
+    .back-link { display: inline-block; margin-bottom: 20px; color: #2563eb; text-decoration: none; }
+    .internship-card { border: 1px solid #e5e7eb; padding: 16px; margin: 12px 0; border-radius: 6px; background: #fafafa; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="header" class="component-header"></div>
+    <div class="page-content">
+      <a href="internships.html" class="back-link">← Back to Internships</a>
+      <h1>All Internships</h1>
+      <p>Complete list of internship opportunities for Summer 2026.</p>
+      
+      <div class="internship-card">
+        <h3>Software Engineering Intern</h3>
+        <p>12 weeks · Paid · Build real products with mentorship.</p>
+        <a href="detail.html?id=5" class="btn-small">Apply</a>
+      </div>
+      <div class="internship-card">
+        <h3>Product Management Intern</h3>
+        <p>10 weeks · Paid · Learn product strategy and execution.</p>
+        <a href="detail.html?id=6" class="btn-small">Apply</a>
+      </div>
+      <div class="internship-card">
+        <h3>Data Analytics Intern</h3>
+        <p>12 weeks · Paid · Analyze data and generate insights.</p>
+        <a href="detail.html?id=7" class="btn-small">Apply</a>
+      </div>
+      <div class="internship-card">
+        <h3>Marketing Intern</h3>
+        <p>10 weeks · Paid · Support marketing campaigns and content creation.</p>
+        <a href="detail.html?id=8" class="btn-small">Apply</a>
+      </div>
+    </div>
+    <div id="footer" class="component-footer"></div>
+  </div>
+  <script>
+    function loadComponent(id, path) {
+      fetch(path).then(r => r.text()).then(html => document.getElementById(id).innerHTML = html)
+        .catch(() => document.getElementById(id).innerHTML = '<p>⚠️ Failed to load</p>');
+    }
+    loadComponent('header', '../../components/header.html');
+    loadComponent('footer', '../../components/footer.html');
+  </script>
+</body>
+</html>
