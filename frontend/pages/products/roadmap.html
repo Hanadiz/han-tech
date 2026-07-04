@@ -1,0 +1,102 @@
+<style>
+    .roadmap-section {
+        padding: 80px 0;
+        background: #fff;
+    }
+    [data-theme="dark"] .roadmap-section { background: #1a1a2e; }
+    .roadmap-section h2 {
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 50px;
+        color: #2c3e50;
+    }
+    [data-theme="dark"] .roadmap-section h2 { color: #e0e0e0; }
+    .timeline { position: relative; padding-left: 50px; max-width: 800px; margin: 0 auto; }
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 15px;
+        top: 0;
+        width: 3px;
+        height: 100%;
+        background: linear-gradient(180deg, #0077b6, #00b4d8);
+    }
+    .timeline-item { position: relative; margin-bottom: 40px; }
+    .timeline-quarter {
+        position: absolute;
+        left: -65px;
+        top: 0;
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+        color: #fff;
+        padding: 4px 14px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.8rem;
+        width: 65px;
+        text-align: center;
+    }
+    .timeline-content {
+        background: #f9fafb;
+        padding: 20px 25px;
+        border-radius: 16px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+        margin-left: 20px;
+    }
+    [data-theme="dark"] .timeline-content { background: #252540; }
+    .timeline-content h5 { font-family: 'Poppins', sans-serif; font-weight: 600; }
+    .timeline-content p { color: #666; font-size: 0.9rem; }
+    [data-theme="dark"] .timeline-content p { color: #94a3b8; }
+    .badge-status {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+    .status-planned { background: #fff3cd; color: #856404; }
+    .status-progress { background: #cce5ff; color: #004085; }
+    .status-completed { background: #d4edda; color: #155724; }
+</style>
+
+<section class="roadmap-section">
+    <div class="container">
+        <h2>Product Roadmap</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-quarter">Q3 2026</div>
+                <div class="timeline-content">
+                    <span class="badge-status status-progress">In Progress</span>
+                    <h5>ERP Lite Launch</h5>
+                    <p>Lightweight ERP for SMEs with inventory, invoicing, and payroll modules.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-quarter">Q4 2026</div>
+                <div class="timeline-content">
+                    <span class="badge-status status-planned">Planned</span>
+                    <h5>TeleMed Uganda</h5>
+                    <p>Telemedicine platform with video consultations and e‑prescriptions.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-quarter">Q1 2027</div>
+                <div class="timeline-content">
+                    <span class="badge-status status-planned">Planned</span>
+                    <h5>NilePay Global</h5>
+                    <p>Single mobile app for payments across Africa, Europe, Gulf, US, and Asia.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-quarter">Q2 2027</div>
+                <div class="timeline-content">
+                    <span class="badge-status status-planned">Planned</span>
+                    <h5>Han‑Tech CRM</h5>
+                    <p>Customer relationship management platform tailored for East African businesses.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
