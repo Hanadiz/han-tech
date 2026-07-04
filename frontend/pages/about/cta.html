@@ -1,21 +1,140 @@
-<style>
-    .about-cta {
-        background: linear-gradient(135deg, #1e3c72, #2a5298);
-        color: #fff; padding: 80px 0; text-align: center;
-        position: relative; overflow: hidden;
-    }
-    .about-cta h2 { font-family: 'Poppins', sans-serif; font-size: 2.5rem; font-weight: 700; }
-    .about-cta .btn-light {
-        background: #fff; color: #0077b6; font-weight: 600;
-        padding: 14px 36px; border-radius: 50px; text-decoration: none;
-        transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px;
-    }
-    .about-cta .btn-light:hover { background: #f0f0f0; transform: translateY(-2px); }
-</style>
-
-<section class="about-cta">
+<!-- CTA Section -->
+<section class="cta-section" id="cta">
     <div class="container">
-        <h2 class="mb-3">Let's Build Something Great Together</h2>
-        <a href="/pages/contact/" class="btn-light">Get in Touch <i class="bi bi-arrow-right ms-2"></i></a>
+        <div class="cta-content" data-aos="zoom-in">
+            <h2>Ready to Transform Your Business?</h2>
+            <p>Join 500+ businesses already using our services. Get a free consultation today.</p>
+            <div class="cta-buttons">
+                <a href="/contact.html" class="btn btn-primary">Get Free Quote</a>
+                <a href="/services.html" class="btn btn-outline-light">Browse Services</a>
+            </div>
+            <div class="cta-features">
+                <span><i class="fas fa-check-circle"></i> No Obligation</span>
+                <span><i class="fas fa-check-circle"></i> Free Consultation</span>
+                <span><i class="fas fa-check-circle"></i> 24/7 Support</span>
+            </div>
+        </div>
     </div>
 </section>
+
+<style>
+    .cta-section {
+        padding: 80px 0;
+        background: linear-gradient(135deg, #0a2463, #1e3a8a);
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-section::before {
+        content: '';
+        position: absolute;
+        top: -30%;
+        right: -20%;
+        width: 60%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(230,126,34,0.1) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    .cta-content {
+        position: relative;
+        z-index: 2;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .cta-content h2 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: white;
+    }
+
+    .cta-content p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        margin-bottom: 2rem;
+        line-height: 1.7;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+    }
+
+    .cta-section .btn-primary {
+        background: #e67e22;
+        color: white;
+        padding: 0.875rem 2rem;
+        border-radius: 2rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .cta-section .btn-primary:hover {
+        background: #d35400;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(230,126,34,0.4);
+    }
+
+    .btn-outline-light {
+        background: transparent;
+        border: 2px solid white;
+        color: white;
+        padding: 0.875rem 2rem;
+        border-radius: 2rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .btn-outline-light:hover {
+        background: white;
+        color: #0a2463;
+        transform: translateY(-3px);
+    }
+
+    .cta-features {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        font-size: 0.9rem;
+        opacity: 0.8;
+    }
+
+    .cta-features i {
+        color: #10b981;
+        margin-right: 0.3rem;
+    }
+
+    @media (max-width: 768px) {
+        .cta-section {
+            padding: 50px 0;
+        }
+        .cta-content h2 {
+            font-size: 2rem;
+        }
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+        .cta-buttons .btn {
+            width: 100%;
+            max-width: 300px;
+            justify-content: center;
+        }
+        .cta-features {
+            flex-direction: column;
+            gap: 0.8rem;
+            align-items: center;
+        }
+    }
+</style>
