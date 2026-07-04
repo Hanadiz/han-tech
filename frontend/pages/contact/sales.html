@@ -1,0 +1,61 @@
+<!-- pages/contact/sales.html -->
+<style>
+    .hsl-section { max-width: 700px; margin: 0 auto; padding: 40px 0; }
+    .hsl-banner { background: linear-gradient(135deg, #0077b6, #023e8a); border-radius: 20px; padding: 32px; color: #fff; margin-bottom: 32px; }
+    .hsl-banner h3 { font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 8px; }
+    .hsl-benefits { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+    .hsl-benefit { display: flex; align-items: center; gap: 6px; padding: 6px 14px; background: rgba(255,255,255,0.1); border-radius: 50px; font-size: 0.85rem; }
+    
+    .hsl-card { background: #fff; border-radius: 20px; padding: 36px; border: 1px solid #e2e8f0; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    [data-theme="dark"] .hsl-card { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.06); }
+    .hsl-card h3 { font-family: 'Poppins', sans-serif; font-weight: 600; margin-bottom: 24px; }
+    [data-theme="dark"] .hsl-card h3 { color: #fff; }
+    .hsl-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .hsl-group { margin-bottom: 18px; }
+    .hsl-group label { display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 6px; color: #334155; }
+    [data-theme="dark"] .hsl-group label { color: #e2e8f0; }
+    .hsl-control { width: 100%; padding: 12px 16px; border-radius: 12px; border: 2px solid #e2e8f0; font-size: 0.9rem; font-family: 'Inter', sans-serif; background: #f8fafc; transition: all 0.25s; }
+    [data-theme="dark"] .hsl-control { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); color: #e2e8f0; }
+    .hsl-control:focus { outline: none; border-color: #00b4d8; box-shadow: 0 0 0 4px rgba(0,180,216,0.1); }
+    .hsl-btn { width: 100%; padding: 15px; background: linear-gradient(135deg, #0077b6, #00b4d8); color: #fff; border: none; border-radius: 50px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s; }
+    .hsl-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,119,182,0.35); }
+    @media (max-width: 600px) { .hsl-row { grid-template-columns: 1fr; } .hsl-card { padding: 24px 18px; } }
+</style>
+
+<div class="hsl-section">
+    <div class="hsl-banner">
+        <h3>Let's Grow Your Business Together</h3>
+        <p>Fill out the form and our sales team will create a custom solution for your needs.</p>
+        <div class="hsl-benefits">
+            <span class="hsl-benefit"><i class="bi bi-check-circle-fill"></i> Free Consultation</span>
+            <span class="hsl-benefit"><i class="bi bi-check-circle-fill"></i> Quote in 24hrs</span>
+            <span class="hsl-benefit"><i class="bi bi-check-circle-fill"></i> No Obligation</span>
+        </div>
+    </div>
+    <div class="hsl-card">
+        <h3>Request a Quote</h3>
+        <form id="hslForm">
+            <div class="hsl-row">
+                <div class="hsl-group"><label>First Name *</label><input type="text" class="hsl-control" required></div>
+                <div class="hsl-group"><label>Last Name *</label><input type="text" class="hsl-control" required></div>
+            </div>
+            <div class="hsl-row">
+                <div class="hsl-group"><label>Email *</label><input type="email" class="hsl-control" required></div>
+                <div class="hsl-group"><label>Phone</label><input type="tel" class="hsl-control"></div>
+            </div>
+            <div class="hsl-group"><label>Company</label><input type="text" class="hsl-control"></div>
+            <div class="hsl-group"><label>Service *</label><select class="hsl-control" required><option value="">Select</option><option>Cloud Solutions</option><option>Cybersecurity</option><option>Networking</option><option>IoT</option><option>EdTech</option><option>Other</option></select></div>
+            <div class="hsl-group"><label>Project Details</label><textarea class="hsl-control" rows="3" placeholder="Tell us about your requirements..."></textarea></div>
+            <button type="submit" class="hsl-btn"><i class="bi bi-send-fill me-2"></i> Request Quote</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById('hslForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        await new Promise(r => setTimeout(r, 1500));
+        if (typeof showToast === 'function') showToast('✅ Quote request submitted! We\'ll contact you within 24 hours.', 'success');
+        this.reset();
+    });
+</script>
