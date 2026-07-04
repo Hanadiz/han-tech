@@ -1,0 +1,162 @@
+<style>
+    .pricing-section {
+        padding: 80px 0;
+        background: #f9fafb;
+    }
+    [data-theme="dark"] .pricing-section { background: #0f0f1a; }
+    .pricing-section h2 {
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #2c3e50;
+    }
+    [data-theme="dark"] .pricing-section h2 { color: #e0e0e0; }
+    .pricing-section .lead {
+        text-align: center;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto 50px;
+    }
+    [data-theme="dark"] .pricing-section .lead { color: #94a3b8; }
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+    .pricing-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 40px 30px;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        transition: all 0.3s;
+        border: 2px solid transparent;
+        position: relative;
+    }
+    [data-theme="dark"] .pricing-card { background: #1a1a2e; }
+    .pricing-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+    .pricing-card.featured {
+        border-color: #0077b6;
+        transform: scale(1.03);
+    }
+    .pricing-card.featured:hover { transform: scale(1.03) translateY(-6px); }
+    .featured-tag {
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+        color: #fff;
+        padding: 4px 20px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+    .plan-name {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 1.3rem;
+    }
+    .plan-price {
+        font-family: 'Poppins', sans-serif;
+        font-size: 3rem;
+        font-weight: 700;
+        color: #0077b6;
+        margin: 15px 0 5px;
+    }
+    .plan-price small {
+        font-size: 1rem;
+        color: #888;
+    }
+    .plan-features {
+        list-style: none;
+        padding: 0;
+        margin: 25px 0;
+        text-align: left;
+    }
+    .plan-features li {
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+        color: #555;
+    }
+    [data-theme="dark"] .plan-features li { border-color: #2a2a40; color: #aaa; }
+    .plan-features i { color: #2ecc71; margin-right: 8px; }
+    .btn-plan {
+        display: block;
+        width: 100%;
+        padding: 14px;
+        border-radius: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+    .btn-plan-primary {
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+        color: #fff;
+        border: none;
+    }
+    .btn-plan-outline {
+        background: transparent;
+        color: #0077b6;
+        border: 2px solid #0077b6;
+    }
+</style>
+
+<section class="pricing-section">
+    <div class="container">
+        <h2>Product Pricing</h2>
+        <p class="lead">Choose the plan that fits your needs. All plans include 24/7 support and free updates.</p>
+        <div class="pricing-grid">
+            <!-- Starter -->
+            <div class="pricing-card">
+                <h4 class="plan-name">Starter</h4>
+                <div class="plan-price">$29<small>/mo</small></div>
+                <p class="text-muted">For small teams and startups</p>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check-circle"></i> 1 product license</li>
+                    <li><i class="fas fa-check-circle"></i> Basic support</li>
+                    <li><i class="fas fa-check-circle"></i> 10GB storage</li>
+                    <li><i class="fas fa-times-circle"></i> API access</li>
+                    <li><i class="fas fa-times-circle"></i> Custom branding</li>
+                </ul>
+                <a href="/pages/contact/" class="btn-plan btn-plan-outline">Get Started</a>
+            </div>
+
+            <!-- Professional -->
+            <div class="pricing-card featured">
+                <span class="featured-tag">Most Popular</span>
+                <h4 class="plan-name">Professional</h4>
+                <div class="plan-price">$79<small>/mo</small></div>
+                <p class="text-muted">For growing businesses</p>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check-circle"></i> 5 product licenses</li>
+                    <li><i class="fas fa-check-circle"></i> Priority support</li>
+                    <li><i class="fas fa-check-circle"></i> 100GB storage</li>
+                    <li><i class="fas fa-check-circle"></i> API access</li>
+                    <li><i class="fas fa-times-circle"></i> Custom branding</li>
+                </ul>
+                <a href="/pages/contact/" class="btn-plan btn-plan-primary">Start Free Trial</a>
+            </div>
+
+            <!-- Enterprise -->
+            <div class="pricing-card">
+                <h4 class="plan-name">Enterprise</h4>
+                <div class="plan-price">$199<small>/mo</small></div>
+                <p class="text-muted">For large organisations</p>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check-circle"></i> Unlimited licenses</li>
+                    <li><i class="fas fa-check-circle"></i> Dedicated support</li>
+                    <li><i class="fas fa-check-circle"></i> 1TB storage</li>
+                    <li><i class="fas fa-check-circle"></i> Full API access</li>
+                    <li><i class="fas fa-check-circle"></i> Custom branding</li>
+                </ul>
+                <a href="/pages/contact/" class="btn-plan btn-plan-primary">Contact Sales</a>
+            </div>
+        </div>
+    </div>
+</section>
