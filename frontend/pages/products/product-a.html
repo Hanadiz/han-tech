@@ -1,0 +1,52 @@
+<style>
+    .product-detail { padding: 80px 0; background: #fff; }
+    [data-theme="dark"] .product-detail { background: #1a1a2e; }
+    .product-detail .badge { background: #d4edda; color: #155724; padding: 5px 14px; border-radius: 20px; }
+    .product-img {
+        width: 100%;
+        max-width: 400px;
+        height: 300px;
+        background: #f0f4f8;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 5rem;
+        color: rgba(0,119,182,0.1);
+    }
+    .feature-list { list-style: none; padding: 0; }
+    .feature-list li { padding: 8px 0; display: flex; align-items: center; gap: 10px; }
+    .feature-list i { color: #2ecc71; }
+    .btn-buy {
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+        color: #fff;
+        border: none;
+        padding: 14px 36px;
+        border-radius: 14px;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+</style>
+
+<section class="product-detail">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-md-6">
+                <div class="product-img"><i class="fas fa-mobile-alt"></i></div>
+            </div>
+            <div class="col-md-6">
+                <span class="badge">Available</span>
+                <h2 style="font-family:'Poppins',sans-serif;font-weight:700;margin:15px 0;">USSD Gateway</h2>
+                <p class="lead">Multi‑tenant USSD platform for interactive mobile menus, surveys, and payment collections.</p>
+                <ul class="feature-list my-4">
+                    <li><i class="fas fa-check-circle"></i> Multi‑tenant architecture</li>
+                    <li><i class="fas fa-check-circle"></i> Real‑time session management</li>
+                    <li><i class="fas fa-check-circle"></i> Payment integration (MTN & Airtel)</li>
+                    <li><i class="fas fa-check-circle"></i> Analytics dashboard</li>
+                </ul>
+                <p class="h4" style="font-family:'Poppins',sans-serif;color:#0077b6;">$29/mo</p>
+                <button class="btn-buy">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</section>
