@@ -1,0 +1,60 @@
+<!-- Why Work With Us Section -->
+<section class="section section-white" data-aos="fade-up">
+    <div class="container">
+        <div class="section-header" style="text-align:center; margin-bottom:50px;">
+            <span class="section-tag">Why Join Us</span>
+            <h2 class="section-title">Why Work at <span style="color: var(--accent);">Han-Tech</span></h2>
+            <p class="section-subtitle">We offer more than just a job – we offer a career with purpose</p>
+        </div>
+        <div class="why-work-grid">
+            <div class="why-work-item" data-aos="fade-up" data-aos-delay="0">
+                <div class="icon">💡</div>
+                <h3>Innovation First</h3>
+                <p>Work with the latest technologies – AI, cloud, IoT, blockchain – and solve real-world challenges.</p>
+            </div>
+            <div class="why-work-item" data-aos="fade-up" data-aos-delay="50">
+                <div class="icon">📈</div>
+                <h3>Career Growth</h3>
+                <p>We invest in your development with training, certifications, and clear career progression paths.</p>
+            </div>
+            <div class="why-work-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="icon">🌍</div>
+                <h3>Impactful Work</h3>
+                <p>Your work will directly impact businesses, communities, and the digital transformation of Uganda.</p>
+            </div>
+            <div class="why-work-item" data-aos="fade-up" data-aos-delay="150">
+                <div class="icon">❤️</div>
+                <h3>Great Culture</h3>
+                <p>Collaborative, inclusive, and supportive environment with flexible working options.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .why-work-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+    .why-work-item {
+        background: white;
+        padding: 1.8rem 1.5rem;
+        border-radius: 1rem;
+        text-align: center;
+        border: 1px solid var(--gray-200);
+        transition: all 0.3s ease;
+    }
+    .why-work-item:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--accent); }
+    .why-work-item .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .why-work-item h3 { font-family: var(--font-poppins); font-size: 1.1rem; color: var(--primary); margin-bottom: 0.3rem; }
+    .why-work-item p { font-size: 0.85rem; color: var(--gray-500); line-height: 1.6; }
+    [data-theme="dark"] .why-work-item { background: #2d2d44; border-color: #3d3d5c; }
+    [data-theme="dark"] .why-work-item h3 { color: #e0e0e0; }
+    [data-theme="dark"] .why-work-item p { color: #94a3b8; }
+    @media (max-width: 1024px) { .why-work-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { .why-work-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .why-work-grid { grid-template-columns: 1fr; } }
+</style>
