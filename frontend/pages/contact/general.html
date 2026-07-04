@@ -1,0 +1,46 @@
+<!-- pages/contact/general.html -->
+<style>
+    .hgc-section { padding: 60px 0; }
+    .hgc-header { text-align: center; margin-bottom: 40px; }
+    .hgc-header h2 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.8rem; color: #1e293b; }
+    [data-theme="dark"] .hgc-header h2 { color: #fff; }
+    .hgc-header p { color: #64748b; max-width: 500px; margin: 8px auto 0; }
+    [data-theme="dark"] .hgc-header p { color: rgba(255,255,255,0.5); }
+    
+    .hgc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto; }
+    .hgc-card { background: #fff; border-radius: 24px; padding: 36px 28px; text-align: center; border: 1px solid #e2e8f0; text-decoration: none; display: block; transition: all 0.3s; cursor: pointer; }
+    [data-theme="dark"] .hgc-card { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.06); }
+    .hgc-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
+    .hgc-icon { width: 70px; height: 70px; border-radius: 18px; display: inline-flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 18px; transition: transform 0.4s; }
+    .hgc-card:hover .hgc-icon { transform: rotateY(360deg); }
+    .hgc-card h3 { font-family: 'Poppins', sans-serif; font-weight: 600; color: #1e293b; margin-bottom: 8px; }
+    [data-theme="dark"] .hgc-card h3 { color: #fff; }
+    .hgc-card p { color: #64748b; font-size: 0.9rem; margin-bottom: 16px; }
+    [data-theme="dark"] .hgc-card p { color: rgba(255,255,255,0.5); }
+    .hgc-link { color: #0077b6; font-weight: 600; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+    .hgc-link:hover { color: #00b4d8; }
+</style>
+
+<div class="hgc-section">
+    <div class="hgc-header">
+        <h2>How Can We Help?</h2>
+        <p>Choose the best way to reach us for your specific needs.</p>
+    </div>
+    <div class="hgc-grid">
+        <a href="#sales" class="hgc-card" onclick="document.querySelector('[data-page=sales]').click(); return false;">
+            <div class="hgc-icon" style="background:rgba(0,119,182,0.1);color:#0077b6;"><i class="bi bi-graph-up-arrow"></i></div>
+            <h3>Sales Inquiry</h3><p>Get a custom quote for your business.</p>
+            <span class="hgc-link">Contact Sales <i class="bi bi-arrow-right"></i></span>
+        </a>
+        <a href="#support" class="hgc-card" onclick="document.querySelector('[data-page=support]').click(); return false;">
+            <div class="hgc-icon" style="background:rgba(0,180,216,0.1);color:#00b4d8;"><i class="bi bi-headset"></i></div>
+            <h3>Technical Support</h3><p>Get help with our products.</p>
+            <span class="hgc-link">Get Support <i class="bi bi-arrow-right"></i></span>
+        </a>
+        <a href="#send-message" class="hgc-card" onclick="document.querySelector('[data-page=send-message]').click(); return false;">
+            <div class="hgc-icon" style="background:rgba(72,202,228,0.1);color:#48cae4;"><i class="bi bi-chat-square-text"></i></div>
+            <h3>General Inquiry</h3><p>Have a question? Send us a message.</p>
+            <span class="hgc-link">Send Message <i class="bi bi-arrow-right"></i></span>
+        </a>
+    </div>
+</div>
