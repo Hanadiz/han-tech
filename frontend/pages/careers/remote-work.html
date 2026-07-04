@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Work | Han-Tech Ltd</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Same base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary: #0a2463;
+            --accent: #e67e22;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-200: #e2e8f0;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-800: #1e293b;
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --radius: 0.75rem;
+            --font-sans: 'Inter', sans-serif;
+            --font-poppins: 'Poppins', sans-serif;
+        }
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: var(--white);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .section-tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .section-title {
+            font-family: var(--font-poppins);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--gray-500);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .section {
+            padding: 80px 0;
+        }
+        .section-light {
+            background: var(--gray-50);
+        }
+
+        .page-header {
+            padding: 120px 0 40px;
+            background: linear-gradient(135deg, #0a2463, #1e3a8a);
+            color: white;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-family: var(--font-poppins);
+            font-size: 3rem;
+            font-weight: 800;
+        }
+        .page-header h1 span {
+            color: var(--accent);
+        }
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .remote-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .remote-content h2 {
+            font-family: var(--font-poppins);
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .remote-content p {
+            color: var(--gray-600);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        .remote-content ul {
+            list-style: none;
+            padding: 0;
+        }
+        .remote-content ul li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray-600);
+        }
+        .remote-content ul li i {
+            color: #10b981;
+        }
+        .remote-image {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            border-radius: 1.5rem;
+            padding: 3rem;
+            text-align: center;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .remote-image i {
+            font-size: 5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .remote-image p {
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .benefit-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid var(--gray-200);
+            text-align: center;
+        }
+        .benefit-item .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .benefit-item h4 {
+            font-family: var(--font-poppins);
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+        .benefit-item p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+
+        @media (max-width: 1024px) {
+            .remote-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .section {
+                padding: 50px 0;
+            }
+            .remote-content h2 {
+                font-size: 1.6rem;
+            }
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 1.6rem;
+            }
+            .section-title {
+                font-size: 1.7rem;
+            }
+        }
+
+        [data-theme="dark"] body {
+            background: #12121e;
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .section-light {
+            background: #1a1a2e;
+        }
+        [data-theme="dark"] .section-title {
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .remote-content p {
+            color: #94a3b8;
+        }
+        [data-theme="dark"] .remote-content ul li {
+            color: #94a3b8;
+        }
+        [data-theme="dark"] .benefit-item {
+            background: #2d2d44;
+            border-color: #3d3d5c;
+        }
+        [data-theme="dark"] .benefit-item h4 {
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .benefit-item p {
+            color: #94a3b8;
+        }
+        [data-theme="dark"] .remote-image {
+            background: #2d2d44;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Remote <span>Work</span></h1>
+            <p>Flexible work arrangements for a better work-life balance</p>
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <div class="remote-grid">
+                <div class="remote-content" data-aos="fade-right">
+                    <span class="section-tag">Flexibility</span>
+                    <h2>Work From Anywhere</h2>
+                    <p>At Han-Tech, we believe in giving our team the flexibility to work where they're most productive. Our remote work policy enables you to maintain a healthy work-life balance while delivering exceptional results.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Fully remote or hybrid options</li>
+                        <li><i class="fas fa-check-circle"></i> Flexible working hours</li>
+                        <li><i class="fas fa-check-circle"></i> Regular virtual team meetings</li>
+                        <li><i class="fas fa-check-circle"></i> Collaboration tools and support</li>
+                        <li><i class="fas fa-check-circle"></i> Annual team retreats</li>
+                    </ul>
+                </div>
+                <div class="remote-image" data-aos="fade-left">
+                    <i class="fas fa-laptop-house"></i>
+                    <p>Work from home, office, or anywhere in between</p>
+                </div>
+            </div>
+
+            <div style="margin-top:3rem;">
+                <div class="section-header" style="text-align:center; margin-bottom:50px;">
+                    <span class="section-tag">Benefits</span>
+                    <h2 class="section-title">Remote Work <span style="color: var(--accent);">Benefits</span></h2>
+                    <p class="section-subtitle">How we support our remote team members</p>
+                </div>
+                <div class="benefits-grid">
+                    <div class="benefit-item" data-aos="fade-up" data-aos-delay="0">
+                        <div class="icon">💻</div>
+                        <h4>Equipment Stipend</h4>
+                        <p>Budget for home office setup and equipment</p>
+                    </div>
+                    <div class="benefit-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon">📶</div>
+                        <h4>Internet Allowance</h4>
+                        <p>Monthly subsidy for high-speed internet</p>
+                    </div>
+                    <div class="benefit-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="icon">🎮</div>
+                        <h4>Virtual Social Events</h4>
+                        <p>Regular virtual hangouts and team building</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 600, once: true, offset: 50 });
+
+        async function loadComponent(url, id) {
+            try {
+                const res = await fetch(url);
+                const html = await res.text();
+                document.getElementById(id).innerHTML = html;
+            } catch (e) { console.error(`Failed to load ${url}:`, e); }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadComponent('/components/header.html', 'header-placeholder');
+            loadComponent('/components/footer.html', 'footer-placeholder');
+        });
+    </script>
+
+</body>
+</html>
