@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Apply | Han-Tech Ltd Careers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Same base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary: #0a2463;
+            --accent: #e67e22;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-200: #e2e8f0;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-800: #1e293b;
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --radius: 0.75rem;
+            --font-sans: 'Inter', sans-serif;
+            --font-poppins: 'Poppins', sans-serif;
+        }
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: var(--white);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .section-tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .section-title {
+            font-family: var(--font-poppins);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--gray-500);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .section {
+            padding: 80px 0;
+        }
+        .section-light {
+            background: var(--gray-50);
+        }
+
+        .page-header {
+            padding: 120px 0 40px;
+            background: linear-gradient(135deg, #0a2463, #1e3a8a);
+            color: white;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-family: var(--font-poppins);
+            font-size: 3rem;
+            font-weight: 800;
+        }
+        .page-header h1 span {
+            color: var(--accent);
+        }
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .step-item {
+            text-align: center;
+        }
+        .step-item .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-poppins);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 0 auto 1rem;
+        }
+        .step-item h3 {
+            font-family: var(--font-poppins);
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+        .step-item p {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .tip-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid var(--gray-200);
+        }
+        .tip-card .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .tip-card h4 {
+            font-family: var(--font-poppins);
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+        .tip-card p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+
+        @media (max-width: 1024px) {
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .section {
+                padding: 50px 0;
+            }
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 1.6rem;
+            }
+            .section-title {
+                font-size: 1.7rem;
+            }
+        }
+
+        [data-theme="dark"] body {
+            background: #12121e;
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .section-light {
+            background: #1a1a2e;
+        }
+        [data-theme="dark"] .section-title {
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .step-item h3 {
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .step-item p {
+            color: #94a3b8;
+        }
+        [data-theme="dark"] .tip-card {
+            background: #2d2d44;
+            border-color: #3d3d5c;
+        }
+        [data-theme="dark"] .tip-card h4 {
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .tip-card p {
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>How to <span>Apply</span></h1>
+            <p>Follow these simple steps to join our team</p>
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <div class="section-header" style="text-align:center; margin-bottom:50px;">
+                <span class="section-tag">Process</span>
+                <h2 class="section-title">Application <span style="color: var(--accent);">Steps</span></h2>
+                <p class="section-subtitle">Four simple steps to start your career with us</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-item" data-aos="fade-up" data-aos-delay="0">
+                    <div class="step-number">1</div>
+                    <h3>Find Your Role</h3>
+                    <p>Browse our open positions and find the role that matches your skills and career goals.</p>
+                </div>
+                <div class="step-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">2</div>
+                    <h3>Submit Application</h3>
+                    <p>Fill out the application form and upload your CV and cover letter online.</p>
+                </div>
+                <div class="step-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">3</div>
+                    <h3>Interview Process</h3>
+                    <p>If shortlisted, you'll be invited for interviews and assessments.</p>
+                </div>
+                <div class="step-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">4</div>
+                    <h3>Offer & Onboarding</h3>
+                    <p>Receive your offer and join our team for an exciting onboarding experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-white">
+        <div class="container">
+            <div class="section-header" style="text-align:center; margin-bottom:50px;">
+                <span class="section-tag">Tips</span>
+                <h2 class="section-title">Application <span style="color: var(--accent);">Tips</span></h2>
+                <p class="section-subtitle">Make your application stand out</p>
+            </div>
+            <div class="tips-grid">
+                <div class="tip-card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="icon">📝</div>
+                    <h4>Tailor Your CV</h4>
+                    <p>Customize your CV to highlight relevant skills and experience for the specific role.</p>
+                </div>
+                <div class="tip-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon">✉️</div>
+                    <h4>Write a Cover Letter</h4>
+                    <p>Explain why you're interested in the role and how you can contribute to our team.</p>
+                </div>
+                <div class="tip-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon">🔍</div>
+                    <h4>Research Our Company</h4>
+                    <p>Show that you understand our mission, values, and the work we do.</p>
+                </div>
+                <div class="tip-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="icon">💪</div>
+                    <h4>Show Your Skills</h4>
+                    <p>Provide examples of your work, projects, or achievements that demonstrate your abilities.</p>
+                </div>
+                <div class="tip-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="icon">🤝</div>
+                    <h4>Follow Up</h4>
+                    <p>Send a thank-you note after your interview to show your appreciation and interest.</p>
+                </div>
+                <div class="tip-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="icon">✅</div>
+                    <h4>Be Authentic</h4>
+                    <p>Be yourself and let your personality and passion shine through in your application.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 600, once: true, offset: 50 });
+
+        async function loadComponent(url, id) {
+            try {
+                const res = await fetch(url);
+                const html = await res.text();
+                document.getElementById(id).innerHTML = html;
+            } catch (e) { console.error(`Failed to load ${url}:`, e); }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadComponent('/components/header.html', 'header-placeholder');
+            loadComponent('/components/footer.html', 'footer-placeholder');
+        });
+    </script>
+
+</body>
+</html>
