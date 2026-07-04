@@ -1,0 +1,370 @@
+<!-- pages/contact/index.html -->
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Contact Us | Han-Tech Ltd - Uganda's Complete Technology Partner</title>
+    <meta name="description" content="Get in touch with Han-Tech Ltd for IT solutions, cloud services, cybersecurity, and technology support in Uganda.">
+    <meta name="keywords" content="contact Han-Tech, IT support Uganda, technology contact, Kampala IT services">
+    <meta name="author" content="Han-Tech Ltd">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hantech.com/pages/contact/">
+    <meta property="og:title" content="Contact Us | Han-Tech Ltd">
+    <meta property="og:description" content="Get in touch with Han-Tech Ltd for all your technology needs in Uganda.">
+    <link rel="icon" type="image/x-icon" href="/assets/images/logo/favicon.ico">
+    <link rel="canonical" href="https://hantech.com/pages/contact/">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #0077b6;
+            --primary-dark: #023e8a;
+            --primary-light: #00b4d8;
+            --primary-lighter: #48cae4;
+            --dark-bg: #0a0e27;
+            --dark-secondary: #1a1f3a;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --success: #10b981;
+            --error: #ef4444;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-2xl: 24px;
+            --radius-full: 50px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        [data-theme="dark"] {
+            --white: #16162a;
+            --gray-50: #0f0f1a;
+            --gray-100: #1a1a2e;
+            --gray-200: #252540;
+            --gray-300: #353550;
+            --gray-500: #94a3b8;
+            --gray-600: #64748b;
+            --gray-700: #cbd5e1;
+            --gray-800: #e2e8f0;
+            --gray-900: #f1f5f9;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+            background: var(--gray-50); 
+            color: var(--gray-800);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--gray-100); }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 10px; }
+        ::selection { background: rgba(0, 180, 216, 0.25); color: var(--gray-900); }
+        
+        .page-hero { 
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 40%, #0f1535 100%); 
+            color: #fff; padding: 140px 0 80px; text-align: center; position: relative; overflow: hidden; 
+        }
+        .page-hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(0,119,182,0.12) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(0,180,216,0.08) 0%, transparent 50%);
+            animation: rotateBg 25s linear infinite;
+        }
+        @keyframes rotateBg { to { transform: rotate(360deg); } }
+        .page-hero h1 { 
+            font-family: 'Poppins', sans-serif; font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; 
+            position: relative; z-index: 2; 
+        }
+        .page-hero .highlight {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light), var(--primary-lighter));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .page-hero .subtitle { 
+            color: rgba(255,255,255,0.7); font-size: 1.1rem; position: relative; z-index: 2; 
+            max-width: 550px; margin: 16px auto 0; 
+        }
+        
+        .contact-layout {
+            padding: 80px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+        .contact-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        .section-divider {
+            padding: 0 0 80px;
+        }
+        
+        .loader-placeholder {
+            background: var(--gray-100);
+            border-radius: var(--radius-xl);
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-400);
+            font-size: 0.9rem;
+        }
+        [data-theme="dark"] .loader-placeholder {
+            background: rgba(255,255,255,0.02);
+        }
+        .loader-placeholder::after {
+            content: 'Loading...';
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+        
+        /* Toast system */
+        .toast-container {
+            position: fixed; bottom: 24px; right: 24px; z-index: 10000;
+            display: flex; flex-direction: column; gap: 12px; pointer-events: none; max-width: 420px;
+        }
+        .toast {
+            background: var(--white); color: var(--gray-800);
+            padding: 16px 20px; border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl); pointer-events: all;
+            animation: slideInRight 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-left: 4px solid var(--success); font-size: 0.9rem; font-weight: 500;
+            display: flex; align-items: center; gap: 10px;
+        }
+        [data-theme="dark"] .toast { background: var(--gray-800); color: #e2e8f0; }
+        .toast.error { border-left-color: var(--error); }
+        .toast.warning { border-left-color: var(--warning); }
+        .toast.info { border-left-color: var(--info); }
+        .toast .toast-close { margin-left: auto; cursor: pointer; opacity: 0.5; background: none; border: none; color: inherit; font-size: 1.1rem; padding: 4px; }
+        .toast .toast-close:hover { opacity: 1; }
+        .toast.removing { animation: slideOutRight 0.3s ease forwards; }
+        @keyframes slideInRight { from { transform: translateX(120%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideOutRight { from { transform: translateX(0); opacity: 1; } to { transform: translateX(120%); opacity: 0; } }
+        
+        @media (max-width: 992px) {
+            .contact-layout { grid-template-columns: 1fr; max-width: 650px; margin-left: auto; margin-right: auto; }
+            .contact-sidebar { order: 2; }
+            #contact-form-loader { order: 1; }
+        }
+        @media (max-width: 768px) {
+            .page-hero { padding: 110px 0 50px; }
+            .page-hero h1 { font-size: 1.8rem; }
+            .contact-layout { padding: 40px 0; gap: 20px; }
+            .section-divider { padding-bottom: 40px; }
+            .toast-container { left: 16px; right: 16px; bottom: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div id="header-container"></div>
+    
+    <!-- Hero Section -->
+    <section class="page-hero" aria-labelledby="hero-heading">
+        <div class="container">
+            <h1 id="hero-heading">Get in <span class="highlight">Touch</span></h1>
+            <p class="subtitle">We'd love to hear from you. Reach out and let's discuss how we can transform your business with technology.</p>
+        </div>
+    </section>
+    
+    <!-- Main Contact Layout -->
+    <div class="container">
+        <div class="contact-layout">
+            <!-- Left Sidebar -->
+            <div class="contact-sidebar">
+                <div class="loader-placeholder" id="contact-info-loader"></div>
+                <div class="loader-placeholder" id="hours-loader"></div>
+                <div class="loader-placeholder" id="social-loader"></div>
+            </div>
+            <!-- Right Column - Form -->
+            <div class="loader-placeholder" id="contact-form-loader" style="min-height: 500px;"></div>
+        </div>
+    </div>
+    
+    <!-- Map Section -->
+    <div class="section-divider">
+        <div class="container">
+            <div class="loader-placeholder" id="map-loader" style="min-height: 350px;"></div>
+        </div>
+    </div>
+    
+    <!-- Newsletter Section -->
+    <div class="section-divider">
+        <div class="container">
+            <div class="loader-placeholder" id="newsletter-loader"></div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div id="footer-container"></div>
+    
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        (function() {
+            'use strict';
+            
+            // Initialize AOS
+            if (typeof AOS !== 'undefined') {
+                AOS.init({ duration: 600, once: true, offset: 40 });
+            }
+            
+            // Global Toast System
+            window.showToast = function(message, type, duration) {
+                type = type || 'success';
+                duration = duration || 4000;
+                
+                const icons = { success: '✓', error: '✕', warning: '⚠', info: 'ℹ' };
+                const colors = { success: '#10b981', error: '#ef4444', warning: '#f59e0b', info: '#3b82f6' };
+                const color = colors[type] || colors.info;
+                
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                toast.className = 'toast ' + type;
+                toast.setAttribute('role', 'alert');
+                toast.innerHTML = 
+                    '<span style="width:24px;height:24px;min-width:24px;border-radius:50%;background:' + color + 
+                    ';color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;">' + 
+                    icons[type] + '</span>' +
+                    '<span style="flex:1;">' + message + '</span>' +
+                    '<button class="toast-close" aria-label="Close">×</button>';
+                
+                container.appendChild(toast);
+                
+                // Close button
+                toast.querySelector('.toast-close').addEventListener('click', function() {
+                    removeToast(toast);
+                });
+                
+                // Auto remove
+                let timer;
+                if (duration > 0) {
+                    timer = setTimeout(function() { removeToast(toast); }, duration);
+                }
+                
+                // Pause on hover
+                toast.addEventListener('mouseenter', function() { clearTimeout(timer); });
+                toast.addEventListener('mouseleave', function() {
+                    timer = setTimeout(function() { removeToast(toast); }, 2000);
+                });
+                
+                function removeToast(el) {
+                    el.classList.add('removing');
+                    setTimeout(function() { if (el.parentNode) el.remove(); }, 300);
+                }
+            };
+            
+            // Component Loader with retry
+            async function loadComponent(url, containerId, retries) {
+                retries = retries || 2;
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                
+                for (let i = 0; i <= retries; i++) {
+                    try {
+                        const resp = await fetch(url);
+                        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+                        const html = await resp.text();
+                        
+                        const temp = document.createElement('div');
+                        temp.innerHTML = html;
+                        const content = temp.firstElementChild || temp;
+                        
+                        // Replace loader
+                        container.replaceWith(content);
+                        // Update the element's id for any subsequent reference
+                        if (content.id !== containerId) {
+                            content.setAttribute('data-original-id', containerId);
+                        }
+                        
+                        // Execute any scripts
+                        temp.querySelectorAll('script').forEach(function(s) {
+                            const ns = document.createElement('script');
+                            if (s.src) {
+                                ns.src = s.src;
+                            } else {
+                                ns.textContent = s.textContent;
+                            }
+                            document.body.appendChild(ns).remove();
+                        });
+                        
+                        return;
+                    } catch (e) {
+                        console.warn('Load attempt ' + (i + 1) + ' failed for ' + url + ':', e.message);
+                        if (i === retries) {
+                            container.innerHTML = 
+                                '<div style="padding:20px;color:#ef4444;text-align:center;background:var(--gray-100);border-radius:var(--radius-xl);">' +
+                                '<i class="bi bi-exclamation-triangle-fill"></i> Failed to load component<br>' +
+                                '<small><a href="' + url + '" style="color:#0077b6;">Open directly →</a></small>' +
+                                '</div>';
+                        } else {
+                            await new Promise(function(r) { setTimeout(r, 1000 * (i + 1)); });
+                        }
+                    }
+                }
+            }
+            
+            // Load all components when DOM is ready
+            async function init() {
+                const components = [
+                    { url: '/components/layouts/header.html', container: 'header-container' },
+                    { url: '/pages/contact/contact-form.html', container: 'contact-form-loader' },
+                    { url: '/pages/contact/contact-info.html', container: 'contact-info-loader' },
+                    { url: '/pages/contact/office-hours.html', container: 'hours-loader' },
+                    { url: '/pages/contact/social-links.html', container: 'social-loader' },
+                    { url: '/pages/contact/map-section.html', container: 'map-loader' },
+                    { url: '/pages/contact/newsletter-signup.html', container: 'newsletter-loader' },
+                    { url: '/components/layouts/footer.html', container: 'footer-container' }
+                ];
+                
+                // Load all in parallel (except header/footer which should load first/last)
+                for (const comp of components) {
+                    await loadComponent(comp.url, comp.container);
+                }
+                
+                console.log('%c✅ Han-Tech Contact Page Ready', 'color: #00b4d8; font-weight: bold; font-size: 1.1rem;');
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+        })();
+    </script>
+</body>
+</html>
