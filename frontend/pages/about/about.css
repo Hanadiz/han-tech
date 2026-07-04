@@ -1,0 +1,132 @@
+/* ==========================================
+   ABOUT PAGE – SHARED STYLES
+   ========================================== */
+:root {
+    --primary: #0a2463;
+    --primary-dark: #071b4a;
+    --primary-light: #1e3a8a;
+    --accent: #e67e22;
+    --accent-dark: #d35400;
+    --accent-light: #f39c12;
+    --white: #ffffff;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e1;
+    --gray-400: #94a3b8;
+    --gray-500: #64748b;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-800: #1e293b;
+    --gray-900: #0f172a;
+    --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1);
+    --radius: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-poppins: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    color: var(--gray-800);
+    background: var(--white);
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.section-tag {
+    display: inline-block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.section-title {
+    font-family: var(--font-poppins);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+    font-size: 1.05rem;
+    color: var(--gray-500);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.section {
+    padding: 80px 0;
+}
+
+.section-light {
+    background: var(--gray-50);
+}
+
+.section-white {
+    background: var(--white);
+}
+
+/* Dark Mode */
+[data-theme="dark"] body {
+    background: #12121e;
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .section-light {
+    background: #1a1a2e;
+}
+
+[data-theme="dark"] .section-white {
+    background: #12121e;
+}
+
+[data-theme="dark"] .section-title {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .section-subtitle {
+    color: #94a3b8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    .section {
+        padding: 50px 0;
+    }
+    .section-tag {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.7rem;
+    }
+    .section {
+        padding: 40px 0;
+    }
+}
