@@ -1,0 +1,33 @@
+<!-- pages/incubation/testimonials.html -->
+<style>
+    .itm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .itm-card { background: #fff; border-radius: 20px; padding: 28px; border: 1px solid #e2e8f0; transition: all 0.3s; }
+    [data-theme="dark"] .itm-card { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.06); }
+    .itm-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    .itm-stars { color: #f59e0b; margin-bottom: 12px; font-size: 0.9rem; }
+    .itm-card p { color: #64748b; font-size: 0.9rem; font-style: italic; margin-bottom: 16px; line-height: 1.6; }
+    [data-theme="dark"] .itm-card p { color: rgba(255,255,255,0.6); }
+    .itm-author { display: flex; align-items: center; gap: 12px; }
+    .itm-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #0077b6, #00b4d8); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; }
+    .itm-author h5 { font-weight: 600; font-size: 0.9rem; color: #1e293b; margin: 0; }
+    [data-theme="dark"] .itm-author h5 { color: #fff; }
+    .itm-author small { color: #94a3b8; font-size: 0.8rem; }
+</style>
+
+<div class="itm-grid">
+    <div class="itm-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="itm-stars">★★★★★</div>
+        <p>"Han-Tech's incubation program transformed our idea into a thriving business. The mentorship was invaluable."</p>
+        <div class="itm-author"><div class="itm-avatar">AK</div><div><h5>Alice K.</h5><small>Founder, TechSolve Uganda</small></div></div>
+    </div>
+    <div class="itm-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="itm-stars">★★★★★</div>
+        <p>"The funding connections we made through the program were game-changing. We raised $100K in seed funding."</p>
+        <div class="itm-author"><div class="itm-avatar">PM</div><div><h5>Peter M.</h5><small>CEO, AgriTech Innovations</small></div></div>
+    </div>
+    <div class="itm-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="itm-stars">★★★★★</div>
+        <p>"The resources and workspace provided gave us the perfect environment to build and scale our product."</p>
+        <div class="itm-author"><div class="itm-avatar">SN</div><div><h5>Sarah N.</h5><small>Co-founder, EduBridge</small></div></div>
+    </div>
+</div>
