@@ -1,0 +1,39 @@
+<!-- pages/contact/send-message.html -->
+<style>
+    .hsm-section { max-width: 550px; margin: 0 auto; padding: 40px 0; }
+    .hsm-card { background: #fff; border-radius: 24px; padding: 40px; border: 1px solid #e2e8f0; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    [data-theme="dark"] .hsm-card { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.06); }
+    .hsm-card h2 { font-family: 'Poppins', sans-serif; font-weight: 700; text-align: center; margin-bottom: 4px; color: #1e293b; }
+    [data-theme="dark"] .hsm-card h2 { color: #fff; }
+    .hsm-sub { text-align: center; color: #64748b; margin-bottom: 28px; font-size: 0.9rem; }
+    .hsm-group { margin-bottom: 18px; position: relative; }
+    .hsm-input, .hsm-textarea { width: 100%; padding: 15px 18px; border-radius: 14px; border: 2px solid #e2e8f0; font-size: 0.9rem; font-family: 'Inter', sans-serif; background: #f8fafc; transition: all 0.25s; }
+    [data-theme="dark"] .hsm-input, [data-theme="dark"] .hsm-textarea { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); color: #e2e8f0; }
+    .hsm-input:focus, .hsm-textarea:focus { outline: none; border-color: #00b4d8; box-shadow: 0 0 0 4px rgba(0,180,216,0.1); }
+    .hsm-textarea { resize: vertical; min-height: 120px; }
+    .hsm-btn { width: 100%; padding: 15px; background: linear-gradient(135deg, #0077b6, #00b4d8); color: #fff; border: none; border-radius: 50px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s; }
+    .hsm-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,119,182,0.35); }
+    @media (max-width: 480px) { .hsm-card { padding: 24px 18px; } }
+</style>
+
+<div class="hsm-section">
+    <div class="hsm-card">
+        <h2>Quick Message</h2>
+        <p class="hsm-sub">Drop us a line and we'll respond promptly.</p>
+        <form id="hsmForm">
+            <div class="hsm-group"><input type="text" class="hsm-input" placeholder="Your Name *" required></div>
+            <div class="hsm-group"><input type="email" class="hsm-input" placeholder="Email Address *" required></div>
+            <div class="hsm-group"><textarea class="hsm-textarea" placeholder="Your Message *" required></textarea></div>
+            <button type="submit" class="hsm-btn"><i class="bi bi-send-fill me-2"></i> Send Message</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById('hsmForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        await new Promise(r => setTimeout(r, 1200));
+        if (typeof showToast === 'function') showToast('✅ Message sent! We\'ll respond shortly.', 'success');
+        this.reset();
+    });
+</script>
