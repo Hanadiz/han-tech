@@ -12,11 +12,7 @@
         /* ==========================================
            MASTER STYLES
            ========================================== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --primary: #0a2463;
@@ -48,19 +44,8 @@
             --font-poppins: 'Poppins', sans-serif;
         }
 
-        body {
-            font-family: var(--font-sans);
-            line-height: 1.6;
-            color: var(--gray-800);
-            background: var(--white);
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
+        body { font-family: var(--font-sans); line-height: 1.6; color: var(--gray-800); background: var(--white); overflow-x: hidden; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
         .section-tag {
             display: inline-block;
@@ -71,7 +56,6 @@
             font-weight: 600;
             margin-bottom: 0.75rem;
         }
-
         .section-title {
             font-family: var(--font-poppins);
             font-size: 2.5rem;
@@ -79,25 +63,15 @@
             color: var(--primary);
             margin-bottom: 0.5rem;
         }
-
         .section-subtitle {
             font-size: 1.05rem;
             color: var(--gray-500);
             max-width: 600px;
             margin: 0 auto;
         }
-
-        .section {
-            padding: 80px 0;
-        }
-
-        .section-light {
-            background: var(--gray-50);
-        }
-
-        .section-white {
-            background: var(--white);
-        }
+        .section { padding: 80px 0; }
+        .section-light { background: var(--gray-50); }
+        .section-white { background: var(--white); }
 
         /* ==========================================
            CAREERS HERO
@@ -110,7 +84,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .careers-hero::before {
             content: '';
             position: absolute;
@@ -121,55 +94,14 @@
             background: radial-gradient(circle, rgba(230, 126, 34, 0.1) 0%, transparent 70%);
             pointer-events: none;
         }
-
-        .careers-hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .careers-hero h1 {
-            font-family: var(--font-poppins);
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .careers-hero h1 span {
-            color: var(--accent);
-        }
-
-        .careers-hero p {
-            font-size: 1.15rem;
-            opacity: 0.9;
-            max-width: 650px;
-            margin: 0 auto 2rem;
-            line-height: 1.7;
-        }
-
-        .careers-hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .careers-hero-stats .stat-item {
-            text-align: center;
-        }
-
-        .careers-hero-stats .stat-number {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--accent);
-            line-height: 1;
-        }
-
-        .careers-hero-stats .stat-label {
-            font-size: 0.8rem;
-            opacity: 0.8;
-            margin-top: 0.2rem;
-        }
+        .careers-hero-content { position: relative; z-index: 2; }
+        .careers-hero h1 { font-family: var(--font-poppins); font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; color: white; }
+        .careers-hero h1 span { color: var(--accent); }
+        .careers-hero p { font-size: 1.15rem; opacity: 0.9; max-width: 650px; margin: 0 auto 2rem; line-height: 1.7; }
+        .careers-hero-stats { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+        .careers-hero-stats .stat-item { text-align: center; }
+        .careers-hero-stats .stat-number { font-size: 2.2rem; font-weight: 800; color: var(--accent); line-height: 1; }
+        .careers-hero-stats .stat-label { font-size: 0.8rem; opacity: 0.8; margin-top: 0.2rem; }
 
         /* ==========================================
            QUICK LINKS
@@ -181,7 +113,6 @@
             max-width: 1100px;
             margin: 2rem auto 0;
         }
-
         .quick-link-item {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -194,126 +125,53 @@
             color: white;
             cursor: pointer;
         }
-
-        .quick-link-item:hover {
-            transform: translateY(-6px);
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .quick-link-item i {
-            font-size: 2rem;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-
-        .quick-link-item h4 {
-            font-size: 1rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .quick-link-item p {
-            font-size: 0.8rem;
-            opacity: 0.8;
-        }
-
-        .quick-link-item .scroll-hint {
-            font-size: 0.7rem;
-            opacity: 0.6;
-            margin-top: 0.3rem;
-        }
+        .quick-link-item:hover { transform: translateY(-6px); background: rgba(255, 255, 255, 0.2); }
+        .quick-link-item i { font-size: 2rem; color: var(--accent); margin-bottom: 0.5rem; }
+        .quick-link-item h4 { font-size: 1rem; margin-bottom: 0.2rem; }
+        .quick-link-item p { font-size: 0.8rem; opacity: 0.8; }
+        .quick-link-item .scroll-hint { font-size: 0.7rem; opacity: 0.6; margin-top: 0.3rem; }
 
         /* ==========================================
            LOADING PLACEHOLDER
            ========================================== */
-        .section-placeholder {
-            text-align: center;
-            padding: 3rem;
-            color: var(--gray-400);
-        }
-
+        .section-placeholder { text-align: center; padding: 3rem; color: var(--gray-400); }
         .section-placeholder .spinner {
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             border: 3px solid var(--gray-200);
             border-top-color: var(--accent);
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
             margin: 0 auto 1rem;
         }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
         /* ==========================================
            RESPONSIVE
            ========================================== */
-        @media (max-width: 1024px) {
-            .quick-links {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
+        @media (max-width: 1024px) { .quick-links { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 768px) {
-            .careers-hero h1 {
-                font-size: 2.2rem;
-            }
-            .careers-hero-stats {
-                gap: 1.5rem;
-            }
-            .careers-hero-stats .stat-number {
-                font-size: 1.8rem;
-            }
-            .section-title {
-                font-size: 2rem;
-            }
-            .section {
-                padding: 50px 0;
-            }
-            .quick-links {
-                grid-template-columns: 1fr 1fr;
-            }
+            .careers-hero h1 { font-size: 2.2rem; }
+            .careers-hero-stats { gap: 1.5rem; }
+            .careers-hero-stats .stat-number { font-size: 1.8rem; }
+            .section-title { font-size: 2rem; }
+            .section { padding: 50px 0; }
+            .quick-links { grid-template-columns: 1fr 1fr; }
         }
-
         @media (max-width: 480px) {
-            .careers-hero h1 {
-                font-size: 1.8rem;
-            }
-            .careers-hero-stats {
-                flex-direction: column;
-                gap: 0.8rem;
-            }
-            .quick-links {
-                grid-template-columns: 1fr;
-            }
-            .section-title {
-                font-size: 1.7rem;
-            }
+            .careers-hero h1 { font-size: 1.8rem; }
+            .careers-hero-stats { flex-direction: column; gap: 0.8rem; }
+            .quick-links { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.7rem; }
         }
 
         /* ==========================================
            DARK MODE
            ========================================== */
-        [data-theme="dark"] body {
-            background: #12121e;
-            color: #e0e0e0;
-        }
-
-        [data-theme="dark"] .section-light {
-            background: #1a1a2e;
-        }
-
-        [data-theme="dark"] .section-white {
-            background: #12121e;
-        }
-
-        [data-theme="dark"] .section-title {
-            color: #e0e0e0;
-        }
-
-        [data-theme="dark"] .section-subtitle {
-            color: #94a3b8;
-        }
+        [data-theme="dark"] body { background: #12121e; color: #e0e0e0; }
+        [data-theme="dark"] .section-light { background: #1a1a2e; }
+        [data-theme="dark"] .section-white { background: #12121e; }
+        [data-theme="dark"] .section-title { color: #e0e0e0; }
+        [data-theme="dark"] .section-subtitle { color: #94a3b8; }
     </style>
 </head>
 <body>
@@ -333,22 +191,10 @@
                 <h1>Build Your Career With <span>Han-Tech</span></h1>
                 <p>Join Uganda's leading IT solutions provider and help us transform businesses across Africa. We're looking for passionate, innovative people to join our growing team.</p>
                 <div class="careers-hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">500+</div>
-                        <div class="stat-label">Clients Served</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">15</div>
-                        <div class="stat-label">Service Categories</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">25+</div>
-                        <div class="stat-label">Team Members</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">4.9</div>
-                        <div class="stat-label">Employee Rating</div>
-                    </div>
+                    <div class="stat-item"><div class="stat-number">500+</div><div class="stat-label">Clients Served</div></div>
+                    <div class="stat-item"><div class="stat-number">15</div><div class="stat-label">Service Categories</div></div>
+                    <div class="stat-item"><div class="stat-number">25+</div><div class="stat-label">Team Members</div></div>
+                    <div class="stat-item"><div class="stat-number">4.9</div><div class="stat-label">Employee Rating</div></div>
                 </div>
             </div>
         </div>
@@ -389,98 +235,42 @@
     <!-- ==========================================
     SECTION 3: WHY WORK WITH US
     ========================================== -->
-    <div id="why-work-placeholder" class="section section-white">
-        <div class="container">
-            <div class="section-placeholder">
-                <div class="spinner"></div>
-                <p>Loading Why Work With Us...</p>
-            </div>
-        </div>
-    </div>
+    <div id="why-work-placeholder" class="section section-white"><div class="container"><div class="section-placeholder"><div class="spinner"></div><p>Loading Why Work With Us...</p></div></div></div>
 
     <!-- ==========================================
     SECTION 4: CULTURE & PERKS
     ========================================== -->
-    <div id="culture-perks-placeholder" class="section section-light">
-        <div class="container">
-            <div class="section-placeholder">
-                <div class="spinner"></div>
-                <p>Loading Culture & Perks...</p>
-            </div>
-        </div>
-    </div>
+    <div id="culture-perks-placeholder" class="section section-light"><div class="container"><div class="section-placeholder"><div class="spinner"></div><p>Loading Culture & Perks...</p></div></div></div>
 
     <!-- ==========================================
     SECTION 5: OPEN POSITIONS
     ========================================== -->
-    <div id="open-positions-placeholder" class="section section-white">
-        <div class="container">
-            <div class="section-placeholder">
-                <div class="spinner"></div>
-                <p>Loading Open Positions...</p>
-            </div>
-        </div>
-    </div>
+    <div id="open-positions-placeholder" class="section section-white"><div class="container"><div class="section-placeholder"><div class="spinner"></div><p>Loading Open Positions...</p></div></div></div>
 
     <!-- ==========================================
     SECTION 6: INTERNSHIPS
     ========================================== -->
-    <div id="internships-placeholder" class="section section-light">
-        <div class="container">
-            <div class="section-placeholder">
-                <div class="spinner"></div>
-                <p>Loading Internships...</p>
-            </div>
-        </div>
-    </div>
+    <div id="internships-placeholder" class="section section-light"><div class="container"><div class="section-placeholder"><div class="spinner"></div><p>Loading Internships...</p></div></div></div>
 
     <!-- ==========================================
     SECTION 7: REMOTE WORK
     ========================================== -->
-    <div id="remote-work-placeholder" class="section section-white">
-        <div class="container">
-            <div class="section-placeholder">
-                <div class="spinner"></div>
-                <p>Loading Remote Work...</p>
-            </div>
-        </div>
-    </div>
+    <div id="remote-work-placeholder" class="section section-white"><div class="container"><div class="section-placeholder"><div class="spinner"></div><p>Loading Remote Work...</p></div></div></div>
 
     <!-- ==========================================
     SECTION 8: TESTIMONIALS
     ========================================== -->
-    <div id="testimonials-placeholder" class="section section-light">
-        <div class="container">
-            <div class="section-placeholder">
-                <div class="spinner"></div>
-                <p>Loading Testimonials...</p>
-            </div>
-        </div>
-    </div>
+    <div id="testimonials-placeholder" class="section section-light"><div class="container"><div class="section-placeholder"><div class="spinner"></div><p>Loading Testimonials...</p></div></div></div>
 
     <!-- ==========================================
     SECTION 9: HOW TO APPLY
     ========================================== -->
-    <div id="how-to-apply-placeholder" class="section section-white">
-        <div class="container">
-            <div class="section-placeholder">
-                <div class="spinner"></div>
-                <p>Loading How to Apply...</p>
-            </div>
-        </div>
-    </div>
+    <div id="how-to-apply-placeholder" class="section section-white"><div class="container"><div class="section-placeholder"><div class="spinner"></div><p>Loading How to Apply...</p></div></div></div>
 
     <!-- ==========================================
     SECTION 10: CTA
     ========================================== -->
-    <div id="cta-placeholder" class="section">
-        <div class="container">
-            <div class="section-placeholder">
-                <div class="spinner"></div>
-                <p>Loading Call to Action...</p>
-            </div>
-        </div>
-    </div>
+    <div id="cta-placeholder" class="section"><div class="container"><div class="section-placeholder"><div class="spinner"></div><p>Loading Call to Action...</p></div></div></div>
 
     <!-- ==========================================
     FOOTER
@@ -524,11 +314,7 @@
         // ==========================================
         // AOS INIT
         // ==========================================
-        AOS.init({
-            duration: 600,
-            once: true,
-            offset: 50
-        });
+        AOS.init({ duration: 600, once: true, offset: 50 });
 
         // ==========================================
         // SCROLL TO SECTION
@@ -548,30 +334,14 @@
                 const container = document.getElementById(placeholderId);
                 if (!container) return;
 
-                // Show loading state
-                container.innerHTML = `
-                        <div class="container">
-                            <div class="section-placeholder">
-                                <div class="spinner"></div>
-                                <p>Loading...</p>
-                            </div>
-                        </div>
-                    `;
-
                 const response = await fetch(url);
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
                 const html = await response.text();
-
-                // Replace placeholder content with loaded content
                 container.innerHTML = html;
 
-                // Re-run AOS for new content
-                if (typeof AOS !== 'undefined') {
-                    AOS.refresh();
-                }
+                if (typeof AOS !== 'undefined') { AOS.refresh(); }
 
-                // Execute any scripts in the loaded content
                 const scripts = container.querySelectorAll('script');
                 scripts.forEach(oldScript => {
                     const newScript = document.createElement('script');
@@ -604,16 +374,14 @@
         }
 
         // ==========================================
-        // LOAD ALL COMPONENTS IN SEQUENCE
+        // LOAD ALL COMPONENTS
         // ==========================================
         async function loadAllComponents() {
             console.log('🚀 Loading careers page components...');
 
-            // Load header and footer first
             await loadComponent(COMPONENTS.header, PLACEHOLDERS.header);
             await loadComponent(COMPONENTS.footer, PLACEHOLDERS.footer);
 
-            // Load all content sections in parallel
             const sectionPromises = [
                 loadComponent(COMPONENTS.whyWork, PLACEHOLDERS.whyWork),
                 loadComponent(COMPONENTS.culturePerks, PLACEHOLDERS.culturePerks),
@@ -626,28 +394,19 @@
             ];
 
             await Promise.all(sectionPromises);
-
             console.log('✅ All components loaded successfully');
         }
 
         // ==========================================
         // INITIALIZE
         // ==========================================
-        document.addEventListener('DOMContentLoaded', () => {
-            loadAllComponents();
-        });
+        document.addEventListener('DOMContentLoaded', loadAllComponents);
 
-        // ==========================================
-        // HANDLE NAVIGATION FROM OTHER PAGES
-        // ==========================================
-        // If URL has hash, scroll to that section after loading
         window.addEventListener('load', () => {
             const hash = window.location.hash;
             if (hash) {
                 const sectionId = hash.replace('#', '');
-                setTimeout(() => {
-                    scrollToSection(sectionId);
-                }, 1500);
+                setTimeout(() => { scrollToSection(sectionId); }, 1500);
             }
         });
 
