@@ -1,4 +1,4 @@
-<!-- Partners Section -->
+<!-- Partners Section - 4x4 Grid -->
 <section class="partners-section section section-white" id="partners">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
@@ -7,7 +7,7 @@
             <p class="section-subtitle">Collaborating with industry leaders to deliver world-class solutions</p>
         </div>
 
-        <div class="partners-grid">
+        <div class="partners-grid partners-grid-4">
             <div class="partner-item" data-aos="fade-up" data-aos-delay="0">
                 <div class="partner-icon-wrapper" style="background: rgba(0, 164, 239, 0.1);">
                     <i class="fab fa-microsoft" style="color: #00a4ef;"></i>
@@ -76,7 +76,7 @@
 </section>
 
 <style>
-    .partners-grid {
+    .partners-grid-4 {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 1.5rem;
@@ -90,7 +90,7 @@
         padding: 1.8rem 1.2rem;
         text-align: center;
         border: 1px solid #e2e8f0;
-        transition: all 0.9s ease;
+        transition: all 0.3s ease;
         cursor: pointer;
     }
 
@@ -114,7 +114,7 @@
         justify-content: center;
         border-radius: 1rem;
         font-size: 2rem;
-        transition: all 0.6s ease;
+        transition: all 0.3s ease;
     }
 
     .partner-item:hover .partner-icon-wrapper {
@@ -146,13 +146,13 @@
     }
 
     @media (max-width: 992px) {
-        .partners-grid {
+        .partners-grid-4 {
             grid-template-columns: repeat(2, 1fr);
         }
     }
 
     @media (max-width: 768px) {
-        .partners-grid {
+        .partners-grid-4 {
             grid-template-columns: 1fr 1fr;
             max-width: 400px;
         }
@@ -167,7 +167,7 @@
     }
 
     @media (max-width: 480px) {
-        .partners-grid {
+        .partners-grid-4 {
             grid-template-columns: 1fr;
         }
     }
