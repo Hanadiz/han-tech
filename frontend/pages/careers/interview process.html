@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Process | Han-Tech Ltd Careers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Same base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary: #0a2463;
+            --accent: #e67e22;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-200: #e2e8f0;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-800: #1e293b;
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --radius: 0.75rem;
+            --font-sans: 'Inter', sans-serif;
+            --font-poppins: 'Poppins', sans-serif;
+        }
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: var(--white);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .section-tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .section-title {
+            font-family: var(--font-poppins);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--gray-500);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .section {
+            padding: 80px 0;
+        }
+        .section-light {
+            background: var(--gray-50);
+        }
+
+        .page-header {
+            padding: 120px 0 40px;
+            background: linear-gradient(135deg, #0a2463, #1e3a8a);
+            color: white;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-family: var(--font-poppins);
+            font-size: 3rem;
+            font-weight: 800;
+        }
+        .page-header h1 span {
+            color: var(--accent);
+        }
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .process-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            padding-left: 3rem;
+        }
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--accent), var(--primary));
+        }
+        .process-step {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+        .process-step .step-marker {
+            position: absolute;
+            left: -2.5rem;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-poppins);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .process-step .step-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid var(--gray-200);
+        }
+        .process-step .step-content h3 {
+            font-family: var(--font-poppins);
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+        .process-step .step-content p {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid var(--gray-200);
+        }
+        .faq-item h4 {
+            font-family: var(--font-poppins);
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+        .faq-item p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .section {
+                padding: 50px 0;
+            }
+            .process-timeline {
+                padding-left: 2.5rem;
+            }
+            .process-step .step-marker {
+                left: -2rem;
+                width: 35px;
+                height: 35px;
+                font-size: 0.85rem;
+            }
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 1.6rem;
+            }
+            .section-title {
+                font-size: 1.7rem;
+            }
+        }
+
+        [data-theme="dark"] body {
+            background: #12121e;
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .section-light {
+            background: #1a1a2e;
+        }
+        [data-theme="dark"] .section-title {
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .process-step .step-content {
+            background: #2d2d44;
+            border-color: #3d3d5c;
+        }
+        [data-theme="dark"] .process-step .step-content h3 {
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .process-step .step-content p {
+            color: #94a3b8;
+        }
+        [data-theme="dark"] .faq-item {
+            background: #2d2d44;
+            border-color: #3d3d5c;
+        }
+        [data-theme="dark"] .faq-item h4 {
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .faq-item p {
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Interview <span>Process</span></h1>
+            <p>What to expect when you apply</p>
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <div class="section-header" style="text-align:center; margin-bottom:50px;">
+                <span class="section-tag">Journey</span>
+                <h2 class="section-title">Your Interview <span style="color: var(--accent);">Journey</span></h2>
+                <p class="section-subtitle">A transparent and supportive process from application to offer</p>
+            </div>
+
+            <div class="process-timeline">
+                <div class="process-step" data-aos="fade-right" data-aos-delay="0">
+                    <div class="step-marker">1</div>
+                    <div class="step-content">
+                        <h3>Application Review</h3>
+                        <p>Our HR team reviews your application and CV. We look for skills, experience, and alignment with our values. You'll hear back within 5 business days.</p>
+                    </div>
+                </div>
+                <div class="process-step" data-aos="fade-right" data-aos-delay="100">
+                    <div class="step-marker">2</div>
+                    <div class="step-content">
+                        <h3>Initial Screening Call</h3>
+                        <p>A 30-minute phone or video call with our recruiter to discuss your background, career goals, and fit for the role.</p>
+                    </div>
+                </div>
+                <div class="process-step" data-aos="fade-right" data-aos-delay="200">
+                    <div class="step-marker">3</div>
+                    <div class="step-content">
+                        <h3>Technical Assessment</h3>
+                        <p>For technical roles, you'll complete a practical test or coding challenge to demonstrate your skills. We provide clear instructions and support.</p>
+                    </div>
+                </div>
+                <div class="process-step" data-aos="fade-right" data-aos-delay="300">
+                    <div class="step-marker">4</div>
+                    <div class="step-content">
+                        <h3>Final Interview</h3>
+                        <p>A deeper conversation with the hiring manager and team members. We'll discuss your experience, problem-solving approach, and how you'd contribute to our team.</p>
+                    </div>
+                </div>
+                <div class="process-step" data-aos="fade-right" data-aos-delay="400">
+                    <div class="step-marker">5</div>
+                    <div class="step-content">
+                        <h3>Offer & Onboarding</h3>
+                        <p>If successful, you'll receive a written offer. Once accepted, our onboarding team will help you get started and settle into your new role.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 600, once: true, offset: 50 });
+
+        async function loadComponent(url, id) {
+            try {
+                const res = await fetch(url);
+                const html = await res.text();
+                document.getElementById(id).innerHTML = html;
+            } catch (e) { console.error(`Failed to load ${url}:`, e); }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadComponent('/components/header.html', 'header-placeholder');
+            loadComponent('/components/footer.html', 'footer-placeholder');
+        });
+    </script>
+
+</body>
+</html>
