@@ -26,12 +26,10 @@
         .back-to-top:hover { transform: translateY(-4px) !important; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); }
     </style>
 </head>
-  
 <body>
-
-  
-
+    <div id="header-container"></div>
     <div id="hero-container"></div>
+    <div id="inc-header-container"></div>           <!-- Incubation sub‑nav -->
     <div id="program-cards-container"></div>
     <div id="stats-bar-container"></div>
     <div id="programs-container"></div>
@@ -62,6 +60,7 @@
             await load('/components/layouts/header.html', 'header-container');
             await load('/components/layouts/footer.html', 'footer-container');
             await load('/incubation/hero.html', 'hero-container');
+            await load('/incubation/header.html', 'inc-header-container');    // Incubation sub‑nav
             await load('/incubation/program-cards.html', 'program-cards-container');
             await load('/incubation/stats-bar.html', 'stats-bar-container');
             await load('/incubation/programs.html', 'programs-container');
