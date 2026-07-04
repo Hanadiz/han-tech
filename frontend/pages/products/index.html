@@ -1,33 +1,51 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products | Han-Tech Ltd</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background: #f9fafb; color: #2c3e50; }
-        .page-hero { background: linear-gradient(135deg, #0f0f1a, #1a1a2e, #16213e); color: #fff; padding: 100px 0 60px; text-align: center; }
-        .product-card { background: #fff; border-radius: 20px; padding: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; }
-        .product-card:hover { transform: translateY(-5px); }
-        .product-card img { width: 100%; height: 200px; object-fit: contain; margin-bottom: 20px; }
+        body { font-family: 'Inter', sans-serif; background: #f0f2f5; margin: 0; }
+        .page-hero {
+            background: linear-gradient(135deg, #0f0f1a, #1a1a2e, #16213e);
+            color: #fff; padding: 80px 0 50px; text-align: center;
+        }
+        .page-hero h1 { font-family: 'Poppins', sans-serif; font-size: 3rem; font-weight: 700; }
     </style>
 </head>
 <body>
     <div id="header-container"></div>
-    <section class="page-hero"><h1>Our Products</h1></section>
-    <section class="py-5"><div class="container"><div class="row g-4">
-        <div class="col-md-4"><div class="product-card"><img src="https://via.placeholder.com/300x200?text=Wi-Fi+Router" alt=""><h5>Enterprise Router</h5><p>$199</p><a href="detail.html" class="btn btn-outline-primary">View</a></div></div>
-        <div class="col-md-4"><div class="product-card"><img src="https://via.placeholder.com/300x200?text=Cloud+Server" alt=""><h5>Cloud Server</h5><p>$49/mo</p><a href="detail.html" class="btn btn-outline-primary">View</a></div></div>
-        <div class="col-md-4"><div class="product-card"><img src="https://via.placeholder.com/300x200?text=Antivirus" alt=""><h5>Cyber Security Suite</h5><p>$99/yr</p><a href="detail.html" class="btn btn-outline-primary">View</a></div></div>
-    </div></div></section>
+    <section class="page-hero"><div class="container"><h1>Our Products</h1><p>Explore our full range of software platforms and hardware solutions.</p></div></section>
+
+    <div id="overview-container"></div>
+    <div id="pricing-container"></div>
+    <div id="roadmap-container"></div>
+    <div id="documentation-container"></div>
+    <div id="downloads-container"></div>
     <div id="footer-container"></div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        async function load(u,i){ try{ const r=await fetch(u); document.getElementById(i).innerHTML=await r.text(); }catch(e){} }
-        load('/components/layouts/header.html','header-container');
-        load('/components/layouts/footer.html','footer-container');
+        async function load(url, containerId) {
+            try {
+                const r = await fetch(url);
+                document.getElementById(containerId).innerHTML = await r.text();
+            } catch(e) { console.error(e); }
+        }
+
+        (async function() {
+            await load('/components/layouts/header.html', 'header-container');
+            await load('/components/layouts/footer.html', 'footer-container');
+            await load('/pages/products/overview.html', 'overview-container');
+            await load('/pages/products/pricing.html', 'pricing-container');
+            await load('/pages/products/roadmap.html', 'roadmap-container');
+            await load('/pages/products/documentation.html', 'documentation-container');
+            await load('/pages/products/downloads.html', 'downloads-container');
+        })();
     </script>
 </body>
 </html>
