@@ -1,0 +1,17 @@
+<style>
+    .card { background: #fff; border-radius: 16px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+    [data-theme="dark"] .card { background: #1a1a2e; }
+    .btn-save { background: linear-gradient(135deg, #0077b6, #00b4d8); color: #fff; border: none; padding: 12px 30px; border-radius: 12px; font-weight: 600; }
+</style>
+<h3 class="mt-5">Security Settings</h3>
+<div class="card">
+    <form onsubmit="alert('Security settings saved!');return false">
+        <div class="mb-3"><label class="form-label">Min Password Length</label><input type="number" class="form-control" value="8" style="max-width:150px"></div>
+        <div class="mb-3 form-check"><input class="form-check-input" type="checkbox" checked><label>Require uppercase</label></div>
+        <div class="mb-3 form-check"><input class="form-check-input" type="checkbox" checked><label>Require numbers</label></div>
+        <div class="mb-3 form-check"><input class="form-check-input" type="checkbox" checked><label>Require symbols</label></div>
+        <div class="mb-3"><label class="form-label">Max Login Attempts</label><input type="number" class="form-control" value="5" style="max-width:150px"></div>
+        <div class="mb-3"><label class="form-label">Lockout Duration (min)</label><input type="number" class="form-control" value="15" style="max-width:150px"></div>
+        <button type="submit" class="btn-save">Save Security Settings</button>
+    </form>
+</div>
