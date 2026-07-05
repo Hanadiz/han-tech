@@ -1,35 +1,67 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog | Han-Tech Ltd</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background: #f9fafb; color: #2c3e50; }
-        .page-hero { background: linear-gradient(135deg, #0f0f1a, #1a1a2e, #16213e); color: #fff; padding: 100px 0 60px; text-align: center; }
-        .blog-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; height: 100%; }
-        [data-theme="dark"] .blog-card { background: #1a1a2e; }
-        .blog-card:hover { transform: translateY(-5px); }
-        .blog-card img { width: 100%; height: 200px; object-fit: cover; }
-        .blog-card .body { padding: 20px; }
+        body { font-family: 'Inter', sans-serif; background: #f0f2f5; color: #333; margin: 0; }
+        [data-theme="dark"] body { background: #0f0f1a; color: #e0e0e0; }
+        .back-to-top {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, #0077b6, #00b4d8);
+            color: #fff; border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 14px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; cursor: pointer; z-index: 999;
+            opacity: 0; visibility: hidden; transform: translateY(20px);
+            transition: all 0.3s ease; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        .back-to-top:hover { transform: translateY(-4px) !important; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); }
     </style>
 </head>
 <body>
     <div id="header-container"></div>
-    <section class="page-hero"><h1>Our Blog</h1></section>
-    <section class="py-5"><div class="container"><div class="row g-4">
-        <div class="col-md-4"><a href="post.html" class="blog-card text-decoration-none text-dark"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400" alt=""><div class="body"><span class="text-muted">June 10</span><h5>5 Cloud Migration Tips</h5></div></a></div>
-        <div class="col-md-4"><a href="post.html" class="blog-card text-decoration-none text-dark"><img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400" alt=""><div class="body"><span class="text-muted">May 28</span><h5>Zero‑Trust Security Explained</h5></div></a></div>
-        <div class="col-md-4"><a href="post.html" class="blog-card text-decoration-none text-dark"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400" alt=""><div class="body"><span class="text-muted">May 15</span><h5>IoT in Agriculture</h5></div></a></div>
-    </div></div></section>
+    <div id="hero-container"></div>
+    <div id="posts-container"></div>
+    <div id="sidebar-container"></div>
+    <div id="newsletter-container"></div>
     <div id="footer-container"></div>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        async function load(u,i){ try{ const r=await fetch(u); document.getElementById(i).innerHTML=await r.text(); }catch(e){} }
-        load('/components/layouts/header.html','header-container');
-        load('/components/layouts/footer.html','footer-container');
+        async function load(url, containerId) {
+            try {
+                const r = await fetch(url);
+                document.getElementById(containerId).innerHTML = await r.text();
+            } catch(e) { console.error(e); }
+        }
+
+        (async function() {
+            await load('/components/layouts/header.html', 'header-container');
+            await load('/components/layouts/footer.html', 'footer-container');
+            await load('/pages/blog/hero.html', 'hero-container');
+            await load('/pages/blog/post-list.html', 'posts-container');
+            await load('/pages/blog/sidebar.html', 'sidebar-container');
+            await load('/pages/blog/newsletter-signup.html', 'newsletter-container');
+
+            AOS.init({ duration: 800, once: true, offset: 50 });
+
+            const backBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => backBtn.classList.toggle('visible', window.scrollY > 400));
+            backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        })();
     </script>
 </body>
 </html>
