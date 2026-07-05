@@ -1,0 +1,19 @@
+<style>
+    .card { background: #fff; border-radius: 16px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+    [data-theme="dark"] .card { background: #1a1a2e; }
+    .btn-save { background: linear-gradient(135deg, #0077b6, #00b4d8); color: #fff; border: none; padding: 12px 30px; border-radius: 12px; font-weight: 600; }
+    .form-control, .form-select { border-radius: 10px; padding: 10px 14px; border: 2px solid #e0e0e0; }
+    [data-theme="dark"] .form-control, [data-theme="dark"] .form-select { background: #0f0f1a; border-color: #2a2a40; color: #e0e0e0; }
+</style>
+<h3 class="mt-5">System Settings</h3>
+<div class="card">
+    <form onsubmit="alert('Settings saved!');return false">
+        <div class="row">
+            <div class="col-md-6 mb-3"><label class="form-label">Application Name</label><input type="text" class="form-control" value="Han-Tech Ltd"></div>
+            <div class="col-md-6 mb-3"><label class="form-label">Default Timezone</label><select class="form-select"><option>Africa/Kampala</option><option>Africa/Nairobi</option><option>UTC</option></select></div>
+            <div class="col-md-6 mb-3"><label class="form-label">Default Language</label><select class="form-select"><option>English</option><option>Swahili</option><option>Luganda</option></select></div>
+            <div class="col-md-6 mb-3"><label class="form-label">Date Format</label><select class="form-select"><option>YYYY-MM-DD</option><option>DD/MM/YYYY</option><option>MM/DD/YYYY</option></select></div>
+        </div>
+        <button type="submit" class="btn-save">Save Settings</button>
+    </form>
+</div>
