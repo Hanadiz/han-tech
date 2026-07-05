@@ -33,6 +33,7 @@
     <div id="mission-vision-container"></div>
     <div id="values-container"></div>
     <div id="team-container"></div>
+    <div id="locations-container"></div>
     <div id="timeline-container"></div>
     <div id="partners-container"></div>
     <div id="awards-container"></div>
@@ -61,15 +62,14 @@
             await load('/pages/about/mission-vision.html', 'mission-vision-container');
             await load('/pages/about/values.html', 'values-container');
             await load('/pages/about/team-section.html', 'team-container');
+            await load('/pages/about/locations.html', 'locations-container');
             await load('/pages/about/timeline.html', 'timeline-container');
             await load('/pages/about/partners.html', 'partners-container');
             await load('/pages/about/awards.html', 'awards-container');
             await load('/pages/about/cta.html', 'cta-container');
 
-            // Initialize AOS animations
             AOS.init({ duration: 800, once: true, offset: 50 });
 
-            // Back-to-top button
             const backBtn = document.getElementById('backToTop');
             window.addEventListener('scroll', () => backBtn.classList.toggle('visible', window.scrollY > 400));
             backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
