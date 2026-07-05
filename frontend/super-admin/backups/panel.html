@@ -1,0 +1,26 @@
+<style>
+    .card { background: #fff; border-radius: 16px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+    [data-theme="dark"] .card { background: #1a1a2e; }
+    .btn-backup { background: #0077b6; color: #fff; border: none; padding: 12px 28px; border-radius: 10px; font-weight: 600; }
+    .table-card { background: #fff; border-radius: 16px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); margin-top: 20px; }
+    [data-theme="dark"] .table-card { background: #1a1a2e; }
+</style>
+
+<h3 class="mt-5">Backups</h3>
+<div class="card">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="mb-0">Database Backups</h5>
+        <button class="btn-backup" onclick="alert('Backup started! This may take a few minutes.')"><i class="bi bi-cloud-arrow-up me-2"></i>Create New Backup</button>
+    </div>
+    <p class="text-muted">Automated backups run daily at 2:00 AM. You can also create manual backups below.</p>
+</div>
+<div class="table-card">
+    <table class="table table-hover mb-0">
+        <thead><tr><th>Backup File</th><th>Size</th><th>Date</th><th>Type</th><th>Actions</th></tr></thead>
+        <tbody>
+            <tr><td>backup-2026-07-05.sql.gz</td><td>24.5 MB</td><td>Jul 5, 2026, 2:00 AM</td><td><span class="badge bg-info">Automated</span></td><td><button class="btn btn-outline-primary btn-sm me-1" onclick="alert('Downloading...')"><i class="bi bi-download"></i></button><button class="btn btn-outline-warning btn-sm" onclick="alert('Restore initiated')"><i class="bi bi-arrow-counterclockwise"></i></button></td></tr>
+            <tr><td>backup-2026-07-04.sql.gz</td><td>24.1 MB</td><td>Jul 4, 2026, 2:00 AM</td><td><span class="badge bg-info">Automated</span></td><td><button class="btn btn-outline-primary btn-sm me-1" onclick="alert('Downloading...')"><i class="bi bi-download"></i></button><button class="btn btn-outline-warning btn-sm" onclick="alert('Restore initiated')"><i class="bi bi-arrow-counterclockwise"></i></button></td></tr>
+            <tr><td>backup-2026-07-03-manual.sql.gz</td><td>24.3 MB</td><td>Jul 3, 2026, 6:15 PM</td><td><span class="badge bg-warning text-dark">Manual</span></td><td><button class="btn btn-outline-primary btn-sm me-1" onclick="alert('Downloading...')"><i class="bi bi-download"></i></button><button class="btn btn-outline-warning btn-sm" onclick="alert('Restore initiated')"><i class="bi bi-arrow-counterclockwise"></i></button></td></tr>
+        </tbody>
+    </table>
+</div>
