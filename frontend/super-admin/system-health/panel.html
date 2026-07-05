@@ -1,0 +1,11 @@
+<style>
+    .health-card { background: #fff; border-radius: 16px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }
+    [data-theme="dark"] .health-card { background: #1a1a2e; }
+    .indicator { width: 14px; height: 14px; border-radius: 50%; display: inline-block; margin-right: 10px; }
+    .green { background: #2ecc71; } .yellow { background: #f39c12; } .red { background: #e74c3c; }
+</style>
+<h3 class="mt-5">System Health</h3>
+<div class="health-card"><div><h5><span class="indicator green"></span>Database (PostgreSQL 18)</h5><small class="text-muted">Response: 12ms · Connections: 8/100</small></div><span class="badge bg-success">Healthy</span></div>
+<div class="health-card"><div><h5><span class="indicator green"></span>Redis Cache</h5><small class="text-muted">Memory: 45MB/256MB · Hit rate: 94%</small></div><span class="badge bg-success">Healthy</span></div>
+<div class="health-card"><div><h5><span class="indicator yellow"></span>Queue Worker</h5><small class="text-muted">3 pending jobs</small></div><span class="badge bg-warning text-dark">Warning</span></div>
+<div class="health-card"><div><h5><span class="indicator red"></span>SSL Certificate</h5><small class="text-muted">Expires in 30 days</small></div><span class="badge bg-danger">Action Needed</span></div>
