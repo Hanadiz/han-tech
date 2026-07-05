@@ -1,0 +1,127 @@
+<style>
+    .posts-section { padding: 80px 0; background: #fff; }
+    [data-theme="dark"] .posts-section { background: #1a1a2e; }
+    .post-card {
+        background: #f9fafb; border-radius: 20px; overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.04); margin-bottom: 30px;
+        transition: all 0.3s; display: flex; flex-direction: column;
+    }
+    [data-theme="dark"] .post-card { background: #252540; }
+    .post-card:hover { transform: translateY(-5px); box-shadow: 0 12px 35px rgba(0,0,0,0.1); }
+    .post-card img { width: 100%; height: 220px; object-fit: cover; }
+    .post-body { padding: 25px; }
+    .post-category {
+        display: inline-block; background: #e3f2fd; color: #0077b6;
+        padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-bottom: 10px;
+    }
+    [data-theme="dark"] .post-category { background: #1a3a5c; color: #90e0ef; }
+    .post-card h4 { font-family: 'Poppins', sans-serif; font-weight: 600; margin-bottom: 10px; }
+    .post-card h4 a { color: #2c3e50; text-decoration: none; }
+    [data-theme="dark"] .post-card h4 a { color: #e0e0e0; }
+    .post-card h4 a:hover { color: #0077b6; }
+    .post-card p { color: #666; font-size: 0.9rem; }
+    [data-theme="dark"] .post-card p { color: #94a3b8; }
+    .post-meta { color: #888; font-size: 0.8rem; margin-top: 15px; display: flex; gap: 15px; }
+    .post-meta i { margin-right: 4px; }
+    .pagination-nav { display: flex; justify-content: center; gap: 10px; margin-top: 40px; }
+    .page-btn {
+        width: 40px; height: 40px; border-radius: 10px; border: 2px solid #e0e0e0;
+        background: #fff; font-weight: 600; cursor: pointer; transition: all 0.3s;
+    }
+    [data-theme="dark"] .page-btn { background: #1a1a2e; border-color: #2a2a40; color: #e0e0e0; }
+    .page-btn.active, .page-btn:hover { background: #0077b6; color: #fff; border-color: #0077b6; }
+</style>
+
+<section class="posts-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Post 1 -->
+                <div class="post-card">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800" alt="Cloud Migration">
+                    <div class="post-body">
+                        <span class="post-category">Cloud Computing</span>
+                        <h4><a href="post.html">5 Cloud Migration Tips for East African Businesses</a></h4>
+                        <p>Migrating to the cloud doesn't have to be painful. Here are five practical tips to make your transition smooth and cost‑effective.</p>
+                        <div class="post-meta">
+                            <span><i class="far fa-calendar"></i> Jun 10, 2026</span>
+                            <span><i class="far fa-user"></i> Fatima Zahra</span>
+                            <span><i class="far fa-clock"></i> 5 min read</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Post 2 -->
+                <div class="post-card">
+                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800" alt="Zero Trust">
+                    <div class="post-body">
+                        <span class="post-category">Cybersecurity</span>
+                        <h4><a href="post.html">Zero‑Trust Security: A Practical Guide for SMEs</a></h4>
+                        <p>Learn how to implement Zero‑Trust architecture in your organisation without breaking the bank.</p>
+                        <div class="post-meta">
+                            <span><i class="far fa-calendar"></i> May 28, 2026</span>
+                            <span><i class="far fa-user"></i> Mustafa Daud</span>
+                            <span><i class="far fa-clock"></i> 7 min read</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Post 3 -->
+                <div class="post-card">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800" alt="IoT Agriculture">
+                    <div class="post-body">
+                        <span class="post-category">IoT</span>
+                        <h4><a href="post.html">How IoT is Revolutionising Agriculture in Uganda</a></h4>
+                        <p>From soil sensors to drone monitoring, IoT technology is helping farmers increase yields and reduce costs.</p>
+                        <div class="post-meta">
+                            <span><i class="far fa-calendar"></i> May 15, 2026</span>
+                            <span><i class="far fa-user"></i> Bilal Ibn Rabah</span>
+                            <span><i class="far fa-clock"></i> 6 min read</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Post 4 -->
+                <div class="post-card">
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800" alt="Starlink">
+                    <div class="post-body">
+                        <span class="post-category">Networking</span>
+                        <h4><a href="post.html">Starlink in Uganda: Everything You Need to Know</a></h4>
+                        <p>Starlink is now available across Uganda. Here's what it means for rural connectivity and your business.</p>
+                        <div class="post-meta">
+                            <span><i class="far fa-calendar"></i> Apr 22, 2026</span>
+                            <span><i class="far fa-user"></i> Gadafi Majid</span>
+                            <span><i class="far fa-clock"></i> 8 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-nav">
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Sidebar placeholder (loaded separately) -->
+            <div class="col-lg-4" id="blogSidebarContainer"></div>
+        </div>
+    </div>
+</section>
+
+<script>
+    (function() {
+        // Load sidebar into the placeholder
+        fetch('/pages/blog/sidebar.html')
+            .then(r => r.text())
+            .then(html => { document.getElementById('blogSidebarContainer').innerHTML = html; })
+            .catch(() => {});
+
+        // Pagination demo
+        document.querySelectorAll('.page-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    })();
+</script>
