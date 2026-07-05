@@ -1,0 +1,82 @@
+<style>
+    .admin-layout { display: flex; min-height: calc(100vh - 140px); }
+    .admin-sidebar { width: 260px; background: #1a1a2e; color: #94a3b8; padding: 20px 0; flex-shrink: 0; }
+    [data-theme="dark"] .admin-sidebar { background: #0f0f1a; }
+    .admin-sidebar .nav-link { color: #94a3b8 !important; padding: 12px 24px; display: flex; align-items: center; gap: 10px; font-size: 0.9rem; border-left: 3px solid transparent; transition: 0.3s; text-decoration: none; cursor: pointer; }
+    .admin-sidebar .nav-link:hover, .admin-sidebar .nav-link.active { background: rgba(0,180,216,0.08); color: #fff !important; border-left-color: #00b4d8; }
+    .admin-main { flex: 1; padding: 30px; background: #f5f7fa; overflow-x: auto; }
+    [data-theme="dark"] .admin-main { background: #0f0f1a; }
+    .sidebar-section-title { padding: 12px 24px 6px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin-top: 10px; }
+    @media (max-width: 768px) { .admin-sidebar { display: none; } }
+</style>
+
+<aside class="admin-sidebar">
+    <div class="px-3 mb-4"><strong style="color:#fff;font-family:'Poppins',sans-serif;">Super Admin</strong></div>
+    <nav>
+        <div class="sidebar-section-title">Main</div>
+        <a class="nav-link active" href="#" data-scroll="section-overview"><i class="bi bi-speedometer2"></i> Dashboard</a>
+
+        <div class="sidebar-section-title">User Management</div>
+        <a class="nav-link" href="/super-admin/admins/" data-standalone><i class="bi bi-person-badge"></i> Admins</a>
+
+        <div class="sidebar-section-title">System Configuration</div>
+        <a class="nav-link" href="#" data-scroll="section-system-settings"><i class="bi bi-sliders"></i> System Settings</a>
+        <a class="nav-link" href="#" data-scroll="section-security-settings"><i class="bi bi-shield-lock"></i> Security Settings</a>
+        <a class="nav-link" href="#" data-scroll="section-smtp-settings"><i class="bi bi-envelope"></i> SMTP Settings</a>
+        <a class="nav-link" href="#" data-scroll="section-payment-gateways"><i class="bi bi-credit-card"></i> Payment Gateways</a>
+        <a class="nav-link" href="#" data-scroll="section-email-templates"><i class="bi bi-mailbox"></i> Email Templates</a>
+
+        <div class="sidebar-section-title">Integrations</div>
+        <a class="nav-link" href="#" data-scroll="section-api-keys"><i class="bi bi-key"></i> API Keys</a>
+        <a class="nav-link" href="#" data-scroll="section-webhooks"><i class="bi bi-link-45deg"></i> Webhooks</a>
+
+        <div class="sidebar-section-title">Security</div>
+        <a class="nav-link" href="#" data-scroll="section-ip-whitelist"><i class="bi bi-lock"></i> IP Whitelist</a>
+        <a class="nav-link" href="#" data-scroll="section-two-factor-settings"><i class="bi bi-shield-check"></i> 2FA Settings</a>
+
+        <div class="sidebar-section-title">Maintenance</div>
+        <a class="nav-link" href="#" data-scroll="section-backups"><i class="bi bi-cloud-arrow-up"></i> Backups</a>
+        <a class="nav-link" href="#" data-scroll="section-audit-logs"><i class="bi bi-list-check"></i> Audit Logs</a>
+        <a class="nav-link" href="#" data-scroll="section-system-health"><i class="bi bi-heart-pulse"></i> System Health</a>
+        <a class="nav-link" href="#" data-scroll="section-maintenance-mode"><i class="bi bi-cone-striped"></i> Maintenance Mode</a>
+
+        <div class="sidebar-section-title">Advanced</div>
+        <a class="nav-link" href="#" data-scroll="section-phpinfo"><i class="bi bi-file-code"></i> PHP Info</a>
+        <a class="nav-link" href="#" data-scroll="section-queue-monitor"><i class="bi bi-hourglass-split"></i> Queue Monitor</a>
+        <a class="nav-link" href="#" data-scroll="section-cache-clear"><i class="bi bi-trash"></i> Cache Clear</a>
+        <a class="nav-link" href="#" data-scroll="section-optimize-database"><i class="bi bi-database-gear"></i> Optimize Database</a>
+    </nav>
+</aside>
+
+<script>
+    (function() {
+        // Smooth scroll for inline sections
+        document.querySelectorAll('.admin-sidebar .nav-link[data-scroll]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('data-scroll');
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.querySelectorAll('.admin-sidebar .nav-link').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Highlight active section on scroll
+        const sections = document.querySelectorAll('[id^="section-"]');
+        const navLinks = document.querySelectorAll('.admin-sidebar .nav-link[data-scroll]');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 200;
+                if (window.scrollY >= sectionTop) current = section.getAttribute('id');
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-scroll') === current) link.classList.add('active');
+            });
+        });
+    })();
+</script>
