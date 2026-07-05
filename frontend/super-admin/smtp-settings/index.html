@@ -1,0 +1,19 @@
+<style>
+    .card { background: #fff; border-radius: 16px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+    [data-theme="dark"] .card { background: #1a1a2e; }
+    .btn-save { background: linear-gradient(135deg, #0077b6, #00b4d8); color: #fff; border: none; padding: 12px 30px; border-radius: 12px; font-weight: 600; }
+    .btn-test { background: #2ecc71; color: #fff; border: none; padding: 10px 22px; border-radius: 10px; font-weight: 600; }
+</style>
+<h3 class="mt-5">SMTP Settings</h3>
+<div class="card">
+    <form onsubmit="alert('SMTP settings saved!');return false">
+        <div class="row">
+            <div class="col-md-6 mb-3"><label class="form-label">SMTP Host</label><input type="text" class="form-control" value="smtp.gmail.com"></div>
+            <div class="col-md-6 mb-3"><label class="form-label">SMTP Port</label><input type="number" class="form-control" value="587"></div>
+            <div class="col-md-6 mb-3"><label class="form-label">Username</label><input type="text" class="form-control" value="noreply@hantech.com"></div>
+            <div class="col-md-6 mb-3"><label class="form-label">Password</label><input type="password" class="form-control" value="••••••••"></div>
+        </div>
+        <button type="submit" class="btn-save me-2">Save</button>
+        <button type="button" class="btn-test" onclick="alert('Test email sent!')">Send Test Email</button>
+    </form>
+</div>
