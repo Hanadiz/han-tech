@@ -1,30 +1,72 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Post | Han-Tech Ltd</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background: #f9fafb; color: #2c3e50; }
-        .post-header { padding: 60px 0; background: #fff; }
-        [data-theme="dark"] .post-header { background: #1a1a2e; }
+        body { font-family: 'Inter', sans-serif; background: #f0f2f5; color: #333; margin: 0; }
+        [data-theme="dark"] body { background: #0f0f1a; color: #e0e0e0; }
+        .post-header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff; padding: 60px 0 40px; text-align: center;
+        }
         .post-header h1 { font-family: 'Poppins', sans-serif; font-size: 2.5rem; font-weight: 700; }
-        .post-content { padding: 40px 0; max-width: 800px; margin: 0 auto; }
+        .post-content { max-width: 800px; margin: 40px auto; padding: 0 15px; line-height: 1.8; }
+        .post-content img { max-width: 100%; border-radius: 16px; margin: 20px 0; }
+        .related-posts { padding: 60px 0; background: #f9fafb; }
+        [data-theme="dark"] .related-posts { background: #0f0f1a; }
+        .related-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.03); transition: all 0.3s; }
+        [data-theme="dark"] .related-card { background: #1a1a2e; }
+        .related-card:hover { transform: translateY(-4px); }
+        .related-card img { width: 100%; height: 160px; object-fit: cover; }
+        .related-card .body { padding: 15px; }
     </style>
 </head>
 <body>
     <div id="header-container"></div>
-    <section class="post-header"><div class="container"><h1>5 Cloud Migration Tips</h1><p class="text-muted">Published on June 10, 2025</p></div></section>
-    <div class="post-content container"><p>Full article content…</p></div>
-    <div id="related-posts-container"></div>
+    <div class="post-header">
+        <div class="container">
+            <span class="badge bg-info mb-3">Cloud Computing</span>
+            <h1>5 Cloud Migration Tips for East African Businesses</h1>
+            <p class="mt-3"><i class="far fa-calendar me-2"></i>June 10, 2026 &nbsp;|&nbsp; <i class="far fa-user me-2"></i>Fatima Zahra &nbsp;|&nbsp; <i class="far fa-clock me-2"></i>5 min read</p>
+        </div>
+    </div>
+    <article class="post-content">
+        <p>Migrating to the cloud is one of the most impactful decisions a business can make. For East African companies, the benefits are even more pronounced — reduced infrastructure costs, better disaster recovery, and the ability to scale rapidly.</p>
+        <h4>1. Start with a Cloud Readiness Assessment</h4>
+        <p>Before migrating, understand your current infrastructure, dependencies, and which workloads are cloud‑ready. Han‑Tech offers a free assessment to help you map your migration path.</p>
+        <h4>2. Choose the Right Provider</h4>
+        <p>AWS, Azure, and GCP each have strengths. We recommend a multi‑cloud approach for redundancy and cost optimisation.</p>
+        <h4>3. Prioritise Security and Compliance</h4>
+        <p>Data sovereignty is critical. Ensure your cloud provider complies with Uganda's Data Protection and Privacy Act and other regional regulations.</p>
+        <h4>4. Train Your Team</h4>
+        <p>Cloud migration isn't just a technical shift — it's a cultural one. Invest in training so your team can manage the new environment confidently.</p>
+        <h4>5. Partner with Experts</h4>
+        <p>Han‑Tech has migrated over 50 businesses to the cloud. Let our certified engineers handle the heavy lifting while you focus on your business.</p>
+    </article>
+
+    <!-- Related Posts -->
+    <section class="related-posts">
+        <div class="container">
+            <h3 class="text-center mb-5" style="font-family:'Poppins',sans-serif;">Related Articles</h3>
+            <div class="row g-4">
+                <div class="col-md-4"><div class="related-card"><img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400" alt=""><div class="body"><h6>Zero‑Trust Security Guide</h6><small class="text-muted">May 28, 2026</small></div></div></div>
+                <div class="col-md-4"><div class="related-card"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400" alt=""><div class="body"><h6>Starlink in Uganda</h6><small class="text-muted">Apr 22, 2026</small></div></div></div>
+                <div class="col-md-4"><div class="related-card"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400" alt=""><div class="body"><h6>IoT in Agriculture</h6><small class="text-muted">May 15, 2026</small></div></div></div>
+            </div>
+        </div>
+    </section>
     <div id="footer-container"></div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        async function load(u,i){ try{ const r=await fetch(u); document.getElementById(i).innerHTML=await r.text(); }catch(e){} }
+        async function load(u,i){ try{ const r = await fetch(u); document.getElementById(i).innerHTML = await r.text(); } catch(e){} }
         load('/components/layouts/header.html','header-container');
-        load('/pages/blog/related-posts.html','related-posts-container');
         load('/components/layouts/footer.html','footer-container');
     </script>
 </body>
