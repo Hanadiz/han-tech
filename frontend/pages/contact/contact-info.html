@@ -1,0 +1,48 @@
+<style>
+    .contact-info-section { padding: 80px 0; background: #fff; }
+    [data-theme="dark"] .contact-info-section { background: #1a1a2e; }
+    .info-card {
+        background: #f9fafb; border-radius: 20px; padding: 30px; text-align: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.04); transition: all 0.3s; height: 100%;
+    }
+    [data-theme="dark"] .info-card { background: #252540; }
+    .info-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+    .info-icon {
+        width: 65px; height: 65px; background: linear-gradient(135deg, #0077b6, #00b4d8);
+        border-radius: 18px; display: flex; align-items: center; justify-content: center;
+        color: #fff; font-size: 1.8rem; margin: 0 auto 20px;
+    }
+    .info-card h5 { font-family: 'Poppins', sans-serif; font-weight: 600; margin-bottom: 10px; }
+    .info-card p, .info-card a { color: #666; text-decoration: none; }
+    [data-theme="dark"] .info-card p, [data-theme="dark"] .info-card a { color: #94a3b8; }
+    .info-card a:hover { color: #0077b6; }
+</style>
+
+<section class="contact-info-section">
+    <div class="container">
+        <h2 class="text-center mb-5" style="font-family:'Poppins',sans-serif;font-weight:700;">Contact Information</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="info-card">
+                    <div class="info-icon"><i class="fas fa-phone"></i></div>
+                    <h5>Call Us</h5>
+                    <a href="tel:+256781607792">+256 781 607792</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-card">
+                    <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                    <h5>Email Us</h5>
+                    <a href="mailto:info@hantech.com">info@hantech.com</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-card">
+                    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h5>Visit Us</h5>
+                    <p>Plot 12 Main Street, Yumbe, Uganda</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
