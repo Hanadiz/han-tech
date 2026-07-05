@@ -1,8 +1,21 @@
 <style>
-    .newsletter-sidebar { padding: 20px; background: #f9fafb; border-radius: 16px; }
-    .newsletter-sidebar input { border-radius: 30px; }
+    .newsletter-blog {
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+        color: #fff; padding: 60px 0; text-align: center;
+    }
+    .newsletter-blog h3 { font-family: 'Poppins', sans-serif; font-weight: 700; }
+    .newsletter-blog .form-row { display: flex; gap: 10px; max-width: 450px; margin: 25px auto 0; flex-wrap: wrap; justify-content: center; }
+    .newsletter-blog input { flex: 1; min-width: 200px; padding: 14px 20px; border-radius: 50px; border: none; }
+    .newsletter-blog button { background: #fff; color: #0077b6; border: none; padding: 14px 30px; border-radius: 50px; font-weight: 700; cursor: pointer; }
 </style>
-<div class="newsletter-sidebar">
-    <h6>Subscribe</h6>
-    <form><input type="email" class="form-control mb-2" placeholder="email"><button class="btn btn-primary btn-sm">Sign Up</button></form>
-</div>
+
+<section class="newsletter-blog">
+    <div class="container">
+        <h3>Subscribe to Our Newsletter</h3>
+        <p>Get the latest tech insights delivered straight to your inbox.</p>
+        <form class="form-row" onsubmit="alert('Subscribed successfully!'); this.reset(); return false;">
+            <input type="email" placeholder="your@email.com" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+</section>
