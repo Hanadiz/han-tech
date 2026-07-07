@@ -64,9 +64,7 @@
     [data-theme="dark"] .search-shortcut { background: #2a2a40; color: #666; }
 
     /* ----- CONNECTION STATUS ----- */
-    .connection-dot {
-        width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px;
-    }
+    .connection-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
     .connection-dot.online { background: #2ecc71; box-shadow: 0 0 8px rgba(46,204,113,0.6); }
     .connection-dot.offline { background: #e74c3c; box-shadow: 0 0 8px rgba(231,76,60,0.6); animation: pulse-dot 1s infinite; }
     @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
@@ -119,9 +117,8 @@
     }
     .user-dropdown .dropdown-item:hover { background: rgba(0,180,216,0.08); }
     .user-dropdown .dropdown-item.text-danger:hover { background: rgba(231,76,60,0.08); }
-    .user-dropdown .dropdown-divider { margin: 4px 0; }
 
-    /* ----- MINI HEADER ----- */
+    /* ----- MINI HEADER (appears on scroll up) ----- */
     .mini-header {
         background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(20px);
@@ -137,18 +134,26 @@
     }
     [data-theme="dark"] .mini-header { background: rgba(15, 15, 26, 0.98); }
     .mini-header.visible { transform: translateY(0); }
-    .mini-header .mini-logo { width: 35px; height: 35px; }
+    .mini-header .mini-logo { width: 32px; height: 32px; }
     .mini-header .mini-logo svg { width: 100%; height: 100%; }
     .mini-header .mini-name {
-        font-family: 'Poppins', sans-serif;
-        font-size: 1rem;
-        font-weight: 700;
+        font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 700;
         background: linear-gradient(135deg, #0077b6, #00b4d8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         background-clip: text;
     }
-    .mini-header .btn-mini { padding: 6px 16px; font-size: 0.8rem; border-radius: 20px; font-weight: 600; }
+    .mini-header .btn-mini { padding: 5px 14px; font-size: 0.75rem; border-radius: 20px; font-weight: 600; }
+
+    /* Mini header scrollable nav */
+    .mini-nav { overflow-x: auto; white-space: nowrap; }
+    .mini-nav::-webkit-scrollbar { height: 0; }
+    .mini-nav a {
+        display: inline-block; padding: 6px 14px; font-size: 0.8rem; font-weight: 500;
+        color: #555; text-decoration: none; border-radius: 20px; transition: all 0.3s;
+    }
+    [data-theme="dark"] .mini-nav a { color: #aaa; }
+    .mini-nav a:hover { background: rgba(0,180,216,0.1); color: #0077b6; }
+    .mini-nav a.active { background: linear-gradient(135deg, #0077b6, #00b4d8); color: #fff; }
 
     /* ----- NAVIGATION ----- */
     .main-navbar {
@@ -167,9 +172,9 @@
     .nav-item { position: relative; }
     .nav-link {
         color: #2c3e50 !important; font-weight: 500;
-        padding: 14px 18px !important;
+        padding: 14px 16px !important;
         display: flex; align-items: center; gap: 6px;
-        font-size: 0.9rem; text-decoration: none;
+        font-size: 0.85rem; text-decoration: none;
         border-bottom: 3px solid transparent;
         transition: all 0.3s; white-space: nowrap;
     }
@@ -223,26 +228,15 @@
                         <button type="submit" class="search-btn"><i class="bi bi-search"></i></button>
                     </form>
                 </div>
-                <!-- Live Clock -->
-                <div class="live-clock" id="liveClock">
-                    <i class="far fa-clock"></i> <span id="clockTime">--:--</span> EAT
-                </div>
+                <div class="live-clock" id="liveClock"><i class="far fa-clock"></i> <span id="clockTime">--:--</span> EAT</div>
             </div>
 
             <!-- Header Icons -->
             <div class="header-icons">
-                <a href="#" class="header-icon" id="cartIcon" title="Cart">
-                    <i class="bi bi-cart3"></i>
-                    <span class="cart-badge" id="cartBadge" style="display:none;">0</span>
-                </a>
-                <a href="/client-portal/notifications/" class="header-icon" title="Notifications">
-                    <i class="bi bi-bell"></i>
-                </a>
-                <!-- User dropdown (when logged in) -->
+                <a href="#" class="header-icon" id="cartIcon" title="Cart"><i class="bi bi-cart3"></i><span class="cart-badge" id="cartBadge" style="display:none;">0</span></a>
+                <a href="/client-portal/notifications/" class="header-icon" title="Notifications"><i class="bi bi-bell"></i></a>
                 <div class="user-dropdown" id="userDropdown" style="display:none;">
-                    <a href="#" class="header-icon dropdown-toggle" data-bs-toggle="dropdown" title="Account">
-                        <i class="bi bi-person-circle"></i>
-                    </a>
+                    <a href="#" class="header-icon dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-person-circle"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="/client-portal/dashboard/"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
                         <li><a class="dropdown-item" href="/client-portal/profile/"><i class="bi bi-person"></i> Profile</a></li>
@@ -251,37 +245,27 @@
                         <li><a class="dropdown-item text-danger" href="/auth/logout/redirect.html"><i class="bi bi-box-arrow-right"></i> Sign Out</a></li>
                     </ul>
                 </div>
-                <!-- Static profile icon (logged out) -->
-                <a href="/client-portal/profile/" class="header-icon" id="profileIcon" style="display:none;" title="Profile">
-                    <i class="bi bi-person-circle"></i>
-                </a>
             </div>
 
             <!-- Actions -->
             <div class="header-actions">
-                <button class="btn-infinity btn-welcome" id="welcomeBtn" disabled>
-                    <i class="fas fa-hand-wave"></i> Welcome
-                </button>
-                <a href="/auth/login/index.html" class="btn-infinity btn-login-header" id="signInBtn">
-                    <i class="bi bi-box-arrow-in-right"></i> Sign-in
-                </a>
-                <a href="/auth/logout/redirect.html" class="btn-infinity btn-logout-header" id="signOutBtn" style="display:none;">
-                    <i class="bi bi-box-arrow-right"></i> Sign Out
-                </a>
+                <button class="btn-infinity btn-welcome" id="welcomeBtn" disabled><i class="fas fa-hand-wave"></i> Welcome</button>
+                <a href="/auth/login/index.html" class="btn-infinity btn-login-header" id="signInBtn"><i class="bi bi-box-arrow-in-right"></i> Sign-in</a>
+                <a href="/auth/logout/redirect.html" class="btn-infinity btn-logout-header" id="signOutBtn" style="display:none;"><i class="bi bi-box-arrow-right"></i> Sign Out</a>
             </div>
         </div>
     </div>
 </header>
 
-<!-- ========== MINI HEADER ========== -->
+<!-- ========== MINI HEADER (appears on scroll up) ========== -->
 <div class="mini-header" id="miniHeader">
     <div class="container">
         <div class="d-flex align-items-center justify-content-between">
             <a href="/index.html" class="d-flex align-items-center gap-2 text-decoration-none">
                 <div class="logo-circle mini-logo">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><linearGradient id="metalM" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#e2e8f0"/><stop offset="25%" stop-color="#fff"/><stop offset="50%" stop-color="#cbd5e1"/><stop offset="75%" stop-color="#fff"/><stop offset="100%" stop-color="#64748b"/></linearGradient><linearGradient id="blueM" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#1e40af"/><stop offset="100%" stop-color="#0f172a"/></linearGradient></defs><path d="M95 58 Q256 12 417 58 L435 175 Q256 495 77 175 Z" fill="url(#metalM)" stroke="#475569" stroke-width="12" stroke-linejoin="round"/><path d="M110 72 Q256 30 402 72 L415 175 Q256 475 97 175 Z" fill="url(#blueM)"/><circle cx="256" cy="255" r="52" fill="#fff" opacity="0.2"/><polygon points="256,180 290,235 256,250 222,235" fill="#3b82f6"/><polygon points="200,215 240,260 256,250 220,230" fill="#06b6d4"/><polygon points="200,305 240,350 256,300 220,290" fill="#ef4444"/><polygon points="312,305 352,350 256,300 292,290" fill="#f97316"/><polygon points="312,215 352,260 256,250 292,230" fill="#22c55e"/><polygon points="256,225 278,250 256,275 234,250" fill="#fff" opacity="0.9"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><linearGradient id="metalM" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#e2e8f0"/><stop offset="25%" stop-color="#fff"/><stop offset="50%" stop-color="#cbd5e1"/><stop offset="75%" stop-color="#fff"/><stop offset="100%" stop-color="#64748b"/></linearGradient><linearGradient id="blueM" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#1e40af"/><stop offset="100%" stop-color="#0f172a"/></linearGradient></defs><path d="M95 58 Q256 12 417 58 L435 175 Q256 495 77 175 Z" fill="url(#metalM)" stroke="#475569" stroke-width="12" stroke-linejoin="round"/><path d="M110 72 Q256 30 402 72 L415 175 Q256 475 97 175 Z" fill="url(#blueM)"/><circle cx="256" cy="255" r="52" fill="#fff" opacity="0.2"/><polygon points="256,225 278,250 256,275 234,250" fill="#fff" opacity="0.9"/></svg>
                 </div>
-                <span class="mini-name">HAN-TECH LTD</span>
+                <span class="mini-name">HAN-TECH</span>
             </a>
             <div class="d-flex align-items-center gap-2">
                 <a href="/auth/login/index.html" class="btn-infinity btn-login-header btn-mini" id="miniSignIn">Sign-in</a>
@@ -291,7 +275,7 @@
     </div>
 </div>
 
-<!-- ========== MAIN NAVIGATION ========== -->
+<!-- ========== MAIN NAVIGATION (13 items) ========== -->
 <nav class="main-navbar" aria-label="Main Navigation">
     <div class="container">
         <div class="nav-container">
@@ -304,6 +288,9 @@
                 <li class="nav-item"><a class="nav-link" href="/pages/about/"><i class="bi bi-info-circle"></i> About Us</a></li>
                 <li class="nav-item"><a class="nav-link" href="/pages/careers/"><i class="bi bi-people"></i> Careers</a></li>
                 <li class="nav-item"><a class="nav-link" href="/pages/support/"><i class="bi bi-headset"></i> Support</a></li>
+                <li class="nav-item"><a class="nav-link" href="/pages/faq/"><i class="bi bi-question-circle"></i> FAQ</a></li>
+                <li class="nav-item"><a class="nav-link" href="/pages/news/"><i class="bi bi-newspaper"></i> News</a></li>
+                <li class="nav-item"><a class="nav-link" href="/pages/events/"><i class="bi bi-calendar-event"></i> Events</a></li>
                 <li class="nav-item"><a class="nav-link" href="/incubation/"><i class="bi bi-rocket-takeoff"></i> Incubation</a></li>
                 <li class="nav-item"><a class="nav-link" href="/pages/contact/"><i class="bi bi-envelope"></i> Contact</a></li>
             </ul>
@@ -314,7 +301,6 @@
 <!-- HEADER SCRIPTS -->
 <script>
     (function() {
-        // ========== Active Link Detection ==========
         const currentPath = window.location.pathname;
         document.querySelectorAll('.nav-link').forEach(link => {
             const parent = link.parentElement;
@@ -325,7 +311,6 @@
             if (href === '/index.html' && (currentPath === '/' || currentPath === '/index.html')) parent.classList.add('active');
         });
 
-        // ========== Dynamic Greeting ==========
         const welcomeBtn = document.getElementById('welcomeBtn');
         function updateGreeting() {
             if (!welcomeBtn) return;
@@ -339,10 +324,8 @@
         }
         updateGreeting();
 
-        // ========== Auth State Toggle ==========
         const signInBtn = document.getElementById('signInBtn');
         const signOutBtn = document.getElementById('signOutBtn');
-        const profileIcon = document.getElementById('profileIcon');
         const userDropdown = document.getElementById('userDropdown');
         const miniSignIn = document.getElementById('miniSignIn');
         const miniSignOut = document.getElementById('miniSignOut');
@@ -353,7 +336,6 @@
             if (token) {
                 if (signInBtn) signInBtn.style.display = 'none';
                 if (signOutBtn) signOutBtn.style.display = 'inline-flex';
-                if (profileIcon) profileIcon.style.display = 'none';
                 if (userDropdown) userDropdown.style.display = 'block';
                 if (miniSignIn) miniSignIn.style.display = 'none';
                 if (miniSignOut) miniSignOut.style.display = 'inline-flex';
@@ -366,7 +348,6 @@
             } else {
                 if (signInBtn) signInBtn.style.display = 'inline-flex';
                 if (signOutBtn) signOutBtn.style.display = 'none';
-                if (profileIcon) profileIcon.style.display = 'none';
                 if (userDropdown) userDropdown.style.display = 'none';
                 if (miniSignIn) miniSignIn.style.display = 'inline-flex';
                 if (miniSignOut) miniSignOut.style.display = 'none';
@@ -376,7 +357,6 @@
         updateAuthUI();
         window.addEventListener('storage', updateAuthUI);
 
-        // ========== Mini Header Scroll Logic ==========
         const miniHeader = document.getElementById('miniHeader');
         let lastScrollY = window.scrollY;
         const scrollThreshold = 300;
@@ -389,12 +369,10 @@
             lastScrollY = currentScroll;
         });
 
-        // ========== Cart Badge ==========
         const cartBadge = document.getElementById('cartBadge');
         const cartCount = parseInt(sessionStorage.getItem('cartCount')) || 0;
         if (cartCount > 0 && cartBadge) { cartBadge.style.display = 'flex'; cartBadge.textContent = cartCount; }
 
-        // ========== Live Clock ==========
         function updateClock() {
             const now = new Date();
             const time = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true, timeZone: 'Africa/Kampala' });
@@ -404,21 +382,18 @@
         updateClock();
         setInterval(updateClock, 30000);
 
-        // ========== Connection Status ==========
         function updateConnectionStatus() {
             const online = navigator.onLine;
             const clockEl = document.querySelector('.live-clock i');
             if (clockEl) {
                 clockEl.className = online ? 'fas fa-circle connection-dot online' : 'fas fa-circle connection-dot offline';
                 clockEl.style.fontSize = '0.5rem';
-                clockEl.style.marginRight = '4px';
             }
         }
         window.addEventListener('online', updateConnectionStatus);
         window.addEventListener('offline', updateConnectionStatus);
         updateConnectionStatus();
 
-        // ========== Search ==========
         const searchInput = document.getElementById('searchInput');
         if (searchInput) {
             searchInput.addEventListener('keypress', (e) => {
@@ -429,7 +404,6 @@
                 }
             });
         }
-        // Keyboard shortcut: Ctrl+K to focus search
         document.addEventListener('keydown', (e) => {
             if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                 e.preventDefault();
