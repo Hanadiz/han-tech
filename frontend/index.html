@@ -52,12 +52,18 @@
             border-radius: 50%; animation: spin 0.8s linear infinite;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
-        .mouse-glow {
-            position: fixed; pointer-events: none; z-index: 9998;
-            width: 300px; height: 300px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(0,180,216,0.08) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
+        .back-to-top {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, #0077b6, #00b4d8);
+            color: #fff; border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 14px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; cursor: pointer; z-index: 999;
+            opacity: 0; visibility: hidden; transform: translateY(20px);
+            transition: all 0.3s ease; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
         }
+        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        .back-to-top:hover { transform: translateY(-4px) !important; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); }
     </style>
 </head>
 <body>
@@ -67,20 +73,29 @@
     <!-- Preloader -->
     <div class="preloader" id="preloader"><div class="preloader-spinner"></div></div>
 
-    <!-- Mouse Glow (desktop only) -->
-    <div class="mouse-glow" id="mouseGlow"></div>
-
     <!-- Component containers -->
     <div id="header-container"></div>
     <div id="hero-container"></div>
     <div id="featured-container"></div>
     <div id="why-us-container"></div>
+    <div id="clients-container"></div>
+    <div id="trust-container"></div>
     <div id="testimonials-container"></div>
     <div id="stats-container"></div>
+    <div id="pricing-preview-container"></div>
+    <div id="portfolio-preview-container"></div>
+    <div id="team-preview-container"></div>
     <div id="blog-container"></div>
     <div id="partners-container"></div>
+    <div id="faq-preview-container"></div>
     <div id="cta-container"></div>
+    <div id="subscribe-container"></div>
     <div id="footer-container"></div>
+
+    <!-- Back‑to‑top button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="bi bi-arrow-up"></i>
+    </button>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -88,8 +103,7 @@
 
     <!-- Component Loader + Global Init -->
     <script>
-        // ========== COMPONENT LOADER ==========
-        async function loadComponent(url, containerId) {
+        async function load(url, containerId) {
             try {
                 const resp = await fetch(url);
                 if (!resp.ok) throw new Error(`Failed to load ${url}`);
@@ -99,53 +113,50 @@
             }
         }
 
-        // ========== INIT ==========
         (async function() {
-            // Load layout components
-            await loadComponent('/components/layouts/header.html', 'header-container');
+            // Load layout
+            await load('/components/layouts/header.html', 'header-container');
 
-            // Load home page sections
-            await loadComponent('/pages/home/hero-banner.html', 'hero-container');
-            await loadComponent('/pages/home/featured-services.html', 'featured-container');
-            await loadComponent('/pages/home/why-choose-us.html', 'why-us-container');
-            await loadComponent('/pages/home/testimonials.html', 'testimonials-container');
-            await loadComponent('/pages/home/stats-bar.html', 'stats-container');
-            await loadComponent('/pages/home/recent-blog.html', 'blog-container');
-            await loadComponent('/pages/home/partners.html', 'partners-container');
-            await loadComponent('/pages/home/cta-section.html', 'cta-container');
+            // Load all home page sections in order
+            await load('/pages/home/hero-banner.html', 'hero-container');
+            await load('/pages/home/featured-services.html', 'featured-container');
+            await load('/pages/home/why-choose-us.html', 'why-us-container');
+            await load('/pages/home/clients-counter.html', 'clients-container');
+            await load('/pages/home/trust-badges.html', 'trust-container');
+            await load('/pages/home/testimonials.html', 'testimonials-container');
+            await load('/pages/home/stats-bar.html', 'stats-container');
+            await load('/pages/home/pricing-preview.html', 'pricing-preview-container');
+            await load('/pages/home/portfolio-preview.html', 'portfolio-preview-container');
+            await load('/pages/home/team-preview.html', 'team-preview-container');
+            await load('/pages/home/recent-blog.html', 'blog-container');
+            await load('/pages/home/partners.html', 'partners-container');
+            await load('/pages/home/faq-preview.html', 'faq-preview-container');
+            await load('/pages/home/cta-section.html', 'cta-container');
+            await load('/pages/home/subscribe-section.html', 'subscribe-container');
 
-            await loadComponent('/components/layouts/footer.html', 'footer-container');
+            await load('/components/layouts/footer.html', 'footer-container');
 
             // Hide preloader
             document.getElementById('preloader').classList.add('hidden');
 
-            // Scroll progress
+            // Scroll progress bar
             const bar = document.getElementById('scrollProgress');
             window.addEventListener('scroll', () => {
                 const h = document.documentElement.scrollHeight - window.innerHeight;
                 bar.style.width = (window.scrollY / h) * 100 + '%';
             });
 
-            // Mouse glow (desktop only)
-            if (window.matchMedia('(pointer: fine)').matches) {
-                const glow = document.getElementById('mouseGlow');
-                document.addEventListener('mousemove', (e) => {
-                    glow.style.left = e.clientX + 'px';
-                    glow.style.top = e.clientY + 'px';
-                });
-            }
+            // Back‑to‑top button
+            const backBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => backBtn.classList.toggle('visible', window.scrollY > 400));
+            backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
             // Initialize AOS
             if (typeof AOS !== 'undefined') {
                 AOS.init({ duration: 800, once: true, offset: 60 });
             }
 
-            // Initialize session if first visit
-            if (!sessionStorage.getItem('visitStart')) {
-                sessionStorage.setItem('visitStart', new Date().toISOString());
-            }
-
-            console.log('%c🚀 Han-Tech Dynamic Engine Ready %c| %cAll components loaded',
+            console.log('%c🚀 Han-Tech Dynamic Engine Ready %c| %cAll sections loaded',
                 'color:#00b4d8;font-weight:bold;', '', 'color:#2ecc71;');
         })();
     </script>
