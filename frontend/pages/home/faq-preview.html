@@ -1,0 +1,29 @@
+<style>
+    .faq-preview { padding: 80px 0; background: #f9fafb; }
+    [data-theme="dark"] .faq-preview { background: #0f0f1a; }
+    .faq-preview h2 { text-align: center; font-family: 'Poppins', sans-serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 40px; color: #2c3e50; }
+    [data-theme="dark"] .faq-preview h2 { color: #e0e0e0; }
+    .faq-preview .accordion { max-width: 800px; margin: 0 auto; }
+    .faq-preview .btn-link { color: #0077b6; text-decoration: none; font-weight: 600; display: block; text-align: center; margin-top: 30px; }
+</style>
+
+<section class="faq-preview">
+    <div class="container">
+        <h2>Frequently Asked Questions</h2>
+        <div class="accordion" id="homeFaq">
+            <div class="accordion-item">
+                <h2 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#hfaq1">What services do you offer?</button></h2>
+                <div id="hfaq1" class="accordion-collapse collapse show"><div class="accordion-body">We offer 15 IT service categories including networking, cloud, security, development, IoT, and more.</div></div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#hfaq2">Do you operate outside Uganda?</button></h2>
+                <div id="hfaq2" class="accordion-collapse collapse"><div class="accordion-body">Yes, we serve clients in Kenya, Tanzania, Rwanda, and South Sudan.</div></div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#hfaq3">How can I get a quote?</button></h2>
+                <div id="hfaq3" class="accordion-collapse collapse"><div class="accordion-body">Contact us via the form on our contact page or call +256 781 607792 for a free consultation.</div></div>
+            </div>
+        </div>
+        <a href="/pages/faq/" class="btn-link mt-4">View All FAQs <i class="bi bi-arrow-right ms-1"></i></a>
+    </div>
+</section>
