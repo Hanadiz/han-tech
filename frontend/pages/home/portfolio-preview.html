@@ -1,0 +1,38 @@
+<style>
+    .portfolio-preview { padding: 80px 0; background: #fff; }
+    [data-theme="dark"] .portfolio-preview { background: #1a1a2e; }
+    .portfolio-preview h2 { text-align: center; font-family: 'Poppins', sans-serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 40px; color: #2c3e50; }
+    [data-theme="dark"] .portfolio-preview h2 { color: #e0e0e0; }
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+    .project-card {
+        background: #f9fafb; border-radius: 20px; overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.04); transition: all 0.3s;
+    }
+    [data-theme="dark"] .project-card { background: #252540; }
+    .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+    .project-card img { width: 100%; height: 180px; object-fit: cover; }
+    .project-body { padding: 20px; }
+    .project-body h5 { font-family: 'Poppins', sans-serif; font-weight: 600; }
+    .btn-view-all { display: block; text-align: center; margin-top: 30px; color: #0077b6; font-weight: 600; text-decoration: none; }
+</style>
+
+<section class="portfolio-preview">
+    <div class="container">
+        <h2>Our Recent Work</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400" alt="Project">
+                <div class="project-body"><h5>Cloud Migration for FinTech</h5><p class="text-muted small">AWS migration with zero downtime.</p></div>
+            </div>
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400" alt="Project">
+                <div class="project-body"><h5>Enterprise Wi‑Fi 6 Deployment</h5><p class="text-muted small">4000+ users across 12 campuses.</p></div>
+            </div>
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400" alt="Project">
+                <div class="project-body"><h5>Cybersecurity Overhaul</h5><p class="text-muted small">Zero‑Trust for a government agency.</p></div>
+            </div>
+        </div>
+        <a href="/pages/portfolio/" class="btn-view-all">View All Projects <i class="bi bi-arrow-right ms-1"></i></a>
+    </div>
+</section>
