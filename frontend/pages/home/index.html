@@ -31,6 +31,14 @@
     </style>
 </head>
 <body>
+<!-- Add these new containers in the body -->
+<div id="clients-container"></div>
+<div id="trust-container"></div>
+<div id="pricing-preview-container"></div>
+<div id="portfolio-preview-container"></div>
+<div id="team-preview-container"></div>
+<div id="faq-preview-container"></div>
+<div id="subscribe-container"></div>
     <div id="header-container"></div>
     <div id="hero-container"></div>
     <div id="featured-container"></div>
@@ -66,6 +74,15 @@
             await load('/pages/home/recent-blog.html', 'blog-container');
             await load('/pages/home/partners.html', 'partners-container');
             await load('/pages/home/cta-section.html', 'cta-container');
+// Add these load calls in the script
+await load('/pages/home/clients-counter.html', 'clients-container');
+await load('/pages/home/trust-badges.html', 'trust-container');
+await load('/pages/home/pricing-preview.html', 'pricing-preview-container');
+await load('/pages/home/portfolio-preview.html', 'portfolio-preview-container');
+await load('/pages/home/team-preview.html', 'team-preview-container');
+await load('/pages/home/faq-preview.html', 'faq-preview-container');
+await load('/pages/home/subscribe-section.html', 'subscribe-container');
+
             await load('/components/layouts/footer.html', 'footer-container');
 
             AOS.init({ duration: 800, once: true, offset: 50 });
