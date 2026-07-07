@@ -1,0 +1,21 @@
+<style>
+    .subscribe-home {
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+        color: #fff; padding: 60px 0; text-align: center;
+    }
+    .subscribe-home h3 { font-family: 'Poppins', sans-serif; font-weight: 700; }
+    .subscribe-home .form-inline { display: flex; gap: 10px; max-width: 450px; margin: 20px auto 0; flex-wrap: wrap; justify-content: center; }
+    .subscribe-home input { flex: 1; min-width: 200px; padding: 14px 20px; border-radius: 50px; border: none; }
+    .subscribe-home button { background: #fff; color: #0077b6; border: none; padding: 14px 30px; border-radius: 50px; font-weight: 700; cursor: pointer; }
+</style>
+
+<section class="subscribe-home">
+    <div class="container">
+        <h3>Stay in the Loop</h3>
+        <p>Subscribe for product updates, tech tips, and exclusive offers.</p>
+        <form class="form-inline" onsubmit="alert('Subscribed!'); this.reset(); return false;">
+            <input type="email" placeholder="your@email.com" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+</section>
