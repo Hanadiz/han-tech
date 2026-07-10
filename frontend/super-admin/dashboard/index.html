@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Super Admin Dashboard | Han-Tech Ltd</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -14,11 +13,10 @@
         .admin-layout { display: flex; min-height: calc(100vh - 140px); }
         .admin-main { flex: 1; padding: 30px; }
         .back-to-top {
-            position: fixed; bottom: 30px; right: 30px;
-            width: 48px; height: 48px;
-            background: linear-gradient(135deg, #0077b6, #00b4d8);
-            color: #fff; border: 2px solid rgba(255,255,255,0.2);
-            border-radius: 14px; display: flex; align-items: center; justify-content: center;
+            position: fixed; bottom: 30px; right: 30px; width: 48px; height: 48px;
+            background: linear-gradient(135deg, #0077b6, #00b4d8); color: #fff;
+            border: 2px solid rgba(255,255,255,0.2); border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
             font-size: 1.2rem; cursor: pointer; z-index: 999;
             opacity: 0; visibility: hidden; transform: translateY(20px);
             transition: all 0.3s ease; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
@@ -54,52 +52,41 @@
         </main>
     </div>
     <div id="footer-container"></div>
-
-    <button class="back-to-top" id="backToTop" aria-label="Back to top">
-        <i class="bi bi-arrow-up"></i>
-    </button>
-
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/client-portal/auth-guard.js"></script>
     <script>
         if (!AuthGuard.check('super_admin')) return;
-
-        async function load(url, containerId) {
-            try {
-                const r = await fetch(url);
-                document.getElementById(containerId).innerHTML = await r.text();
-            } catch(e) { console.error(e); }
+        async function load(url, id) {
+            try { const r = await fetch(url); document.getElementById(id).innerHTML = await r.text(); } catch(e) {}
         }
-
         (async function() {
-            await load('/components/layouts/header.html', 'header-container');
-            await load('/components/layouts/sidebar-super-admin.html', 'sidebar-container');
-            await load('/components/layouts/footer.html', 'footer-container');
-
-            await load('/super-admin/dashboard/widgets/overview.html', 'section-overview');
-            await load('/super-admin/admins/index.html', 'section-admins');
-            await load('/super-admin/system-settings/index.html', 'section-system-settings');
-            await load('/super-admin/security-settings/index.html', 'section-security-settings');
-            await load('/super-admin/smtp-settings/index.html', 'section-smtp-settings');
-            await load('/super-admin/payment-gateways/index.html', 'section-payment-gateways');
-            await load('/super-admin/email-templates/index.html', 'section-email-templates');
-            await load('/super-admin/api-keys/index.html', 'section-api-keys');
-            await load('/super-admin/webhooks/index.html', 'section-webhooks');
-            await load('/super-admin/ip-whitelist/index.html', 'section-ip-whitelist');
-            await load('/super-admin/two-factor-settings/index.html', 'section-two-factor-settings');
-            await load('/super-admin/backups/index.html', 'section-backups');
-            await load('/super-admin/audit-logs/index.html', 'section-audit-logs');
-            await load('/super-admin/system-health/index.html', 'section-system-health');
-            await load('/super-admin/maintenance-mode/index.html', 'section-maintenance-mode');
-            await load('/super-admin/phpinfo/index.html', 'section-phpinfo');
-            await load('/super-admin/queue-monitor/index.html', 'section-queue-monitor');
-            await load('/super-admin/cache-clear/index.html', 'section-cache-clear');
-            await load('/super-admin/optimize-database/index.html', 'section-optimize-database');
-
+            await load('/components/layouts/header.html','header-container');
+            await load('/components/layouts/sidebar-super-admin.html','sidebar-container');
+            await load('/components/layouts/footer.html','footer-container');
+            await load('/super-admin/dashboard/widgets/overview.html','section-overview');
+            await load('/super-admin/admins/index.html','section-admins');
+            await load('/super-admin/system-settings/index.html','section-system-settings');
+            await load('/super-admin/security-settings/index.html','section-security-settings');
+            await load('/super-admin/smtp-settings/index.html','section-smtp-settings');
+            await load('/super-admin/payment-gateways/index.html','section-payment-gateways');
+            await load('/super-admin/email-templates/index.html','section-email-templates');
+            await load('/super-admin/api-keys/index.html','section-api-keys');
+            await load('/super-admin/webhooks/index.html','section-webhooks');
+            await load('/super-admin/ip-whitelist/index.html','section-ip-whitelist');
+            await load('/super-admin/two-factor-settings/index.html','section-two-factor-settings');
+            await load('/super-admin/backups/index.html','section-backups');
+            await load('/super-admin/audit-logs/index.html','section-audit-logs');
+            await load('/super-admin/system-health/index.html','section-system-health');
+            await load('/super-admin/maintenance-mode/index.html','section-maintenance-mode');
+            await load('/super-admin/phpinfo/index.html','section-phpinfo');
+            await load('/super-admin/queue-monitor/index.html','section-queue-monitor');
+            await load('/super-admin/cache-clear/index.html','section-cache-clear');
+            await load('/super-admin/optimize-database/index.html','section-optimize-database');
             const backBtn = document.getElementById('backToTop');
             window.addEventListener('scroll', () => backBtn.classList.toggle('visible', window.scrollY > 400));
             backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
         })();
     </script>
 </body>
-</html> 
+</html>
