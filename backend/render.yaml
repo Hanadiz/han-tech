@@ -1,0 +1,79 @@
+services:
+  # Backend API Service
+  - type: web
+    name: hanadiz-backend
+    runtime: php
+    buildCommand: |
+      composer install --no-dev --optimize-autoloader
+      php artisan config:cache
+      php artisan route:cache
+      php artisan view:cache
+    startCommand: php artisan serve --host=0.0.0.0 --port=$PORT
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: hanadiz-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: hanadiz-redis
+          type: redis
+          property: connectionString
+      - key: SESSION_DRIVER
+        value: redis
+      - key: CACHE_DRIVER
+        value: redis
+      - key: QUEUE_CONNECTION
+        value: redis
+    healthCheckPath: /health
+    autoDeploy: true
+
+  # Frontend Static Site
+  - type: web
+    name: hanadiz-frontend
+    runtime: static
+    buildCommand: |
+      npm ci --legacy-peer-deps
+      npm run build
+    staticPublishPath: ./frontend
+    envVars:
+      - key: NODE_VERSION
+        value: 18.x
+
+  # Background Worker
+  - type: worker
+    name: hanadiz-worker
+    runtime: php
+    buildCommand: composer install --no-dev --optimize-autoloader
+    startCommand: php artisan queue:work --sleep=3 --tries=3
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: hanadiz-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: hanadiz-redis
+          type: redis
+          property: connectionString
+
+  # Redis Cache
+  - type: redis
+    name: hanadiz-redis
+    ipAllowList: []
+
+databases:
+  - name: hanadiz-db
+    databaseName: hanadiz
+    user: hanadiz_user
+    plan: starter
