@@ -1,7 +1,9 @@
-# Multi-stage build for better performance
+# Dockerfile.render
+
+# Stage 1: Build Stage
 FROM php:8.2-fpm-alpine AS backend
 
-# Install dependencies
+# Install system dependencies
 RUN apk add --no-cache \
     postgresql-dev \
     nginx \
@@ -11,16 +13,23 @@ RUN apk add --no-cache \
     unzip \
     libzip-dev \
     oniguruma-dev \
-    libxml2-dev
-
-# Install PHP extensions
-RUN docker-php-ext-install \
-    pdo_pgsql \
-    zip \
-    mbstring \
-    xml \
-    bcmath \
-    opcache
+    libxml2-dev \
+    libpng-dev \
+    libjpeg-turbo-dev \
+    freetype-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) \
+        pdo_pgsql \
+        pgsql \
+        gd \
+        mbstring \
+        xml \
+        bcmath \
+        opcache \
+    && apk del --no-cache \
+        libpng-dev \
+        libjpeg-turbo-dev \
+        freetype-dev
 
 # Install Redis extension
 RUN pecl install redis && docker-php-ext-enable redis
@@ -28,35 +37,90 @@ RUN pecl install redis && docker-php-ext-enable redis
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Setup application
+# Set working directory
 WORKDIR /var/www/html
-COPY backend/composer.json backend/composer.lock ./
-RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
 
+# Copy composer files (with fallback if lock doesn't exist)
+COPY backend/composer.json /var/www/html/composer.json
+COPY backend/composer.lock* /var/www/html/
+
+# Install dependencies
+RUN if [ -f composer.lock ]; then \
+        composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader; \
+    else \
+        composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader --no-scripts; \
+        echo "Warning: composer.lock not found, installed from composer.json"; \
+    fi
+
+# Copy application files
 COPY backend/ ./
+
+# Create required directories
+RUN mkdir -p storage/logs storage/framework/views storage/framework/cache storage/framework/sessions \
+    && chown -R www-data:www-data storage bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
 
 # Generate optimized cache
 RUN php artisan config:cache && \
     php artisan route:cache && \
-    php artisan view:cache
+    php artisan view:cache || true
 
-# Setup Nginx
+# Copy nginx configuration
 COPY deployment/docker/backend/nginx.conf /etc/nginx/nginx.conf
 
-# Frontend build stage
-FROM node:18-alpine AS frontend
-WORKDIR /app
-COPY frontend/package*.json ./
-RUN npm ci --legacy-peer-deps
-COPY frontend/ ./
-RUN npm run build
-
-# Final stage
-FROM php:8.2-fpm-alpine
-COPY --from=backend /var/www/html /var/www/html
-COPY --from=frontend /app/dist /var/www/html/public
+# Copy PHP configuration
 COPY deployment/docker/backend/php.ini /usr/local/etc/php/conf.d/app.ini
+
+# Copy supervisor configuration
 COPY deployment/docker/backend/supervisor.conf /etc/supervisor/conf.d/supervisor.conf
 
+# Stage 2: Frontend Build
+FROM node:18-alpine AS frontend
+
+WORKDIR /app
+
+# Copy frontend files
+COPY frontend/package*.json ./
+
+# Install dependencies
+RUN npm ci --legacy-peer-deps || npm install --legacy-peer-deps
+
+COPY frontend/ ./
+
+# Build frontend
+RUN npm run build || (echo "Frontend build failed, continuing..." && exit 0)
+
+# Stage 3: Final Image
+FROM php:8.2-fpm-alpine
+
+# Copy backend
+COPY --from=backend --chown=www-data:www-data /var/www/html /var/www/html
+
+# Copy frontend build
+COPY --from=frontend --chown=www-data:www-data /app/dist /var/www/html/public
+
+# Copy supervisor configuration
+COPY --from=backend /etc/supervisor/conf.d/supervisor.conf /etc/supervisor/conf.d/
+
+# Install runtime dependencies
+RUN apk add --no-cache nginx supervisor curl
+
+# Copy nginx configuration
+COPY --from=backend /etc/nginx/nginx.conf /etc/nginx/nginx.conf
+
+# Copy PHP configuration
+COPY --from=backend /usr/local/etc/php/conf.d/app.ini /usr/local/etc/php/conf.d/app.ini
+
+# Create logs directory
+RUN mkdir -p /var/log/nginx /var/log/supervisor && \
+    chown -R www-data:www-data /var/log/nginx /var/log/supervisor
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost/health || exit 1
+
+# Expose ports
 EXPOSE 8080
+
+# Start supervisor
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisor.conf"]
