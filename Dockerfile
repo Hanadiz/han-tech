@@ -1,86 +1,44 @@
-FROM php:8.2-fpm
+FROM php:8.2-fpm-alpine
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    zip \
-    unzip \
-    nginx \
-    supervisor \
-    libpq-dev \
-    postgresql-client
+RUN apk add --no-cache \
+    nginx supervisor postgresql-dev \
+    libpng-dev libjpeg-turbo-dev freetype-dev \
+    zip unzip git curl oniguruma-dev libxml2-dev
 
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) \
+    pdo_pgsql pgsql gd mbstring xml bcmath opcache
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd \
-    && docker-php-ext-install pdo_pgsql
-
-# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Set working directory
 WORKDIR /var/www/html
 
-# Copy application
-COPY . /var/www/html
-
-# Copy deploy configurations
-COPY deploy/nginx.conf /etc/nginx/sites-available/default
-COPY deploy/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-# Copy environment file
-RUN if [ ! -f .env ]; then cp .env.ci .env; fi
+# Copy composer files first
+COPY backend/composer.json /var/www/html/composer.json
+COPY backend/composer.lock /var/www/html/composer.lock
 
 # Install dependencies
-RUN composer install --no-interaction --optimize-autoloader --no-dev
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-progress
 
-# Generate application key
-RUN php artisan key:generate --force || true
+# Copy the rest of the backend
+COPY backend/ /var/www/html/
+
+# Create .env from .env.example
+RUN if [ -f .env.example ]; then cp .env.example .env; else touch .env; fi
+
+# Generate app key
+RUN php artisan key:generate --force
+
+# Create storage directories
+RUN mkdir -p storage/framework/{cache,testing,sessions,views} storage/logs bootstrap/cache
 
 # Set permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html/storage \
-    && chmod -R 755 /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data storage bootstrap/cache
 
-# Create startup script
-RUN echo '#!/bin/bash\n\
-set -e\n\
-echo "========================================="\n\
-echo "Starting Han-Tech Application"\n\
-echo "========================================="\n\
-echo "⏳ Waiting for PostgreSQL to be ready..."\n\
-max_retries=30\n\
-counter=0\n\
-until PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -U $DB_USERNAME -d $DB_DATABASE -c "SELECT 1" > /dev/null 2>&1 || [ $counter -eq $max_retries ]; do\n\
-    counter=$((counter+1))\n\
-    echo "Database not ready - attempt $counter/$max_retries"\n\
-    sleep 3\n\
-done\n\
-if [ $counter -eq $max_retries ]; then\n\
-    echo "⚠️  Database connection timed out, continuing anyway..."\n\
-else\n\
-    echo "✅ Database is ready!"\n\
-fi\n\
-echo "🔄 Running migrations..."\n\
-php artisan migrate --force || echo "⚠️  Migrations failed but continuing..."\n\
-echo "🔄 Caching config..."\n\
-php artisan config:cache || true\n\
-php artisan route:cache || true\n\
-php artisan view:cache || true\n\
-echo "========================================="\n\
-echo "🚀 Starting Supervisord..."\n\
-echo "========================================="\n\
-exec /usr/bin/supervisord -n -c /etc/supervisor/conf.d/supervisord.conf\n\
-' > /startup.sh && chmod +x /startup.sh
+# Copy config files
+COPY deploy/nginx.conf /etc/nginx/nginx.conf
+COPY deploy/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Expose port 80
 EXPOSE 80
 
-# Start with startup script
-CMD ["/startup.sh"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
