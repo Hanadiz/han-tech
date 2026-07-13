@@ -1,0 +1,9 @@
+'default' => env('CACHE_DRIVER', 'redis'),
+'stores' => [
+    'redis' => [
+        'driver' => 'redis',
+        'connection' => 'cache',
+        'lock_connection' => 'default',
+        'prefix' => 'hanadiz_cache_',
+    ],
+],
