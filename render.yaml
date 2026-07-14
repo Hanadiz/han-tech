@@ -1,0 +1,241 @@
+services:
+  # ============================================
+  # Backend API Service
+  # ============================================
+  - type: web
+    name: hanadiz-backend-api
+    runtime: python
+    repo: https://github.com/your-username/hanadiz
+    plan: standard
+    region: frankfurt
+    branch: main
+    
+    # Build Configuration
+    buildCommand: |
+      cd backend
+      chmod +x ../deployment/scripts/build.sh
+      ../deployment/scripts/build.sh
+      
+    # Start Command
+    startCommand: |
+      cd backend
+      ../deployment/scripts/start.sh
+      
+    # Environment Variables
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: DEBUG
+        value: false
+      - key: PORT
+        value: 8000
+      - key: WORKERS
+        value: 4
+      - key: DATABASE_URL
+        fromDatabase:
+          name: hanadiz-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: hanadiz-redis
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_USERNAME
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
+      - key: SMTP_FROM_EMAIL
+        value: noreply@hanadiz.com
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_CLIENT_SECRET
+        sync: false
+      - key: CORS_ORIGINS
+        value: https://hanadiz-client.onrender.com,https://hanadiz-admin.onrender.com,https://hanadiz-staging.onrender.com
+      - key: LOG_LEVEL
+        value: INFO
+      - key: SENTRY_DSN
+        sync: false
+      - key: PROMETHEUS_ENABLED
+        value: true
+      - key: BACKUP_RETENTION_DAYS
+        value: 30
+        
+    # Health Check
+    healthCheckPath: /health
+    healthCheckTimeout: 100
+    
+    # Auto-scaling
+    scaling:
+      minInstances: 1
+      maxInstances: 10
+      targetMemoryPercent: 70
+      targetCPUPercent: 60
+      
+    # Disk
+    disk:
+      name: backend-storage
+      mountPath: /app/backend/storage
+      sizeGB: 10
+
+  # ============================================
+  # Celery Worker Service
+  # ============================================
+  - type: worker
+    name: hanadiz-celery-worker
+    runtime: python
+    repo: https://github.com/your-username/hanadiz
+    plan: starter
+    region: frankfurt
+    branch: main
+    
+    buildCommand: |
+      cd backend
+      pip install --upgrade pip
+      pip install -r requirements/production.txt
+      
+    startCommand: |
+      cd backend
+      celery -A app.core.celery_app worker \
+        --loglevel=info \
+        --concurrency=4 \
+        --max-tasks-per-child=100 \
+        --time-limit=300 \
+        --soft-time-limit=240
+      
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: hanadiz-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: hanadiz-redis
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: LOG_LEVEL
+        value: INFO
+
+  # ============================================
+  # Celery Beat Scheduler
+  # ============================================
+  - type: worker
+    name: hanadiz-celery-beat
+    runtime: python
+    repo: https://github.com/your-username/hanadiz
+    plan: starter
+    region: frankfurt
+    branch: main
+    
+    buildCommand: |
+      cd backend
+      pip install --upgrade pip
+      pip install -r requirements/production.txt
+      
+    startCommand: |
+      cd backend
+      celery -A app.core.celery_app beat \
+        --loglevel=info \
+        --schedule=/app/backend/celerybeat-schedule
+      
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: hanadiz-redis
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: LOG_LEVEL
+        value: INFO
+
+  # ============================================
+  # Flower Monitoring Service
+  # ============================================
+  - type: web
+    name: hanadiz-flower
+    runtime: python
+    repo: https://github.com/your-username/hanadiz
+    plan: starter
+    region: frankfurt
+    branch: main
+    
+    buildCommand: |
+      cd backend
+      pip install --upgrade pip
+      pip install -r requirements/production.txt
+      
+    startCommand: |
+      cd backend
+      celery -A app.core.celery_app flower \
+        --port=$PORT \
+        --address=0.0.0.0 \
+        --basic_auth=admin:$FLOWER_PASSWORD
+      
+    envVars:
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: hanadiz-redis
+          property: connectionString
+      - key: FLOWER_PASSWORD
+        generateValue: true
+      - key: LOG_LEVEL
+        value: INFO
+    
+    healthCheckPath: /health
+
+  # ============================================
+  # Redis Cache Service
+  # ============================================
+  - type: redis
+    name: hanadiz-redis
+    plan: starter
+    region: frankfurt
+    maxmemoryPolicy: allkeys-lru
+    ipAllowList:
+      - source: 0.0.0.0/0
+        description: everywhere
+
+# ============================================
+# Database Configuration
+# ============================================
+databases:
+  - name: hanadiz-db
+    databaseName: hanadiz_production
+    user: hanadiz_admin
+    plan: standard
+    region: frankfurt
+    ipAllowList:
+      - source: 0.0.0.0/0
+        description: everywhere
+    postgresMajorVersion: 15
+    
+    # Database Extensions
+    extensions:
+      - uuid-ossp
+      - pgcrypto
+      - citext
+      
+    # Backups
+    backup:
+      retentionPeriod: 30
+      schedule: 0 2 * * *
