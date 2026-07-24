@@ -4,399 +4,414 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products | Han-Tech Ltd</title>
-    <meta name="description" content="Explore Han-Tech Ltd products: Cloud Suite, SecureNet Firewall, IoT Kit, EduLearn LMS, FinPay Gateway, and more.">
+    <meta name="description" content="Full product catalog: Cloud Suite, SecureNet Firewall, IoT Kit, EduLearn LMS, and more.">
     <meta name="theme-color" content="#0a1628">
 
     <!-- External CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
+    <!-- Application Stylesheet (optional global styles) -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!-- Inline critical styles for dynamic sections only (grid & detail) -->
     <style>
         :root {
-            --tech-blue: #0077b6;
-            --gradient-tech: linear-gradient(135deg, #0077b6, #00b4d8);
-            --gradient-dark: linear-gradient(135deg, #0f0f1a, #1a1a2e, #16213e);
+            --primary-deep: #0a1628;
+            --primary-blue: #0077b6;
+            --primary-cyan: #00b4d8;
+            --secondary-gold: #f4a261;
+            --text-white: #ffffff;
+            --text-gray: #a0a0b0;
+            --card-bg: #111d32;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #f9fafb;
-            color: #2c3e50;
-        }
-
-        [data-theme="dark"] body {
-            background: #0a1628;
-            color: #fff;
-        }
-
-        /* Hero */
-        .prod-hero {
-            background: var(--gradient-dark);
-            color: #fff;
-            padding: 100px 0 60px;
-            text-align: center;
-        }
-        .prod-hero h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 3rem;
-            font-weight: 700;
-        }
-        .prod-hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 700px;
-            margin: 20px auto 0;
-        }
-        .btn-hero {
-            background: #fff;
-            color: #0f0f1a;
-            border-radius: 50px;
-            padding: 14px 36px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-        .btn-hero:hover {
-            background: #e9ecef;
-            transform: translateY(-2px);
-        }
-
-        /* Product Cards (like program cards) */
-        .section {
-            padding: 80px 0;
-        }
-        .product-card {
-            background: #fff;
-            border-radius: 20px;
-            padding: 40px 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: 0.3s;
-            height: 100%;
-            text-align: center;
-            border: 2px solid transparent;
-            cursor: pointer;
-        }
-        [data-theme="dark"] .product-card {
-            background: #1a1a2e;
-        }
-        .product-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(0,180,216,0.3);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        .product-icon {
-            width: 70px;
-            height: 70px;
-            background: var(--gradient-tech);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 2rem;
-            margin: 0 auto 20px;
-        }
-        .product-card h3 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        .product-card p {
-            color: #666;
-        }
-        [data-theme="dark"] .product-card p {
-            color: #94a3b8;
-        }
-        .product-category {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #f4a261;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        .product-price {
-            font-weight: 700;
-            color: #0077b6;
-            margin: 10px 0;
-            font-size: 1.1rem;
-        }
-        [data-theme="dark"] .product-price {
-            color: #00b4d8;
-        }
-
-        /* Stats Bar */
-        .stats-bar {
-            background: var(--gradient-tech);
-            padding: 50px 0;
-            color: #fff;
-            text-align: center;
-        }
-        .stats-bar h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--primary-deep); color: var(--text-white); }
 
         /* Filter bar */
         .filter-bar {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: 2rem 0;
+            display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin: 2rem 0;
         }
         .search-box {
-            position: relative;
-            flex: 1;
-            max-width: 350px;
-            min-width: 200px;
+            position: relative; flex: 1; max-width: 350px; min-width: 200px;
         }
         .search-box input {
-            width: 100%;
-            padding: 0.75rem 1rem 0.75rem 2.75rem;
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            font-size: 0.9rem;
+            width: 100%; padding: 0.75rem 1rem 0.75rem 2.75rem;
+            background: var(--card-bg); border: 1px solid rgba(0,180,216,0.2);
+            border-radius: 12px; color: #fff; font-size: 0.9rem;
         }
-        [data-theme="dark"] .search-box input {
-            background: #1a1a2e;
-            border-color: rgba(255,255,255,0.1);
-            color: #fff;
-        }
-        .search-box i {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #6b7280;
-        }
+        .search-box i { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #6b7280; }
         .filter-select {
-            padding: 0.75rem 1rem;
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            min-width: 150px;
-        }
-        [data-theme="dark"] .filter-select {
-            background: #1a1a2e;
-            border-color: rgba(255,255,255,0.1);
-            color: #fff;
+            padding: 0.75rem 1rem; background: var(--card-bg);
+            border: 1px solid rgba(0,180,216,0.2); border-radius: 12px;
+            color: #fff; font-size: 0.9rem; cursor: pointer; min-width: 150px;
         }
 
-        .no-results {
-            text-align: center;
-            padding: 3rem;
-            color: #6b7280;
-            display: none;
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
+        .product-card {
+            background: var(--card-bg); border: 1px solid rgba(0,180,216,0.08);
+            border-radius: 16px; overflow: hidden; transition: all 0.3s;
+            cursor: pointer; position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-6px); border-color: rgba(0,180,216,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .badge {
+            position: absolute; top: 1rem; right: 1rem;
+            background: rgba(0,180,216,0.2); color: #00b4d8;
+            padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600;
+        }
+        .img-placeholder {
+            height: 160px; display: flex; align-items: center; justify-content: center;
+            font-size: 3rem; color: rgba(255,255,255,0.2);
+        }
+        .card-body { padding: 1.5rem; }
+        .category { color: var(--secondary-gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+        .name { font-family: 'Poppins', sans-serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .desc { color: var(--text-gray); font-size: 0.85rem; line-height: 1.7; margin-bottom: 1rem; }
+        .footer { display: flex; justify-content: space-between; align-items: center; }
+        .price { font-family: 'Poppins', sans-serif; font-weight: 700; color: var(--primary-cyan); }
+
+        .no-results { text-align: center; padding: 3rem; color: var(--text-gray); display: none; }
         .no-results.show { display: block; }
+
+        /* Detail view */
+        .detail-container { display: none; margin-top: 2rem; }
+        .breadcrumb a { color: #a0a0b0; text-decoration: none; }
+        .breadcrumb a:hover { color: #00b4d8; }
+        .detail-img {
+            height: 300px; border-radius: 20px; display: flex;
+            align-items: center; justify-content: center;
+            font-size: 5rem; color: rgba(255,255,255,0.2);
+        }
+        .detail-title { font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 700; }
+        .detail-price { font-size: 2rem; font-weight: 800; color: var(--primary-cyan); }
+        .btn-primary {
+            background: linear-gradient(135deg, #0077b6, #00b4d8); color: #fff;
+            padding: 0.8rem 2rem; border-radius: 12px; text-decoration: none; font-weight: 600;
+        }
+        .btn-outline-cyan {
+            border: 1.5px solid rgba(0,180,216,0.3); color: #00b4d8;
+            padding: 0.6rem 1.5rem; border-radius: 12px; text-decoration: none; font-weight: 600;
+        }
+        .feature-list { list-style: none; padding: 0; }
+        .feature-list li { padding: 0.5rem 0; display: flex; gap: 0.5rem; color: #e0e0e0; }
+        .feature-list i { color: #00b4d8; }
+
+        /* Related products */
+        .related-card {
+            background: var(--card-bg); border-radius: 12px;
+            padding: 1rem; display: flex; align-items: center; gap: 1rem;
+            transition: 0.2s; cursor: pointer;
+        }
+        .related-card:hover { background: #1a2940; }
+        .related-icon {
+            width: 50px; height: 50px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; color: var(--primary-cyan);
+        }
+
+        /* Reviews */
+        .review-card {
+            background: var(--card-bg); border: 1px solid rgba(0,180,216,0.08);
+            border-radius: 14px; padding: 1.5rem; margin-bottom: 1rem;
+        }
+        .stars { color: var(--secondary-gold); }
+
+        /* Roadmap timeline */
+        .timeline {
+            position: relative; max-width: 700px; margin: 2rem auto; padding-left: 40px;
+        }
+        .timeline::before {
+            content: ''; position: absolute; left: 20px; top: 0; bottom: 0;
+            width: 2px; background: linear-gradient(180deg, #0077b6, #00b4d8, #f4a261);
+        }
+        .tl-event { position: relative; margin-bottom: 2rem; }
+        .tl-event::before {
+            content: ''; position: absolute; left: -25px; top: 10px;
+            width: 12px; height: 12px; border-radius: 50%; background: #00b4d8;
+        }
+        .tl-card { background: var(--card-bg); border-radius: 14px; padding: 1.2rem; }
+        .tl-date { color: var(--secondary-gold); font-weight: 600; }
+
+        .section-title { font-family: 'Poppins', sans-serif; font-size: 1.8rem; font-weight: 700; margin-bottom: 1.5rem; }
     </style>
 </head>
 <body>
 
-    <!-- Header dynamically loaded -->
-    <div id="header-container"></div>
+    <!-- ============================================
+         Component Containers (loaded externally)
+         ============================================ -->
+    <div id="header-container"></div>    <!-- /components/layouts/header.html -->
+    <div id="hero-container"></div>      <!-- /pages/products/hero.html   -->
+    <div id="footer-container"></div>    <!-- /components/layouts/footer.html -->
 
-    <!-- Hero -->
-    <section class="prod-hero">
-        <div class="container">
-            <h1>Our Technology Products</h1>
-            <p>Ready‑to‑deploy solutions that accelerate your digital transformation.</p>
-            <a href="/pages/pricing/" class="btn btn-hero btn-lg mt-4">View Pricing</a>
+    <!-- ============================================
+         Dynamic Product Section (controlled by JS)
+         ============================================ -->
+    <main>
+        <div class="container py-4">
+
+            <!-- ========== PRODUCT GRID (default view) ========== -->
+            <div id="gridView">
+                <div class="filter-bar">
+                    <div class="search-box">
+                        <i class="bi bi-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search products...">
+                    </div>
+                    <select class="filter-select" id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="Cloud">Cloud</option>
+                        <option value="Security">Security</option>
+                        <option value="IoT">IoT</option>
+                        <option value="EdTech">EdTech</option>
+                        <option value="FinTech">FinTech</option>
+                        <option value="Software">Software</option>
+                    </select>
+                </div>
+                <div class="product-grid" id="productGrid"></div>
+                <div class="no-results" id="noResults">
+                    <i class="bi bi-box" style="font-size:3rem; display:block; margin-bottom:1rem; color:#6b7280;"></i>
+                    <h4>No products found</h4>
+                </div>
+            </div>
+
+            <!-- ========== PRODUCT DETAIL VIEW (hidden initially) ========== -->
+            <div id="detailView" class="detail-container">
+                <nav class="breadcrumb py-3">
+                    <a href="#" id="backToGrid"><i class="bi bi-arrow-left"></i> Back to Products</a>
+                </nav>
+                <div id="detailContent"></div>
+
+                <!-- Related Products -->
+                <h4 class="mt-5 mb-3">Related Products</h4>
+                <div class="row g-3" id="relatedProducts"></div>
+
+                <!-- Reviews -->
+                <h4 class="mt-5 mb-3">Customer Reviews</h4>
+                <div id="reviewsSection"></div>
+
+                <!-- Roadmap -->
+                <h4 class="mt-5 mb-3">Product Roadmap</h4>
+                <div class="timeline" id="roadmapTimeline"></div>
+            </div>
+
         </div>
-    </section>
-
-    <!-- Product Grid Section -->
-    <section class="section">
-        <div class="container">
-            <!-- Filter bar -->
-            <div class="filter-bar">
-                <div class="search-box">
-                    <i class="bi bi-search"></i>
-                    <input type="text" id="searchInput" placeholder="Search products...">
-                </div>
-                <select class="filter-select" id="categoryFilter">
-                    <option value="all">All Categories</option>
-                    <option value="Cloud">Cloud</option>
-                    <option value="Security">Security</option>
-                    <option value="IoT">IoT</option>
-                    <option value="EdTech">EdTech</option>
-                    <option value="FinTech">FinTech</option>
-                    <option value="Software">Software</option>
-                </select>
-            </div>
-
-            <!-- Product Grid -->
-            <div class="row g-4" id="productGrid">
-                <!-- cards rendered by JS -->
-            </div>
-            <div class="no-results" id="noResults">
-                <i class="bi bi-box" style="font-size:3rem;display:block;margin-bottom:1rem;"></i>
-                <h4>No products found</h4>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Bar -->
-    <section class="stats-bar">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-6 col-md-3">
-                    <h3>15+</h3>
-                    <p>Product SKUs</p>
-                </div>
-                <div class="col-6 col-md-3">
-                    <h3>500+</h3>
-                    <p>Enterprise Clients</p>
-                </div>
-                <div class="col-6 col-md-3">
-                    <h3>99.9%</h3>
-                    <p>Uptime SLA</p>
-                </div>
-                <div class="col-6 col-md-3">
-                    <h3>24/7</h3>
-                    <p>Support</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer dynamically loaded -->
-    <div id="footer-container"></div>
+    </main>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/assets/js/config.js"></script>
+    <script src="/assets/js/api.js"></script>
 
     <script>
-        // Product data (mirror backend)
-        const products = [
-            {
-                id: 1,
-                name: "Cloud Suite",
-                category: "Cloud",
-                price: "$299/mo",
-                icon: "fa-cloud-arrow-up",
-                desc: "Multi-cloud management platform with migration tools and cost optimization.",
-                features: ["Multi-cloud support", "Automated migration", "Real-time monitoring"]
-            },
-            {
-                id: 2,
-                name: "SecureNet Firewall",
-                category: "Security",
-                price: "$1,499",
-                icon: "fa-shield-haltered",
-                desc: "AI-powered next-gen firewall with real-time intrusion prevention.",
-                features: ["AI threat detection", "Intrusion prevention", "Central management"]
-            },
-            {
-                id: 3,
-                name: "IoT Sensor Kit Pro",
-                category: "IoT",
-                price: "$599",
-                icon: "fa-microchip",
-                desc: "Industrial-grade IoT sensor kit with 20+ sensors and cloud dashboard.",
-                features: ["20+ sensor types", "Plug-and-play", "Cloud dashboard"]
-            },
-            {
-                id: 4,
-                name: "EduLearn LMS",
-                category: "EdTech",
-                price: "$199/mo",
-                icon: "fa-graduation-cap",
-                desc: "Learning Management System with virtual classrooms and automated assessments.",
-                features: ["Virtual classrooms", "Automated assessments", "Mobile app"]
-            },
-            {
-                id: 5,
-                name: "FinPay Gateway",
-                category: "FinTech",
-                price: "Custom",
-                icon: "fa-sack-dollar",
-                desc: "Multi-currency payment gateway with mobile money and card processing.",
-                features: ["Mobile money", "Card processing", "PCI-DSS"]
-            },
-            {
-                id: 6,
-                name: "DevStudio IDE",
-                category: "Software",
-                price: "$49/mo",
-                icon: "fa-code",
-                desc: "Cloud-based IDE with AI code completion and collaborative editing.",
-                features: ["AI code completion", "Collaborative", "Git integration"]
+        // ========================
+        // 1. Load external components (header, hero, footer)
+        // ========================
+        async function loadComponent(url, containerId) {
+            try {
+                const resp = await fetch(url);
+                if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+                document.getElementById(containerId).innerHTML = await resp.text();
+            } catch (e) {
+                console.warn(`Could not load ${url}: ${e.message}`);
             }
+        }
+
+        // ========================
+        // 2. Product Data (normally from API)
+        // ========================
+        const products = [
+            { id: 1, name: "Cloud Suite", category: "Cloud", price: "$299/mo", icon: "bi-cloud-arrow-up", color: "#0077b6", badge: "Popular", desc: "Multi-cloud management platform.", features: ["Multi-cloud support (AWS, Azure, GCP)", "Automated migration tools", "Real-time cost monitoring", "Built-in security compliance", "99.9% uptime SLA"] },
+            { id: 2, name: "SecureNet Firewall", category: "Security", price: "$1,499", icon: "bi-shield-lock", color: "#00b4d8", badge: "New", desc: "AI-powered next-gen firewall.", features: ["AI-powered threat detection", "Intrusion prevention system", "Deep packet inspection", "Centralized management", "24/7 threat intelligence feeds"] },
+            { id: 3, name: "IoT Sensor Kit Pro", category: "IoT", price: "$599", icon: "bi-cpu", color: "#f4a261", badge: "", desc: "Industrial-grade IoT sensor kit.", features: ["20+ sensor types", "Plug-and-play setup", "Cloud dashboard", "Real-time alerts", "API integration"] },
+            { id: 4, name: "EduLearn LMS", category: "EdTech", price: "$199/mo", icon: "bi-mortarboard", color: "#0077b6", badge: "", desc: "Learning Management System.", features: ["Virtual classrooms", "Automated assessments", "Progress tracking", "Mobile app", "Integration APIs"] },
+            { id: 5, name: "FinPay Gateway", category: "FinTech", price: "Custom", icon: "bi-cash-stack", color: "#00b4d8", badge: "Enterprise", desc: "Multi-currency payment gateway.", features: ["Mobile money integration", "Card processing", "Multi-currency support", "PCI-DSS compliant", "Real-time settlements"] },
+            { id: 6, name: "DevStudio IDE", category: "Software", price: "$49/mo", icon: "bi-code-slash", color: "#f4a261", badge: "Beta", desc: "Cloud-based IDE with AI.", features: ["AI code completion", "Collaborative editing", "Integrated debugging", "Git integration", "Plugin marketplace"] }
         ];
 
-        // Render product cards
-        function renderProducts(prods) {
+        const roadmap = [
+            { date: "Q3 2026", title: "Cloud Suite v3.0", desc: "Multi-cloud cost optimization and AI anomaly detection." },
+            { date: "Q4 2026", title: "SecureNet 4.0", desc: "Zero-trust network access and enhanced ML threat models." },
+            { date: "Q1 2027", title: "IoT Kit 2.0", desc: "5G support, edge computing, and expanded sensor library." },
+            { date: "Q2 2027", title: "EduLearn AI", desc: "Personalized learning paths powered by AI." }
+        ];
+
+        const reviews = [
+            { name: "James Okello", date: "2 weeks ago", rating: 5, text: "Excellent product! The cloud suite streamlined our operations." },
+            { name: "Sarah Kizito", date: "1 month ago", rating: 4, text: "Great value. Setup was straightforward." },
+            { name: "David Mukasa", date: "2 months ago", rating: 5, text: "We've been using this for 6 months. The analytics are incredible." }
+        ];
+
+        // ========================
+        // 3. Render product grid
+        // ========================
+        function renderGrid(filteredProducts) {
             const grid = document.getElementById('productGrid');
             const noResults = document.getElementById('noResults');
 
-            if (prods.length === 0) {
+            if (filteredProducts.length === 0) {
                 grid.innerHTML = '';
                 noResults.classList.add('show');
                 return;
             }
-            noResults.classList.remove('show');
 
-            grid.innerHTML = prods.map(p => `
-                <div class="col-lg-4 col-md-6">
-                    <a href="/pages/product-detail/index.html?product=${p.id}" class="text-decoration-none">
-                        <div class="product-card" data-aos="fade-up">
-                            <div class="product-icon"><i class="fas ${p.icon}"></i></div>
-                            <div class="product-category">${p.category}</div>
-                            <h3>${p.name}</h3>
-                            <p>${p.desc}</p>
-                            <div class="product-price">${p.price}</div>
-                            <span class="btn btn-outline-primary btn-sm mt-2">View Details</span>
+            noResults.classList.remove('show');
+            grid.innerHTML = filteredProducts.map(p => `
+                <div class="product-card" onclick="showProductDetail(${p.id})">
+                    ${p.badge ? `<span class="badge">${p.badge}</span>` : ''}
+                    <div class="img-placeholder" style="background:${p.color}15;">
+                        <i class="bi ${p.icon}"></i>
+                    </div>
+                    <div class="card-body">
+                        <div class="category">${p.category}</div>
+                        <h3 class="name">${p.name}</h3>
+                        <p class="desc">${p.desc}</p>
+                        <div class="footer">
+                            <span class="price">${p.price}</span>
+                            <span class="text-cyan" style="font-weight:600;">Details →</span>
                         </div>
-                    </a>
+                    </div>
                 </div>
             `).join('');
         }
 
-        // Filter function
         function filterProducts() {
             const search = document.getElementById('searchInput').value.toLowerCase();
             const category = document.getElementById('categoryFilter').value;
             const filtered = products.filter(p =>
                 (category === 'all' || p.category === category) &&
-                (p.name.toLowerCase().includes(search) || p.desc.toLowerCase().includes(search))
+                (p.name.toLowerCase().includes(search) || p.desc.toLowerCase().includes(search) || p.category.toLowerCase().includes(search))
             );
-            renderProducts(filtered);
+            renderGrid(filtered);
         }
 
-        // Load header & footer
-        async function loadComponent(url, containerId) {
-            try {
-                const resp = await fetch(url);
-                document.getElementById(containerId).innerHTML = await resp.text();
-            } catch (e) {
-                console.error(e);
+        // ========================
+        // 4. Show product detail (inline)
+        // ========================
+        function showProductDetail(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            document.getElementById('gridView').style.display = 'none';
+            document.getElementById('detailView').style.display = 'block';
+
+            document.getElementById('detailContent').innerHTML = `
+                <div class="row g-5">
+                    <div class="col-lg-5">
+                        <div class="detail-img" style="background:${product.color}15;">
+                            <i class="bi ${product.icon}"></i>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <span class="badge" style="background:rgba(0,180,216,0.2);color:#00b4d8;">${product.category}</span>
+                        <h1 class="detail-title mt-2">${product.name}</h1>
+                        <p class="text-gray my-3">${product.desc}</p>
+                        <div class="detail-price mb-4">${product.price}</div>
+                        <a href="/pages/contact/" class="btn-primary me-2"><i class="bi bi-cart"></i> Get This Product</a>
+                        <a href="#" class="btn-outline-cyan"><i class="bi bi-headset"></i> Request Demo</a>
+                        <h5 class="mt-4">Key Features</h5>
+                        <ul class="feature-list">
+                            ${product.features.map(f => `<li><i class="bi bi-check2-circle"></i> ${f}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            // Related products
+            const related = products.filter(p => p.id !== productId).slice(0, 3);
+            document.getElementById('relatedProducts').innerHTML = related.map(p => `
+                <div class="col-md-4">
+                    <div class="related-card" onclick="showProductDetail(${p.id})">
+                        <div class="related-icon" style="background:${p.color}15;"><i class="bi ${p.icon}"></i></div>
+                        <div>
+                            <strong>${p.name}</strong><br>
+                            <small class="text-gray">${p.price}</small>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Reviews
+            document.getElementById('reviewsSection').innerHTML = reviews.map(r => `
+                <div class="review-card">
+                    <div class="d-flex justify-content-between">
+                        <strong>${r.name}</strong>
+                        <small class="text-gray">${r.date}</small>
+                    </div>
+                    <div class="stars mb-1">
+                        ${Array(r.rating).fill('<i class="bi bi-star-fill"></i>').join('')}
+                        ${Array(5 - r.rating).fill('<i class="bi bi-star"></i>').join('')}
+                    </div>
+                    <p class="text-gray mb-0">"${r.text}"</p>
+                </div>
+            `).join('');
+
+            // Roadmap
+            document.getElementById('roadmapTimeline').innerHTML = roadmap.map(e => `
+                <div class="tl-event">
+                    <div class="tl-card">
+                        <span class="tl-date">${e.date}</span>
+                        <h5>${e.title}</h5>
+                        <p class="text-gray mb-0">${e.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ========================
+        // 5. Back to grid
+        // ========================
+        document.addEventListener('click', function(e) {
+            if (e.target.id === 'backToGrid' || e.target.closest('#backToGrid')) {
+                e.preventDefault();
+                document.getElementById('detailView').style.display = 'none';
+                document.getElementById('gridView').style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-        }
+        });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            // Load layout
-            loadComponent('/components/layouts/header.html', 'header-container');
-            loadComponent('/components/layouts/footer.html', 'footer-container');
+        // ========================
+        // 6. Initialise everything
+        // ========================
+        async function init() {
+            // Load components
+            await Promise.all([
+                loadComponent('/components/layouts/header.html', 'header-container'),
+                loadComponent('/pages/products/hero.html', 'hero-container'),   // <-- product-specific hero
+                loadComponent('/components/layouts/footer.html', 'footer-container')
+            ]);
 
-            // Setup filters
+            // Set up filter listeners
             document.getElementById('searchInput').addEventListener('input', filterProducts);
             document.getElementById('categoryFilter').addEventListener('change', filterProducts);
 
-            // Initial render
-            renderProducts(products);
+            // Render initial grid
+            renderGrid(products);
 
-            // Initialize AOS
+            // Initialise AOS after all content is loaded
             if (typeof AOS !== 'undefined') AOS.init({ duration: 800, once: true });
-        });
+        }
+
+        // Start when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
     </script>
 </body>
 </html>
